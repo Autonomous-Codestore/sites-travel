@@ -1,0 +1,318 @@
+[
+{
+  "model": "sessions.session",
+  "pk": "9iilz36simf7glhvuy8077p2mak6w8k3",
+  "fields": {
+    "session_data": ".eJxVTUsOwiAQvQtrQ6ClBdzpRcjMAIHY0MTCynh3wXShq5f3fzEHrSbXjvB02bMrk-zyqyHQI5RhwLYNmQPR3krl38xpH_zWWSg1E9S8l_vZ-ptKcKRxYASRUGQlrhYn9HqKkkB7lEbNynRihcGwWqkWTzGqxZLugGgQ48zeH8IKPQw:1msj6Q:9M7_zcD_CO9Fp6mO653XOQuPaz42kTKtSaoF6-yyHpE",
+    "expire_date": "2021-12-16T10:14:10.499Z"
+  }
+},
+{
+  "model": "sites.site",
+  "fields": {
+    "domain": "example.com",
+    "name": "example.com"
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$260000$NPl95KSBJfPGmG91NGNJO1$gMemUD1Rg7TxToBYKCa5GUQb+ha3mhuzQ/zQVb0V3yQ=",
+    "last_login": "2021-12-02T10:14:10.372Z",
+    "is_superuser": true,
+    "username": "george",
+    "first_name": "",
+    "last_name": "",
+    "email": "geonhib@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2021-12-02T10:14:00.044Z",
+    "photo": "",
+    "full_name": "",
+    "telephone": null,
+    "permit_class": "DL",
+    "permit": "",
+    "is_driver": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.index",
+  "pk": 1,
+  "fields": {
+    "about_us": "Sites Travel Ltd is a bespoke travel and tours management agency based in Uganda. \r\nWe are a locally registered travel agency, certified by ATA, IATA and a member of Uganda Travel Bureau. We pride ourselves in more than 15 years of experience and expertise in the travel industry and our specialty is that point in life where you don’t know what to do next on your travel plans.\r\n\r\nWe offer an exceptional high level of service and are committed to providing prompt, knowledgeable, thorough and friendly support to our customers. \r\n\r\nWe are the leaders in the provision of world class and competitive services in car hire, airport drops and pickups, air ticketing to all world destinations, travel advice on classes \r\n\t\t\t\t\t\tand preferred airlines, and dream holidays’ planning. \r\n\r\nOur prime location in the heart of Kampala City, Uganda, at the Kampala Serena Conference Centre is both convenient, relaxing and easy to get to. Come and relax in our luxurious offices as we handle your travel, car hire or holiday requests, or just give us a call.",
+    "about_image": "about/w3_IWRJw3T.png",
+    "address": "Kampala, Uganda",
+    "tel_1": "+256 414 347 443",
+    "tel_2": "+256 772 200 120",
+    "email": "reservations@sitestravel-ug.com",
+    "facebook": "https://web.facebook.com/sitestravelLtd",
+    "twitter": "https://twitter.com/Sitestravelug",
+    "youtube": "https://www.youtube.com/channel/UCEaQBrJr7kznLwBnEf8JoYw",
+    "whatsapp": "whatsapp number",
+    "instagram": "instagram link",
+    "last_updated": "2021-12-02T10:26:14.704Z"
+  }
+},
+{
+  "model": "myapp.gallery",
+  "pk": 1,
+  "fields": {
+    "picture": "gallery/assoc_bieGPye.png",
+    "category": "partner",
+    "caption": "assoc",
+    "hidden": false
+  }
+},
+{
+  "model": "myapp.gallery",
+  "pk": 2,
+  "fields": {
+    "picture": "gallery/eatp_fry6IU7.png",
+    "category": "partner",
+    "caption": "eatp",
+    "hidden": false
+  }
+},
+{
+  "model": "myapp.gallery",
+  "pk": 3,
+  "fields": {
+    "picture": "gallery/iata_gEXz1dE.png",
+    "category": "partner",
+    "caption": "iata",
+    "hidden": false
+  }
+},
+{
+  "model": "myapp.gallery",
+  "pk": 4,
+  "fields": {
+    "picture": "gallery/safari_8OJXSyH.jpg",
+    "category": "partner",
+    "caption": "safari",
+    "hidden": false
+  }
+},
+{
+  "model": "myapp.gallery",
+  "pk": 5,
+  "fields": {
+    "picture": "gallery/ugata_77zZClF.png",
+    "category": "partner",
+    "caption": "ugata",
+    "hidden": false
+  }
+},
+{
+  "model": "myapp.gallery",
+  "pk": 6,
+  "fields": {
+    "picture": "gallery/uta_zsETztJ.png",
+    "category": "partner",
+    "caption": "uta",
+    "hidden": false
+  }
+},
+{
+  "model": "myapp.gallery",
+  "pk": 7,
+  "fields": {
+    "picture": "gallery/utb_RYzt7fQ.png",
+    "category": "partner",
+    "caption": "utb",
+    "hidden": false
+  }
+},
+{
+  "model": "myapp.gallery",
+  "pk": 8,
+  "fields": {
+    "picture": "gallery/uwa_YLoB6LN.jpeg",
+    "category": "partner",
+    "caption": "uwa",
+    "hidden": false
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2021-12-02T10:14:59.920Z",
+    "user": [
+      "george"
+    ],
+    "content_type": [
+      "accounts",
+      "index"
+    ],
+    "object_id": "1",
+    "object_repr": "2021-12-02 10:14:59.919424+00:00",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2021-12-02T10:17:40.692Z",
+    "user": [
+      "george"
+    ],
+    "content_type": [
+      "myapp",
+      "gallery"
+    ],
+    "object_id": "1",
+    "object_repr": "assoc",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2021-12-02T10:17:51.128Z",
+    "user": [
+      "george"
+    ],
+    "content_type": [
+      "myapp",
+      "gallery"
+    ],
+    "object_id": "2",
+    "object_repr": "eatp",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2021-12-02T10:18:05.218Z",
+    "user": [
+      "george"
+    ],
+    "content_type": [
+      "myapp",
+      "gallery"
+    ],
+    "object_id": "3",
+    "object_repr": "iata",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2021-12-02T10:18:18.604Z",
+    "user": [
+      "george"
+    ],
+    "content_type": [
+      "myapp",
+      "gallery"
+    ],
+    "object_id": "4",
+    "object_repr": "safari",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2021-12-02T10:18:31.724Z",
+    "user": [
+      "george"
+    ],
+    "content_type": [
+      "myapp",
+      "gallery"
+    ],
+    "object_id": "5",
+    "object_repr": "ugata",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2021-12-02T10:18:46.549Z",
+    "user": [
+      "george"
+    ],
+    "content_type": [
+      "myapp",
+      "gallery"
+    ],
+    "object_id": "6",
+    "object_repr": "uta",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2021-12-02T10:18:56.768Z",
+    "user": [
+      "george"
+    ],
+    "content_type": [
+      "myapp",
+      "gallery"
+    ],
+    "object_id": "7",
+    "object_repr": "utb",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2021-12-02T10:19:09.372Z",
+    "user": [
+      "george"
+    ],
+    "content_type": [
+      "myapp",
+      "gallery"
+    ],
+    "object_id": "8",
+    "object_repr": "uwa",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2021-12-02T10:26:14.705Z",
+    "user": [
+      "george"
+    ],
+    "content_type": [
+      "accounts",
+      "index"
+    ],
+    "object_id": "1",
+    "object_repr": "2021-12-02 10:26:14.704178+00:00",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"About us\"]}}]"
+  }
+}
+]

@@ -1,0 +1,412 @@
+from django.shortcuts import get_object_or_404, render, redirect, reverse
+from django.http.response import HttpResponseRedirect
+
+from .models import Flight, Gallery, Trip, Car, Accomadation, Booking, Driver
+from .forms import (TripForm, FlightForm, CarForm, GalleryForm, BookingForm, GoupTripBookingForm, 
+    FlightBookingForm, CarHireBookingForm) 
+from . import *
+from django.contrib import messages
+from datetime import datetime, timedelta
+from django.contrib.auth import get_user_model
+User = get_user_model()
+
+
+# Create your views here.
+def group_trips(request):
+    trips = Trip.objects.filter(type='group', available=True)
+    context = {
+        'group_trips': trips,
+    }
+    return render(request, "packages-group.html", context)
+
+
+def group_trip(request, pk):
+    trip = get_object_or_404(Trip, pk=pk)
+
+    booking_form = GoupTripBookingForm(request.POST or None, request.FILES or None, 
+        initial={"service": "trip", "trip": trip})
+    if booking_form.is_valid():
+        instance = booking_form.save(commit=False)
+        instance.trip.slots = instance.trip.slots - instance.slots
+        instance.trip.save()
+        instance.time_booked = datetime.now()
+        instance.save()       
+        messages.success(request, 'Group trip booked successfully')
+        return redirect('group_trips')
+    context = {
+        'trip': trip,
+        'group_trip_booking': booking_form,
+    }
+    return render(request, "packages-group-detail.html", context)
+
+
+def custom_trips(request):
+    trips = Trip.objects.filter(type='custom', available=True)
+    context = {
+        'custom_trips': trips,
+    }
+    return render(request, "packages-custom.html", context)
+
+
+def flight_list(request):
+    flights = Flight.objects.filter(available=True)
+    context = {"flights": flights}
+    return render(request, "flight-list.html", context)
+
+
+def flight_detail(request, pk):
+    flight = get_object_or_404(Flight, pk=pk)
+    print(flight)
+
+    booking_form = FlightBookingForm(request.POST or None, request.FILES or None, 
+        initial={"service": "flight", "flight": flight })
+    if booking_form.is_valid():
+        instance = booking_form.save(commit=False)
+        instance.time_booked = datetime.now()
+        instance.save()       
+        messages.success(request, 'Flight booked successfully')
+        return redirect('flight_list')
+    context = {
+        'flight': flight,
+        'booking_form': booking_form,
+    }
+    return render(request, "flight-detail.html", context)
+
+
+def car_list(request):
+    cars = Car.objects.filter(available=True)
+    context = {"cars": cars}
+    return render(request, "car-list.html", context)
+
+
+def car_detail(request, pk):
+    car = get_object_or_404(Car, pk=pk)
+
+    booking_form = CarHireBookingForm(request.POST or None, request.FILES or None, 
+        initial={"service": "car hire", "car": car })
+    if booking_form.is_valid():
+        instance = booking_form.save(commit=False)
+        instance.time_booked = datetime.now()
+        instance.save()       
+        messages.success(request, 'Car hire registered successfully')
+        return redirect('car_list')
+    context = {
+        'car': car,
+        'booking_form': booking_form,
+    }
+    return render(request, "car-detail.html", context)
+
+
+def gallery(request):
+    pictures = Gallery.objects.filter(category="gallery", hidden=False)
+
+    picture_form = GalleryForm(request.POST or None, request.FILES or None)
+    if picture_form.is_valid():
+        instance = picture_form.save(commit=False)
+        instance.save()                 
+        messages.success(request, 'Picture saved successfully')
+        return redirect('gallery')
+    context = {
+        "pictures": pictures,
+        "picture_form": picture_form,
+    }
+    return render(request, "gallery.html", context)
+
+
+def contacts(request):
+    return render(request, "contacts.html")
+
+
+
+# ADmin Dashboard
+def main(request):
+    if request.user.is_active:
+        if request.user.is_staff or request.user.is_driver:
+            # if request.user.is_staff
+            trips = Trip.objects.all() 
+            group_trips = trips.filter(type="group").count()
+            custom_trips = trips.filter(type="custom").count()
+
+            accomodation = Accomadation.objects.all()
+            accom_budget = accomodation.filter(budget="budget").count()
+            accom_midrange = accomodation.filter(budget="mid range").count()
+            accom_upmarket = accomodation.filter(budget="up market").count()
+
+            car_hires = Car.objects.all()
+            # carhire_town = car_hires.filter(trip="town service").count()
+            # carhire_upcountry = car_hires.filter(trip="upcountry").count()
+
+            bookings = Booking.objects.all()
+            oneway_tickets = bookings.filter(flight_type="one way").count()
+            return_tickets = bookings.filter(flight_type="return").count()
+
+            carhire_driver = bookings.filter(driven_by="driver").count()
+            carhire_self = bookings.filter(driven_by="self").count()
+            
+            carhire_town = bookings.filter(carhire_trip="town service").count()
+            carhire_upcountry = bookings.filter(carhire_trip="upcountry").count()
+
+            try:
+                latest_booking = bookings.latest('time_booked')
+            except:
+                latest_booking = ""
+
+            # tomorrow = datetime.date.today() + timedelta(days=1)
+            # today = datetime.date.today()
+
+            # for bk in bookings:
+            #     bk_start = bk.start
+            #     if bk_start == today:
+            #         print("A booking starts today")
+            #         bk_today = "Today"
+            #     elif bk_start > today:
+            #         print("A booking starts tomorrow")
+            #         bk_tomoro = "tomoro"
+        else:
+            return redirect('waiting')
+    else:
+        return redirect('waiting')
+        
+    context = {
+            "group_trips": group_trips,
+            "custom_trips": custom_trips,
+            "accom_budget" : accom_budget,
+            "accom_mid_range": accom_midrange,
+            "accom_up_market": accom_upmarket,
+            "carhire_driver": carhire_driver,
+            "carhire_self": carhire_self,
+            "carhire_town": carhire_town,
+            "carhire_upcountry": carhire_upcountry,
+            "oneway_tickets": oneway_tickets,
+            "return_tickets": return_tickets,
+            # "bk_today": bk_today,
+            # "bk_tomoro": bk_tomoro
+            "latest_booking": latest_booking,
+    }
+    return render(request, "admin/main.html", context) 
+
+
+def trips(request):
+    trips = Trip.objects.all()
+    # trip_count = trips.count()
+    # if trip_count == 0:
+    #     messages.info(request, 'No trip slots left')
+
+    trip_form = TripForm(request.POST or None, request.FILES or None)
+    if trip_form.is_valid():
+        instance = trip_form.save(commit=False)
+        instance.save()                 
+        messages.success(request, 'Package saved successfully')
+        return redirect('trips')
+    context = {
+        'trips': trips,
+        'trip_form': trip_form,
+    }
+    return render(request, "admin/trips.html", context)
+
+def trip(request, pk):
+    trip = get_object_or_404(Trip, pk=pk)
+    update_trip = TripForm(request.POST or None, request.FILES or None, instance=trip)
+    if update_trip.is_valid():
+        instance = update_trip.save(commit=False)
+        instance.save()                 
+        messages.success(request, 'Trip updated successfully')
+        return redirect('trip', trip.id)
+    context = {
+        'trip': trip,
+        'update_trip': update_trip,
+    }
+    return render(request, "admin/trip.html", context)
+
+
+
+def flights(request):
+    flights = Flight.objects.all()
+
+    flight_form = FlightForm(request.POST or None, request.FILES or None)
+    if flight_form.is_valid():
+        instance = flight_form.save(commit=False)
+        instance.save()                 
+        messages.success(request, 'Flight saved successfully')
+        return redirect('flights')
+    context = {
+        'flights': flights,
+        'flight_form': flight_form,
+    }
+    return render(request, "admin/flights.html", context)
+
+def flight(request, pk):
+    flight = get_object_or_404(Flight, pk=pk)
+    update_flight = FlightForm(request.POST or None, request.FILES or None, instance=flight)
+    if update_flight.is_valid():
+        instance = update_flight.save(commit=False)
+        instance.save()                 
+        messages.success(request, 'Flight updated successfully')
+        return redirect('flight', flight.id)
+    context = {
+        'flight': flight,
+        'update_flight': update_flight,
+    }
+    return render(request, "admin/flight.html", context)
+
+def cars(request):
+    cars = Car.objects.all()
+
+    car_form = CarForm(request.POST or None, request.FILES or None)
+    if car_form.is_valid():
+        instance = car_form.save(commit=False)
+        instance.save()                 
+        messages.success(request, 'Car saved successfully')
+        return redirect('cars')
+    context = {
+        'cars': cars,
+        'car_form': car_form,
+    }
+    return render(request, "admin/cars.html", context)
+
+def car(request, pk):
+    car = get_object_or_404(Car, pk=pk)
+    update_car = CarForm(request.POST or None, request.FILES or None, instance=car)
+    if update_car.is_valid():
+        instance = update_car.save(commit=False)
+        instance.save()                 
+        messages.success(request, 'car updated successfully')
+        return redirect('car', car.id)
+    context = {
+        'car': car,
+        'update_car': update_car,
+    }
+    return render(request, "admin/car.html", context)
+
+
+def bookings(request):
+    bookings = Booking.objects.all()
+
+    booking_form = CarForm(request.POST or None, request.FILES or None)
+    if booking_form.is_valid():
+        instance = booking_form.save(commit=False)
+        instance.save()                 
+        messages.success(request, 'Booking saved successfully')
+        return redirect('bookings')
+    context = {
+        'bookings': bookings,
+        'booking_form': booking_form,
+    }
+    return render(request, "admin/bookings.html", context)
+
+def booking(request, pk):
+    booking = get_object_or_404(Booking, pk=pk)
+    update_booking = BookingForm(request.POST or None, request.FILES or None, instance=booking)
+    if update_booking.is_valid():
+        instance = update_booking.save(commit=False)
+        instance.save()                 
+        messages.success(request, 'booking updated successfully')
+        return redirect('booking', booking.id)
+    context = {
+        'booking': booking,
+        'update_booking': update_booking,
+    }
+    return render(request, "admin/booking.html", context)
+
+
+
+def drivers(request):
+    drivers = Driver.objects.all()
+    profiles = User.objects.all()
+    print(profiles)
+    context = {
+        'drivers': drivers,
+    }
+    return render(request, "admin/drivers.html", context)
+
+
+def profile(request, pk):
+    profile = get_object_or_404(User, pk=pk)
+    user_form = BookingForm(request.POST or None, request.FILES or None, instance=booking)
+    if user_form.is_valid():
+        instance = user_form.save(commit=False)
+        instance.save()                 
+        messages.success(request, 'booking updated successfully')
+        return redirect('booking', booking.id)
+    context = {
+        'drivers': drivers,
+    }
+    return render(request, "admin/drivers.html", context)
+
+
+
+def trip_availability(request, pk):
+    trip = get_object_or_404(Trip, pk=pk)
+    if trip.available == True:
+        trip.available = False
+        trip.save()
+        messages.info(request, 'Trip no longer available')
+    else:
+        trip.available = True
+        trip.save() 
+        messages.info(request, 'Trip now avaialable')
+    return redirect('trips')
+
+def flight_availability(request, pk):
+    flight = get_object_or_404(Flight, pk=pk)
+    if flight.available == True:
+        flight.available = False
+        flight.save()
+        messages.info(request, 'Flight no longer available')
+    else:
+        flight.available = True
+        flight.save() 
+        messages.info(request, 'Flight now avaialable')
+    return redirect('flights')
+
+def car_availability(request, pk):
+    car = get_object_or_404(Car, pk=pk)
+    if car.available == True:
+        car.available = False
+        car.save()
+        messages.info(request, 'Vehicle no longer available')
+    else:
+        car.available = True
+        car.save() 
+        messages.info(request, 'Vehicle now avaialable')
+    return redirect('cars')
+
+
+
+
+# multiforms
+def step(request):
+    context = {}
+    return render(request, 'packages-group-detail.html', context)
+
+
+def stepsave(request):
+    if request.method != "POST":
+        return HttpResponseRedirect(reverse("step"))
+    else:
+        full_name = request.POST.get('full_name')
+        email = request.POST.get('email')
+        country = request.POST.get('country')
+        telephone = request.POST.get('telephone')
+        pickup = request.POST.get('pickup')
+        dropoff = request.POST.get('dropoff')
+        start = request.POST.get('start')
+        end = request.POST.get('end')
+        slots = request.POST.get('slots')
+        driven_by = request.POST.get('driven_by')
+        carhire_trip = request.POST.get('carhire_trip')
+        # if cpass != password:
+        #     messages.error(request, "Error, passwords dont match") 
+        #     return HttpResponseRedirect (reverse('multiformstepexample'))    
+
+        try:
+            multistepform = Booking(
+                full_name=full_name, email=email, country=country, telephone=telephone, pickup=pickup, start=start, end=end,
+                slots=slots, driven_by=driven_by, carhire_trip=carhire_trip)
+            multistepform.save()
+            messages.success(request, "Booking saved")
+            return HttpResponseRedirect(reverse('step'))
+        except:
+            messages.error(request, "Error in saving booking data") 
+            return HttpResponseRedirect(reverse('step'))
+            

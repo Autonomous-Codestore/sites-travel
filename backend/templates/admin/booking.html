@@ -1,0 +1,164 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% load humanize %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<!-- btc tittle Wrapper Start -->
+<div class="btc_tittle_main_wrapper">
+	<div class="btc_tittle_img_overlay"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 full_width">
+				<div class="btc_tittle_left_heading">
+					<h1>Booking</h1>
+				</div>
+			</div>
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 full_width">
+				<div class="btc_tittle_right_heading">
+					<div class="btc_tittle_right_cont_wrapper">
+						<ul>
+							<li>
+								<a href="{% url 'index' %}">Home</a>
+								<i class="fa fa-angle-right"></i>
+							</li>
+							<li>Booking</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- btc tittle Wrapper End -->
+
+<!-- Packages Start -->
+<div class="x_blog_sidebar_main_wrapper float_left padding_tb_100">
+	<div class="container">
+		<div class="row">
+			<!-- sidebar -->
+			{% include 'includes/sidebar.html' %}
+			<div class="col-xl-9 col-lg-8 col-md-12 col-sm-12 col-12">
+				<div class="x_carbooking_right_section_wrapper float_left">
+					<div class="row">
+						<div class="col-12 col-md-8 offset-md-3">
+							<p class="text-center">
+								{% include 'includes/messages.html' %}
+							</p>
+						</div>
+						<div class="x_services_title_main_wrapper float_left padding_tb_10">
+							<div class="container">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="x_offer_car_heading_wrapper x_offer_car_tb_heading_wrapper float_left">
+											<h4>Booking details</h4>
+											<h3>Booking</h3>
+											<!-- <p>Dashboard and Management console for Site Travel website</p> -->
+										</div>
+									</div>
+									<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 full_width">
+									<!-- modal start-->
+									
+									{% comment %}
+									<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
+										Update Booking
+									</button>
+									{% endcomment %}
+									<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+										<div class="modal-dialog modal-lg">
+										<div class="modal-content">
+											<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+											</div>
+											<div class="modal-body">
+												<form method="post" enctype='multipart/form-data'>
+													{% csrf_token %}
+													{{ update_booking |crispy }}
+													<div class="float-right">
+														<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+														<button type="submit" class="btn btn-success">Save</button>
+													</div>
+												</form>
+											</div>
+										</div>
+										</div>
+									</div>
+
+									<!-- car detail -->
+									<div class="row">
+										<div class="col-md-7 my-4">
+											<div class="card">
+												<h5 class="card-header">{{booking.service |title }} Details</h5>
+												<div class="card-body">
+												  <p>
+													  {% if booking.trip %}
+													  	Trip: {{ booking.trip |title }} <br>
+														Pickup: {{ booking.pickup |title }} <br>
+														Dropoff: {{ booking.dropoff |title }} <br>
+														Start: {{ booking.start }} <br>
+														End: {{ booking.end }} <br>
+														Slots: {{ booking.slots |title }} <br>
+														Dropoff: {{ booking.dropoff |title }} <br>
+														Start: {{ booking.start |title }} <br>
+
+													  {% elif booking.flight %}
+													  	Flight: {{ booking.flight |title }} <br>
+														Flight type: {{ booking.flight_type |title }} <br>
+														Flight date: {{ booking.departure_date |title }} <br>
+														Flight type: {{ booking.flight_type |title }} <br>
+														Slots: {{ booking.slots }}
+
+													  {% elif booking.car %}
+													  	Car hire: {{ booking.car |title  }} <br>
+														Start: {{ booking.start }} <br>
+														End: {{ booking.end }} <br>
+														Adults: {{ booking.adults  }} <br>
+														Children: {{ booking.children }} <br>
+														Infants: {{ booking.infants }} <br>
+														Driven by: {{ booking.driven_by |title }} <br>
+														Car hire region: {{ booking.carhire_trip |title  }} <br>
+													  {% endif %}
+												  </p>
+												  <p >Full name: {{ booking.full_name |title }}</p>
+												  <p >Email: {{ booking.email }}</p>
+												  <p >Country: {{ booking.country |title }}</p>
+												  <p >Telephone: {{ booking.telephone }}</p>
+												  <p>Time Booked: {{ booking.time_booked |timesince }} </p>
+												</div>
+											  </div>
+										</div>
+										<div class="col-md-5 my-4">
+											<div class="card">
+												<h5 class="card-header">{{booking.service |title }} Details</h5>
+												<div class="card-body">	
+													{% if booking.trip %}
+														<img src="{{booking.trip.image.url}}" height="auto" width="282px" alt="">
+													{% elif booking.flight %}
+														<img src="{{booking.flight.image.url}}" height="auto" width="282px" alt="">
+													{% elif booking.car %}
+														<img src="{{booking.car.image.url}}" height="auto" width="282px" alt="">
+													{% else %}
+													  <img src="{% static 'images/w1.png' %}" height="auto" width="282px" alt="car image">
+													{% endif %}											  
+												</div>
+											  </div>
+										</div>
+									</div>
+									
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}

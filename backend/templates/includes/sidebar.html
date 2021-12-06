@@ -1,0 +1,88 @@
+<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+    <div class="x_blog_right_side_wrapper float_left">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="jp_rightside_job_categories_wrapper jp_rightside_job_categories_wrapper2">
+                    <div class="jp_rightside_job_categories_heading">
+                        <h4>Menu</h4>
+                    </div>
+                    <div class="jp_rightside_job_categories_content">
+                        <ul>
+                            <li>
+                                <i class="fas fa-tachometer-alt"></i>
+                                </i>&nbsp;&nbsp;<a href="{% url 'main' %}">Overview</a>
+                            </li>
+                            
+                            {% if request.user.is_staff %}
+                            <li>
+                                <i class="fas fa-pen-fancy"></i>
+                                <a href="{% url 'update_index' %}"> &nbsp;&nbsp;Homepage</a>
+                            </li>
+                            {% else %}
+                            {{empty}}
+                            {% endif %}
+                            
+                            <li>
+                                <i class="fas fa-hourglass-half"></i>
+                                </i>&nbsp;&nbsp;<a href="{% url 'bookings' %}">Bookings</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-suitcase-rolling"></i>    
+                                </i>&nbsp;&nbsp;<a href="{% url 'trips' %}">Trips</a>
+                            </li>
+                            {% if request.user.is_staff %}
+                            <li>
+                                <i class="fas fa-plane-arrival"></i>
+                                <a href="{% url 'flights' %}"> &nbsp;&nbsp; Flights  </a>
+                            </li>
+                            {% else %}
+                            {{empty}}
+                            {% endif %}
+
+                            <li>
+                                <i class="fas fa-car"></i>
+                                <a href="{% url 'cars' %}"> &nbsp;&nbsp;Cars</a>
+                            </li>
+                            {% if request.user.is_staff %}
+                            <li>
+                                <i class="fas fa-users"></i>
+                                <a href="{% url 'users' %}"> &nbsp;&nbsp;Users</a>
+                            </li>
+                            {% else %}
+                            {{empty}}
+                            {% endif %}
+
+                            {% if request.user.is_staff %}
+                            <li>
+                                <i class="fas fa-dharmachakra"></i>
+                                <a href="{% url 'drivers' %}"> &nbsp;&nbsp;Drivers</a>
+                            </li>
+                            {% else %}
+                            {{empty}}
+                            {% endif %}
+
+                            {% if request.user.is_staff %}
+                            <li>
+                                <i class="fas fa-photo-video"></i>
+                                <a href="{% url 'gallery' %}"> &nbsp;&nbsp;Gallery</a>
+                            </li>
+                            {% else %}
+                            {{empty}}
+                            {% endif %}
+                            
+                            {% if request.user.is_staff %}
+                            <li>
+                                <i class="fas fa-blog"></i>
+                                <a href="#"> &nbsp;&nbsp;Blog</a>
+                            </li>
+                            {% else %}
+                            {{empty}}
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
