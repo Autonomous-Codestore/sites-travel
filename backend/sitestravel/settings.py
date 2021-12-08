@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django_countries',
     'ckeditor',
     'formtools',
+    'rest_framework',
   
     # custom
     'accounts',
