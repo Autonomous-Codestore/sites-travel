@@ -179,18 +179,8 @@
 												</form>
 											</li>
 											<li> <a href="{% url 'index' %}">Home</a></li>
-											<li class="has-children"> <a href="#">Explore</a>
-												<ul class="cd-secondary-dropdown is-hidden">
-													<li class="go-back"><a href="#0">Menu</a>
-													</li>
-													<li> <a href="{% url 'group_trips' %}">Group Packages</a>
-													</li>
-													<li> <a href="{% url 'custom' %}">Custom Packages</a>
-													</li>
-													<!-- .has-children -->
-												</ul>
-											</li>
-											<li> <a href="{% url 'cars' %}">Car Hire</a></li>
+                                            <li> <a href="{% url 'trip_list' %}">Trips</a></li>
+											<li> <a href="{% url 'car_list' %}">Car Hire</a></li>
 											<li> <a href="{% url 'gallery' %}">Gallery</a></li>
 											<li> <a href="{% url 'post_list' %}">Blog</a></li>
 											<li> <a href="{% url 'contacts' %}">Contact</a>

@@ -57,9 +57,9 @@ class Car(models.Model):
     make = models.CharField(max_length=100)
     image = models.ImageField(upload_to="cars")
     category = models.CharField(max_length=50, choices=CAR_CATEGORY)
-    rating = models.FloatField(default=1.0)
     capacity = models.PositiveIntegerField(default=3)
     available = models.BooleanField(default=True)
+    description = models.TextField()    
 
     def __str__(self):
         return f"{self.make}"
@@ -97,7 +97,6 @@ PACKAGE_TYPES = (
 )
 class Trip(models.Model):
     """Slots for group are read only, for custom is number of editable """
-    type = models.CharField(max_length=100, choices=PACKAGE_TYPES, default="group")
     category = models.ForeignKey(PackageCategory, on_delete=models.CASCADE)
     destination = models.CharField(max_length=100)
     image = models.ImageField(upload_to="package")
@@ -115,7 +114,7 @@ class Trip(models.Model):
        ordering = ['-id']
 
     def __str__(self):
-        return f"{self.type} trip - {self.destination}"
+        return f"{self.destination}"
 
 
 class Flight(models.Model):
@@ -192,5 +191,11 @@ class Gallery(models.Model):
     def __str__(self):
         return f"{self.caption} - {self.category}"
 
+
+class Contact(models.Model):
+    full_name = models.CharField(max_length=100, null=True)
+    email = models.EmailField(null=True)
+    telephone = models.CharField(max_length=20, null=True)
+    comment = models.TextField()
 
 

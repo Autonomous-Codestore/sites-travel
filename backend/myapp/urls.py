@@ -3,10 +3,8 @@ from django.contrib.auth import views as auth_views
 from . import views
 
 urlpatterns = [
-    path('group', views.group_trips, name='group_trips'),
-    path('group/<int:pk>', views.group_trip, name='group_trip'),
-
-    path('custom', views.custom_trips, name='custom'),
+    path('trip_list', views.trip_list, name='trip_list'),
+    path('trip_detail/<int:pk>', views.trip_detail, name='trip_detail'),
 
     path('flight_list', views.flight_list, name='flight_list'),
     path('flight_detail/<str:pk>', views.flight_detail, name='flight_detail'),
@@ -39,6 +37,5 @@ urlpatterns = [
 
     path('step', views.step, name='step'),
     path('stepsave', views.stepsave, name='stepsave'),
-
 
 ]

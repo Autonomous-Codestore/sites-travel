@@ -54,7 +54,7 @@
 
                             {% if request.user.is_staff %}
                             <li>
-                                <i class="fas fa-dharmachakra"></i>
+                                <i class="fas fa-user-cog"></i>
                                 <a href="{% url 'drivers' %}"> &nbsp;&nbsp;Drivers</a>
                             </li>
                             {% else %}
@@ -73,7 +73,11 @@
                             {% if request.user.is_staff %}
                             <li>
                                 <i class="fas fa-blog"></i>
-                                <a href="#"> &nbsp;&nbsp;Blog</a>
+                                <a href="{% url 'post_list' %}"> &nbsp;&nbsp;Blog</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-sliders-h"></i>
+                                <a href="{% url 'post_list' %}"> &nbsp;&nbsp;Settings</a>
                             </li>
                             {% else %}
                             {{empty}}

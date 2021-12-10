@@ -9,7 +9,7 @@
 			<div class="row">
 				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 full_width">
 					<div class="btc_tittle_left_heading">
-						<h1>Group Packages </h1>
+						<h1>Trips </h1>
 					</div>
 				</div>
 				<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 full_width">
@@ -17,7 +17,7 @@
 						<div class="btc_tittle_right_cont_wrapper">
 							<ul>
 								<li><a href="{% url 'index' %}">Home</a>  <i class="fa fa-angle-right text-white"></i></li>
-								<li>Group Packages</li>
+								<li>Trips</li>
 							</ul>
 						</div>
 					</div>
@@ -39,13 +39,13 @@
 				<div class="col-md-12">
 					<div class="x_offer_car_heading_wrapper x_offer_car_tb_heading_wrapper float_left">
 						<h4>What we offer</h4>
-						<h3>Group Packages</h3>
-						<p>Select from a list of these group packages.</p>
+						<h3>Trips</h3>
+						<p>Select a trip of your choice.</p>
 					</div>
 				</div>
 				
-				{% if group_trips %}
-				{% for trip in group_trips %}
+				{% if trips %}
+				{% for trip in trips %}
 				<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
 					<div class="btc_team_bot_cont_main_wrapper">
 						<div class="btc_team_img_bot_wrapper">
@@ -61,10 +61,15 @@
 						<div class="btc_team_img_bot_cont_wrapper">
 							<h4><a href="#">2 days at {{trip.destination}}</a></h4>
 							<p>$ {{trip.price |intcomma }}</p> 
+
 							{% if trip.slots == 0 %}
 								<p class="text-center text-dark">No slots left</p>
 							{% else %}
-								<a href="{% url 'group_trip' trip.id %}" class="btn btn-outline-primary btn-sm mt-2">Book</a>
+								{% if request.user.is_authenticated %}
+								<a href="{% url 'trip_detail' trip.id %}" class="btn btn-outline-primary btn-sm mt-2">Book</a>
+								{% else %}
+								<a href="{% url 'account_login' %}" class="btn btn-outline-primary btn-sm mt-2">Book</a>
+								{% endif %}
 							{% endif %}
 						</div>
 					</div>

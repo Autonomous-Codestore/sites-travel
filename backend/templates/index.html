@@ -182,17 +182,7 @@
 												</form>
 											</li>
 											<li> <a href="{% url 'index' %}">Home</a></li>
-											<li class="has-children"> <a href="#">Explore</a>
-												<ul class="cd-secondary-dropdown is-hidden">
-													<li class="go-back"><a href="#0">Menu</a>
-													</li>
-													<li> <a href="{% url 'group_trips' %}">Group Packages</a>
-													</li>
-													<li> <a href="{% url 'custom' %}">Custom Packages</a>
-													</li>
-													<!-- .has-children -->
-												</ul>
-											</li>
+											<li> <a href="{% url 'trip_list' %}">Trips</a></li>
 											<li> <a href="{% url 'cars' %}">Car Hire</a></li>
 											<li> <a href="{% url 'gallery' %}">Gallery</a></li>
 											<li> <a href="{% url 'post_list' %}">Blog</a></li>
@@ -601,7 +591,7 @@
 	<!-- xs Slider bottom title Start -->
 	<div class="x_slider_bottom_title_main_wrapper">
 		<div class="x_slider_bottom_box_wrapper">	<i class="fa-solid fa-suitcase-rolling"></i>
-			<h3><a href="{% url 'group_trips' %}">Trips & Safaris</a></h3>
+			<h3><a href="{% url 'trip_list' %}">Trips & Safaris</a></h3>
 			<p>Let us take care of your trip details, safaris and tour.</p>
 		</div>
 		<div class="x_slider_bottom_box_wrapper">	<i class="fa-solid fa-plane-arrival"></i>
@@ -613,7 +603,7 @@
 			<p>We offer a variety of cars for hire from the fleet of cars.</p>
 		</div>
 		<div class="x_slider_bottom_box_wrapper">	<i class="fa-solid fa-blog"></i>
-			<h3><a href="#">Blog</a></h3>
+			<h3><a href="{% url 'post_list' %}">Blog</a></h3>
 			<p>We have put down pieces of information about to share with wildlife lovers .</p>
 		</div>
 	</div>

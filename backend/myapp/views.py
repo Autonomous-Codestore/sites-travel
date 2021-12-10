@@ -12,15 +12,15 @@ User = get_user_model()
 
 
 # Create your views here.
-def group_trips(request):
-    trips = Trip.objects.filter(type='group', available=True)
+def trip_list(request):
+    trips = Trip.objects.filter(available=True)
     context = {
-        'group_trips': trips,
+        'trips': trips,
     }
-    return render(request, "packages-group.html", context)
+    return render(request, "trip-list.html", context)
 
 
-def group_trip(request, pk):
+def trip_detail(request, pk):
     trip = get_object_or_404(Trip, pk=pk)
 
     booking_form = GoupTripBookingForm(request.POST or None, request.FILES or None, 
@@ -32,20 +32,12 @@ def group_trip(request, pk):
         instance.time_booked = datetime.now()
         instance.save()       
         messages.success(request, 'Group trip booked successfully')
-        return redirect('group_trips')
+        return redirect('trips')
     context = {
         'trip': trip,
-        'group_trip_booking': booking_form,
+        'booking_form': booking_form,
     }
-    return render(request, "packages-group-detail.html", context)
-
-
-def custom_trips(request):
-    trips = Trip.objects.filter(type='custom', available=True)
-    context = {
-        'custom_trips': trips,
-    }
-    return render(request, "packages-custom.html", context)
+    return render(request, "trip-detail.html", context)
 
 
 def flight_list(request):
@@ -56,7 +48,6 @@ def flight_list(request):
 
 def flight_detail(request, pk):
     flight = get_object_or_404(Flight, pk=pk)
-    print(flight)
 
     booking_form = FlightBookingForm(request.POST or None, request.FILES or None, 
         initial={"service": "flight", "flight": flight })
@@ -124,8 +115,7 @@ def main(request):
         if request.user.is_staff or request.user.is_driver:
             # if request.user.is_staff
             trips = Trip.objects.all() 
-            group_trips = trips.filter(type="group").count()
-            custom_trips = trips.filter(type="custom").count()
+
 
             accomodation = Accomadation.objects.all()
             accom_budget = accomodation.filter(budget="budget").count()
@@ -168,8 +158,6 @@ def main(request):
         return redirect('waiting')
         
     context = {
-            "group_trips": group_trips,
-            "custom_trips": custom_trips,
             "accom_budget" : accom_budget,
             "accom_mid_range": accom_midrange,
             "accom_up_market": accom_upmarket,

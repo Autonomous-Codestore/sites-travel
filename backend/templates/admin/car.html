@@ -92,9 +92,10 @@
 												<div class="card-body">
 												  <p >Make: {{ car.make |title  }}</p>
 												  <p >Category: {{ car.category |title }}</p>
-												  <p >Rating: {{ car.rating |intcomma }}</p>
 												  <p >Capacity: {{ car.capacity |intcomma }}</p>
 												  <p >Availability: {{ car.available|yesno:"Yes,Not No" }}</p>
+												  <p class="mt-3"> Description: 	</p>
+												  <p>{{car.description}}</p>
 												</div>
 											  </div>
 										</div>

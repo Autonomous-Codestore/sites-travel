@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth import get_user_model
 User = get_user_model()
 from django.forms import ModelForm, DateInput
-from .models import Accomadation, Activity, Booking, Car, Driver, Flight, Gallery, Trip, PackageCategory
+from .models import Accomadation, Activity, Booking, Car, Contact, Driver, Flight, Gallery, Trip, PackageCategory, Contact
 import datetime
 from django.forms import Form, ModelForm, DateField, widgets
 from django_countries.widgets import CountrySelectWidget
@@ -12,11 +12,10 @@ class TripForm(forms.ModelForm):
     category = forms.ModelChoiceField(queryset=PackageCategory.objects.all(), empty_label='Select package category')
     destination = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Trip destination'}))
     arrival_accomodation = forms.ModelChoiceField(queryset=Accomadation.objects.all(), empty_label='Select  accomodation on arrival')
-    trip_accomodation = forms.ModelChoiceField(queryset=Accomadation.objects.all(), empty_label='Select  accomodation at trip destination')
+    # trip_accomodation = forms.ModelChoiceField(queryset=Accomadation.objects.all(), empty_label='Select  accomodation at trip destination')
 
     def __init__(self, *args, **kwargs):
         super(TripForm, self).__init__(*args, **kwargs)
-        self.fields['type'].label = "Package type"
         self.fields['destination'].label = "Trip destination"
         self.fields['image'].label = "Upload image(formats .png, .jpeg, jpg)"
         self.fields['slots'].placeholder = "Number of slots"
@@ -34,7 +33,7 @@ class TripForm(forms.ModelForm):
     class Meta:
         model = Trip
         fields = '__all__'
-        exclude = ('id', )   
+        exclude = ('available', )   
         widgets = {
             'start': widgets.DateInput(attrs={'type': 'date'}),
             'end': widgets.DateInput(attrs={'type': 'date'})
@@ -42,8 +41,8 @@ class TripForm(forms.ModelForm):
 
 
 class FlightForm(forms.ModelForm):
-    start = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Start location of flight '}))
-    destination = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Destination of flight'}))
+    start = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'From '}))
+    destination = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'To'}))
     price = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Price of flight'}))
 
     def __init__(self, *args, **kwargs):
@@ -53,7 +52,7 @@ class FlightForm(forms.ModelForm):
     class Meta:
         model = Flight
         fields = '__all__'
-        exclude = ('id', )   
+        exclude = ('available', )   
 
 
 class CarForm(forms.ModelForm):
@@ -66,7 +65,7 @@ class CarForm(forms.ModelForm):
     class Meta:
         model = Car
         fields = '__all__'
-        exclude = ('id', )   
+        exclude = ('available', )   
      
 
 class GalleryForm(forms.ModelForm):
@@ -78,7 +77,7 @@ class GalleryForm(forms.ModelForm):
     class Meta:
         model = Gallery
         fields = '__all__'
-        exclude = ('id', 'hidden' )   
+        exclude = ('hidden', )   
 
 
 class BookingForm(forms.ModelForm):
@@ -161,3 +160,14 @@ class CarHireBookingForm(forms.ModelForm):
             'start': widgets.DateInput(attrs={'type': 'date'}),
             'end': widgets.DateInput(attrs={'type': 'date'}),
         } 
+
+
+
+class ContactForm(forms.ModelForm):
+    full_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your full name'}))
+    email = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your email address'}))
+    telephone = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your telephone number eg +25677125478511'}))
+    # comment = forms.Textarea
+    class Meta:
+        model = Contact
+        fields = '__all__'

@@ -135,14 +135,7 @@
 					<nav class="hs_main_menu d-none d-sm-none d-xs-none d-md-block">
 						<ul>
 							<li> <a class="menu-button single_menu" href="{% url 'index' %}">Home </a></li>
-							<li>
-								<div class="dropdown-wrapper menu-button"> <a class="menu-button" href="#">Explore</a>
-									<div class="drop-menu"> 
-										<a class="menu-button" href="{% url 'group_trips' %}">Group Packages</a>
-										<a class="menu-button" href="{% url 'custom' %}">Custom Package</a>
-									</div>
-								</div>
-							</li>
+							<li> <a class="menu-button single_menu" href="{% url 'trip_list' %}">Trips</a></li>
 							<li> <a class="menu-button single_menu" href="{% url 'flights' %}">Ticketing</a></li>
 							<li> <a class="menu-button single_menu" href="{% url 'cars' %}">Car Hire </a></li>
 							<li> <a class="menu-button single_menu" href="{% url 'gallery' %}">Gallery </a></li>
@@ -196,17 +189,7 @@
 												</form>
 											</li>
 											<li> <a href="{% url 'index' %}">Home</a></li>
-											<li class="has-children"> <a href="#">Explore</a>
-												<ul class="cd-secondary-dropdown is-hidden">
-													<li class="go-back"><a href="#0">Menu</a>
-													</li>
-													<li> <a href="{% url 'group_trips' %}">Group Packages</a>
-													</li>
-													<li> <a href="{% url 'custom' %}">Custom Packages</a>
-													</li>
-													<!-- .has-children -->
-												</ul>
-											</li>
+											<li> <a href="{% url 'trips' %}">Trips</a></li>
 											<li> <a href="{% url 'cars' %}">Car Hire</a></li>
 											<li> <a href="{% url 'gallery' %}">Gallery</a></li>
 											<li> <a href="{% url 'post_list' %}">Blog</a></li>

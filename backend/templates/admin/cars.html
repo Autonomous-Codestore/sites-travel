@@ -90,7 +90,6 @@
 												<th>Category</th>
 												<th >Car Make</th>
 												<th>Capacity</th>
-												<th>Rating</th>
 												<th>Availability</th>
 												<th>Options</th>
 											</tr>
@@ -101,7 +100,6 @@
 												<td>{{car.category}}</td>
 												<td>{{car.make |title }}</td>
 												<th>{{car.capacity}}</th>
-												<td>{{car.rating}}</td>
 												<td>
 													{% if car.available == True %}
 													<a href="{% url 'car_availability' car.id %}" class="btn btn-outline-danger btn-sm">Remove availability</a>

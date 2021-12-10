@@ -3,7 +3,7 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 User = get_user_model()
 from accounts.models import Index
-from myapp.models import Booking, Trip, Flight, Car, Gallery, Driver
+from myapp.models import Booking, Trip, Flight, Car, Gallery, Driver, Contact
 from blog.models import Category, Author, Post, Comment
 
 
@@ -53,6 +53,12 @@ class BookingSerializer(serializers.ModelSerializer):
 class DriverSerializer(serializers.ModelSerializer):
     class Meta:
         model = Driver
+        fields = '__all__'
+
+
+class ContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contact
         fields = '__all__'
 
 

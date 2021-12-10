@@ -5,7 +5,7 @@ from api import serializers
 from django.contrib.auth import get_user_model
 User = get_user_model()
 from accounts.models import Index
-from myapp.models import Trip, Flight, Car, Gallery, Booking, Driver
+from myapp.models import Trip, Flight, Car, Gallery, Booking, Driver, Contact
 # from .serializers import (TripSerializer, FlightSerializer, CarSerializer, GallerySerializer, BookingSerializer)
 from blog.models import Author, Category, Post, Comment
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
@@ -110,6 +110,18 @@ class DriverDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Driver.objects.all()
     serializer_class = serializers.DriverSerializer
     permission_classes = [IsAuthenticatedOrReadOnly, IsAdminUser]
+
+
+
+class ContactList(generics.ListCreateAPIView):
+    queryset = Contact.objects.all()
+    serializer_class = serializers.ContactSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly, IsAdminUser]
+
+class ContactDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Contact.objects.all()
+    serializer_class = serializers.ContactSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly, IsAdminUser] 
 
 
 
