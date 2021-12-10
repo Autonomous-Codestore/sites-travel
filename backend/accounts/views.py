@@ -36,8 +36,8 @@ def index(request):
 # @staff_member_required
 @user_passes_test(lambda u: u.is_staff, login_url='waiting') 
 def update_index(request):
+    
     pg = Index.objects.latest('last_updated')
-#     page_id = pg.id
     page = get_object_or_404(Index, pk=pg.id)
     
     update_index = IndexForm(request.POST or None, request.FILES or None, instance=page)

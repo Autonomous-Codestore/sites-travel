@@ -128,14 +128,7 @@
 					<nav class="hs_main_menu d-none d-sm-none d-xs-none d-md-block">
 						<ul>
 							<li> <a class="menu-button single_menu" href="{% url 'index' %}">Home </a></li>
-							<li>
-								<div class="dropdown-wrapper menu-button"> <a class="menu-button" href="#">Explore</a>
-									<div class="drop-menu"> 
-										<a class="menu-button" href="{% url 'group_trips' %}">Group Packages</a>
-										<a class="menu-button" href="{% url 'custom' %}">Custom Package</a>
-									</div>
-								</div>
-							</li>
+							<li> <a class="menu-button single_menu" href="{% url 'trip_list' %}">Trips</a></li>
 							<li> <a class="menu-button single_menu" href="{% url 'flight_list' %}">Flights</a></li>
 							<li> <a class="menu-button single_menu" href="{% url 'cars' %}">Car Hire </a></li>
 							<li> <a class="menu-button single_menu" href="{% url 'gallery' %}">Gallery </a></li>
