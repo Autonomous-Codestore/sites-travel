@@ -2,14 +2,14 @@ from django import forms
 from django.contrib.auth import get_user_model
 User = get_user_model()
 from django.forms import ModelForm, DateInput
-from .models import Accomadation, Activity, Booking, Car, Contact, Driver, Flight, Gallery, Trip, PackageCategory, Contact
+from .models import Accomadation, Booking, Car, Contact, Driver, Flight, Gallery, Trip, Category, Contact
 import datetime
 from django.forms import Form, ModelForm, DateField, widgets
 from django_countries.widgets import CountrySelectWidget
 
 
 class TripForm(forms.ModelForm):
-    category = forms.ModelChoiceField(queryset=PackageCategory.objects.all(), empty_label='Select package category')
+    category = forms.ModelChoiceField(queryset=Category.objects.all(), empty_label='Select package category')
     destination = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Trip destination'}))
     arrival_accomodation = forms.ModelChoiceField(queryset=Accomadation.objects.all(), empty_label='Select  accomodation on arrival')
     # trip_accomodation = forms.ModelChoiceField(queryset=Accomadation.objects.all(), empty_label='Select  accomodation at trip destination')
@@ -41,9 +41,9 @@ class TripForm(forms.ModelForm):
 
 
 class FlightForm(forms.ModelForm):
-    start = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'From '}))
-    destination = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'To'}))
-    price = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Price of flight'}))
+    # start = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'From '}))
+    # destination = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'To'}))
+    # price = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Price of flight'}))
 
     def __init__(self, *args, **kwargs):
         super(FlightForm, self).__init__(*args, **kwargs)

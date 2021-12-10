@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render, redirect, reverse
 from django.http.response import HttpResponseRedirect
 
-from .models import Flight, Gallery, Trip, Car, Accomadation, Booking, Driver
+from .models import Flight, Gallery, Category, Trip, Car, Accomadation, Booking, Driver
 from .forms import (TripForm, FlightForm, CarForm, GalleryForm, BookingForm, GoupTripBookingForm, 
     FlightBookingForm, CarHireBookingForm) 
 from . import *
@@ -398,3 +398,14 @@ def stepsave(request):
             messages.error(request, "Error in saving booking data") 
             return HttpResponseRedirect(reverse('step'))
             
+
+def settings(request):
+    accomodations = Accomadation.objects.all()
+    categories =  Category.objects.all()
+    # create views
+
+    context = {
+        'accomodations': accomodations,
+        'categories': categories
+    }
+    return render(request, "admin/settings.html", context)

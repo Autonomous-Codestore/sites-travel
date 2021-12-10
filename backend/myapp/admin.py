@@ -1,10 +1,9 @@
 from django.contrib import admin
-from .models import Accomadation, Activity, Car, Flight, Gallery, Trip, PackageCategory, Booking, Driver
+from .models import Accomadation, Car, Flight, Gallery, Trip, Category, Booking, Driver
 
 # Register your models here.
 admin.site.register(Accomadation)
-admin.site.register(PackageCategory)
-admin.site.register(Activity)
+admin.site.register(Category)
 admin.site.register(Trip)
 admin.site.register(Flight)
 admin.site.register(Car)

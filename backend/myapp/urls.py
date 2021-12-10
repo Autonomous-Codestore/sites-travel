@@ -38,4 +38,6 @@ urlpatterns = [
     path('step', views.step, name='step'),
     path('stepsave', views.stepsave, name='stepsave'),
 
+    path('settings', views.settings, name="settings"),
+
 ]

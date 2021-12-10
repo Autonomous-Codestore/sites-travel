@@ -27,16 +27,8 @@ class Accomadation(models.Model):
 #     ('pilgramage', 'pilgramage'),
 #     ('kampala special', 'kampala special'),
 # )
-class PackageCategory(models.Model):
+class Category(models.Model):
     """Prepopulate into package, eg are safari, culture."""
-    name = models.CharField(max_length=100)
-
-    def __str__(self):
-        return f"{self.name}"
-
-class Activity(models.Model):
-    """Prepopulate into package, eg culture sAccomadationite vist."""
-    package = models.ForeignKey(PackageCategory, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
 
     def __str__(self):
@@ -97,7 +89,7 @@ PACKAGE_TYPES = (
 )
 class Trip(models.Model):
     """Slots for group are read only, for custom is number of editable """
-    category = models.ForeignKey(PackageCategory, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     destination = models.CharField(max_length=100)
     image = models.ImageField(upload_to="package")
     slots = models.PositiveIntegerField(default=0)
@@ -118,8 +110,8 @@ class Trip(models.Model):
 
 
 class Flight(models.Model):
-    start = models.CharField(max_length=50)
-    destination = models.CharField(max_length=50)
+    start = CountryField(blank_label='select country of flight origin')
+    destination = CountryField(blank_label='select destination country')
     price = models.PositiveIntegerField()
     image = models.ImageField(upload_to="flights")
     available = models.BooleanField(default=True)
