@@ -147,10 +147,6 @@ class Booking(models.Model):
     flight = models.ForeignKey(Flight, on_delete=models.CASCADE, null=True)
     flight_type = models.CharField(max_length=30, choices=TICKET_TYPE, default='one way') # For flight
     departure_date = models.DateField(max_length=100, null=True) # For flight
-    full_name = models.CharField(max_length=100)
-    email = models.EmailField()
-    country = CountryField(blank_label='select country' )
-    telephone = models.CharField(max_length=20)
     pickup = models.CharField(max_length=100)
     dropoff = models.CharField(max_length=100)
     start = models.DateField() # For trips, car hire
@@ -161,13 +157,14 @@ class Booking(models.Model):
     infants = models.PositiveIntegerField(default=0) # For flight    
     driven_by = models.CharField(max_length=40, choices=DRIVER, default='driver', null=True) # For car hire
     carhire_trip = models.CharField(max_length=100, choices=TRIP, default="up country") # For car hire
-    time_booked = models.DateTimeField(auto_now_add=True)
+    booked_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='booked_by')
+    booked_on = models.DateTimeField(auto_now_add=True)
 
     class Meta :
-       ordering = ['-time_booked']
+       ordering = ['-booked_on']
 
     def __str__(self):
-        return f"{self.full_name} booked {self.service}"
+        return f"{self.booked_by} booked {self.service}"
 
 
 IMAGE_CATEGORY = (

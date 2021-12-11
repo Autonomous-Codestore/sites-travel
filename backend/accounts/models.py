@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django_countries.fields import CountryField
 
 
 PERMIT_CLASSES = (
@@ -19,9 +20,12 @@ PERMIT_CLASSES = (
 class CustomUser(AbstractUser):
     photo = models.ImageField(upload_to="profile", null=True)
     full_name = models.CharField(max_length=50)
+    email = models.EmailField(null=True)
     telephone = models.CharField(max_length=20, null=True)
-    permit_class = models.CharField(max_length=100, default="DL")
+    permit_class = models.CharField(max_length=100, null=True)
+    country = CountryField(blank_label='Select country citizenship')
     permit = models.FileField(upload_to="permits", null=True)
+
     is_driver = models.BooleanField(default=False)
 
     def __str__(self):

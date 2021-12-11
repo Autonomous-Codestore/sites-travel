@@ -59,7 +59,13 @@
 						<div class="btc_team_img_bot_cont_wrapper">
 							<h4><a href="#">{{flight.start}} - {{flight.destination}}</a></h4>
 							<p>$ {{flight.price |intcomma }}</p>
+							
+							{% if request.user.is_authenticated %}
 							<a href="{% url 'flight_detail' flight.id %}" class="btn btn-outline-primary btn-sm mt-2">Book</a>
+							{% else %}
+							<a href="{% url 'account_login' %}" class="btn btn-outline-primary btn-sm mt-2">Book</a>
+							{% endif %}
+
 						</div>
 					</div>
 				</div>

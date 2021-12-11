@@ -1,9 +1,8 @@
 from django.shortcuts import get_object_or_404, render, redirect, reverse
 from django.http.response import HttpResponseRedirect
-
 from .models import Flight, Gallery, Category, Trip, Car, Accomadation, Booking, Driver
-from .forms import (TripForm, FlightForm, CarForm, GalleryForm, BookingForm, GoupTripBookingForm, 
-    FlightBookingForm, CarHireBookingForm) 
+from .forms import (TripForm, FlightForm, CarForm, GalleryForm, BookingForm, TripBookingForm, FlightBookingForm, 
+CarHireBookingForm, CategoryForm, AccomodationForm) 
 from . import *
 from django.contrib import messages
 from datetime import datetime, timedelta
@@ -23,13 +22,14 @@ def trip_list(request):
 def trip_detail(request, pk):
     trip = get_object_or_404(Trip, pk=pk)
 
-    booking_form = GoupTripBookingForm(request.POST or None, request.FILES or None, 
+    booking_form = TripBookingForm(request.POST or None, request.FILES or None, 
         initial={"service": "trip", "trip": trip})
     if booking_form.is_valid():
         instance = booking_form.save(commit=False)
         instance.trip.slots = instance.trip.slots - instance.slots
         instance.trip.save()
-        instance.time_booked = datetime.now()
+        instance.booked_by = request.user
+        instance.booked_on = datetime.now()
         instance.save()       
         messages.success(request, 'Group trip booked successfully')
         return redirect('trips')
@@ -53,7 +53,8 @@ def flight_detail(request, pk):
         initial={"service": "flight", "flight": flight })
     if booking_form.is_valid():
         instance = booking_form.save(commit=False)
-        instance.time_booked = datetime.now()
+        instance.booked_by = request.user
+        instance.booked_on = datetime.now()
         instance.save()       
         messages.success(request, 'Flight booked successfully')
         return redirect('flight_list')
@@ -77,7 +78,8 @@ def car_detail(request, pk):
         initial={"service": "car hire", "car": car })
     if booking_form.is_valid():
         instance = booking_form.save(commit=False)
-        instance.time_booked = datetime.now()
+        instance.booked_by = request.user
+        instance.booked_on = datetime.now()
         instance.save()       
         messages.success(request, 'Car hire registered successfully')
         return redirect('car_list')
@@ -90,18 +92,26 @@ def car_detail(request, pk):
 
 def gallery(request):
     pictures = Gallery.objects.filter(category="gallery", hidden=False)
+    context = {
+        "pictures": pictures,
+    }
+    return render(request, "gallery.html", context)
+
+
+def pictures(request):
+    pictures = Gallery.objects.filter(category="gallery", hidden=False)
 
     picture_form = GalleryForm(request.POST or None, request.FILES or None)
     if picture_form.is_valid():
         instance = picture_form.save(commit=False)
         instance.save()                 
         messages.success(request, 'Picture saved successfully')
-        return redirect('gallery')
+        return redirect('pictures')
     context = {
         "pictures": pictures,
         "picture_form": picture_form,
     }
-    return render(request, "gallery.html", context)
+    return render(request, "admin/pictures.html", context)
 
 
 def contacts(request):
@@ -109,13 +119,12 @@ def contacts(request):
 
 
 
-# ADmin Dashboard
+# Admin Dashboard
 def main(request):
     if request.user.is_active:
         if request.user.is_staff or request.user.is_driver:
             # if request.user.is_staff
             trips = Trip.objects.all() 
-
 
             accomodation = Accomadation.objects.all()
             accom_budget = accomodation.filter(budget="budget").count()
@@ -270,9 +279,11 @@ def car(request, pk):
 def bookings(request):
     bookings = Booking.objects.all()
 
-    booking_form = CarForm(request.POST or None, request.FILES or None)
+    booking_form = BookingForm(request.POST or None, request.FILES or None)
     if booking_form.is_valid():
         instance = booking_form.save(commit=False)
+        instance.booked_by = request.user
+        instance.booked_on = datetime.now()
         instance.save()                 
         messages.success(request, 'Booking saved successfully')
         return redirect('bookings')
@@ -287,6 +298,8 @@ def booking(request, pk):
     update_booking = BookingForm(request.POST or None, request.FILES or None, instance=booking)
     if update_booking.is_valid():
         instance = update_booking.save(commit=False)
+        instance.booked_by = request.user
+        instance.booked_on = datetime.now()
         instance.save()                 
         messages.success(request, 'booking updated successfully')
         return redirect('booking', booking.id)
@@ -402,10 +415,26 @@ def stepsave(request):
 def settings(request):
     accomodations = Accomadation.objects.all()
     categories =  Category.objects.all()
+
     # create views
+    category_form = CategoryForm(request.POST or None, request.FILES or None)
+    if category_form.is_valid():
+        instance = category_form.save(commit=False)
+        instance.save()                 
+        messages.success(request, 'Trip category saved successfully')
+        return redirect('settings')
+
+    accomodation_form = AccomodationForm(request.POST or None, request.FILES or None)
+    if accomodation_form.is_valid():
+        instance = accomodation_form.save(commit=False)
+        instance.save()                 
+        messages.success(request, 'Accomodation saved successfully')
+        return redirect('settings')
 
     context = {
         'accomodations': accomodations,
-        'categories': categories
+        'categories': categories,
+        'category_form': category_form,
+        'accomodation_form': accomodation_form,
     }
     return render(request, "admin/settings.html", context)

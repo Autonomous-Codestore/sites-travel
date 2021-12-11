@@ -13,6 +13,8 @@ urlpatterns = [
     path('car_detail/<str:pk>', views.car_detail, name='car_detail'),
 
     path('gallery', views.gallery, name='gallery'),   
+    path('pictures', views.pictures, name='pictures'),   
+
     path('contacts', views.contacts, name='contacts'),
 
     path('main', views.main, name='main'),

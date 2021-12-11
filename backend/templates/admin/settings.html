@@ -1,5 +1,6 @@
 {% extends 'base.html' %} 
 {% load static %} 
+{% load crispy_forms_tags %}
 {% block content %}
 
 <!-- hs Navigation End -->
@@ -60,6 +61,62 @@
 											<h4>Website settings</h4>
 											<h3>Settings</h3>
 											<!-- <p>Dashboard and Management console for Site Travel website</p> -->
+										</div>
+									</div>
+
+									<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 full_width">
+										<!-- modal start-->
+										<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
+											Add Category
+										</button>
+										<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#accomodationeModal">
+											Add Accomodation
+										</button>
+										<!-- Category Modal -->
+										<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<div class="modal-dialog modal-dialog-centered modal-lg">
+											<div class="modal-content">
+												<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+												</div>
+												<div class="modal-body">
+													<form method="post" enctype='multipart/form-data'>
+														{% csrf_token %}
+														{{ category_form |crispy }}
+														<div class="float-right">
+															<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+															<button type="submit" class="btn btn-success">Save</button>
+														</div>
+													</form>
+												</div>
+											</div>
+											</div>
+										</div>
+										<!-- Accomodation Modal -->
+										<div class="modal fade" id="accomodationeModal" tabindex="-1" aria-labelledby="accomodationeModalLabel" aria-hidden="true">
+											<div class="modal-dialog modal-dialog-centered modal-lg">
+											<div class="modal-content">
+												<div class="modal-header">
+												<h5 class="modal-title" id="accomodationeModalLabel">Modal title</h5>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+												</div>
+												<div class="modal-body">
+													<form method="post" enctype='multipart/form-data'>
+														{% csrf_token %}
+														{{ accomodation_form |crispy }}
+														<div class="float-right">
+															<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+															<button type="submit" class="btn btn-success">Save</button>
+														</div>
+													</form>
+												</div>
+											</div>
+											</div>
 										</div>
 									</div>
 							

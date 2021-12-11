@@ -59,7 +59,7 @@
 									<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 full_width">
 									<!-- modal start-->
 									<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
-										Update user profile
+										Update profile
 									</button>
 									<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 										<div class="modal-dialog modal-lg">
@@ -88,7 +88,13 @@
 									<div class="row">
 										<div class="col-md-6 my-4">
 											<div class="card">
-												<h5 class="card-header">{{user.full_name |title }}'s Details</h5>
+												<h5 class="card-header">
+													{% if user.full_name %}
+														{{user.full_name |title }}
+													{% else %}
+														{{user.email}}'s
+													{% endif %}	
+												</h5>
 												<div class="card-body">
 												  <p >Email: {{ user  }}</p>
 												  <p >Full name: {{ user.full_name |title }}</p>
@@ -102,14 +108,14 @@
 										</div>
 										<div class="col-md-6 my-4">
 											<div class="card">
-												<h5 class="card-header">Drivers Permit</h5>
+												<h5 class="card-header">Profile Picture </h5>
 												<div class="card-body">												  
 												  {% if user.permit %}
 												  <a href="{{user.permit.url}}" target="blank">
 													<img src="{{user.permit.url}}" height="auto" width="282px" alt="">
 												  </a>
 													{% else %}
-													  <img src="{% static 'images/w1.png' %}" height="auto" width="282px" alt="user permit">
+													  <img class="mx-5" src="{% static 'images/avatar.png' %}" height="220px" width="220px" alt="user permit">
 												  {% endif %}
 													  
 												</div>

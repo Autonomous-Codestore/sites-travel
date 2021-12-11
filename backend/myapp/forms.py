@@ -82,9 +82,6 @@ class GalleryForm(forms.ModelForm):
 
 class BookingForm(forms.ModelForm):
     arrival_accomodation = forms.ModelChoiceField(queryset=Accomadation.objects.all(), empty_label='Select')
-    # title = forms.CharField(initial = "Method 2 ")
-
-    # caption = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Caption uploaded image'}))
 
     def __init__(self, *args, **kwargs):
         super(BookingForm, self).__init__(*args, **kwargs)
@@ -95,35 +92,25 @@ class BookingForm(forms.ModelForm):
         exclude = ('time_booked',)
         
 
-
-class GoupTripBookingForm(forms.ModelForm):
-    full_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your full name'}))
-    email = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your email address'}))
-    telephone = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your telephone number eg +25677125478511'}))
-    nationality = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your nationality'}))
+class TripBookingForm(forms.ModelForm):
     pickup = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter location we can pick you for the trip'}))
     dropoff = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter a location we can drop you after trip'}))
     slots = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter number of trip participants'}))
 
     def __init__(self, *args, **kwargs):
-        super(GoupTripBookingForm, self).__init__(*args, **kwargs)
-        # self.fields['trip'].label = "Upload image (formats .png, .jpeg, jpg)"
+        super(TripBookingForm, self).__init__(*args, **kwargs)
         self.fields['trip'].disabled = True 
         self.fields['service'].disabled = True 
         
-
     class Meta:
         model = Booking
         fields = '__all__'
-        exclude = ('time_booked', 'car_hire', 'flight', 'flight_type', 'departure_date', 'adults', 'children', 'infants')
+        exclude = ('car', 'time_booked', 'car_hire', 'flight', 'flight_type', 'departure_date', 'adults', 'children', 
+        'infants', 'driven_by', 'carhire_trip')
 
 
 class FlightBookingForm(forms.ModelForm):
-    full_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your full name'}))
-    email = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your email address'}))
-    telephone = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your telephone number eg +25677125478511'}))
-    nationality = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your nationality'}))
-    slots = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter number of trip participants'}))
+    slots = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter number of people travelling'}))
 
     def __init__(self, *args, **kwargs):
         super(FlightBookingForm, self).__init__(*args, **kwargs)
@@ -141,9 +128,6 @@ class FlightBookingForm(forms.ModelForm):
 
 
 class CarHireBookingForm(forms.ModelForm):
-    full_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your full name'}))
-    email = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your email address'}))
-    telephone = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your telephone number eg +25677125478511'}))
 
     def __init__(self, *args, **kwargs):
         super(CarHireBookingForm, self).__init__(*args, **kwargs)
@@ -162,7 +146,6 @@ class CarHireBookingForm(forms.ModelForm):
         } 
 
 
-
 class ContactForm(forms.ModelForm):
     full_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your full name'}))
     email = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your email address'}))
@@ -171,3 +154,22 @@ class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
         fields = '__all__'
+
+
+class CategoryForm(forms.ModelForm):
+    name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter category'}))
+  
+    class Meta:
+        model = Category
+        fields = '__all__'
+
+
+class AccomodationForm(forms.ModelForm):
+    name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter name of accomodation'}))
+    # budget = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter name of accomodation'}))
+
+    class Meta:
+        model = Accomadation
+        fields = '__all__'
+
+
