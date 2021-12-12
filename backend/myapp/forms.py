@@ -110,7 +110,6 @@ class TripBookingForm(forms.ModelForm):
 
 
 class FlightBookingForm(forms.ModelForm):
-    slots = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter number of people travelling'}))
 
     def __init__(self, *args, **kwargs):
         super(FlightBookingForm, self).__init__(*args, **kwargs)
@@ -121,7 +120,7 @@ class FlightBookingForm(forms.ModelForm):
         model = Booking
         fields = '__all__'
         exclude = ('time_booked', 'car', 'start', 'end', 'trip', 'car_hire', 'pickup', 'dropoff', 'driven_by', 
-        'carhire_trip', 'booked_by',)
+        'carhire_trip', 'booked_by', 'slots', )
         widgets = {
             'departure_date': widgets.DateInput(attrs={'type': 'date'}),
             'country': CountrySelectWidget()

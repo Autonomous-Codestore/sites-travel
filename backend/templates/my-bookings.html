@@ -52,7 +52,7 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="x_offer_car_heading_wrapper x_offer_car_tb_heading_wrapper float_left">
-											<h4>My Bookings</h4>
+											<h4>History of bookings</h4>
 											<h3>My Bookings</h3>
 											<!-- <p>Dashboard and Management console for Site Travel website</p> -->
 										</div>
@@ -74,8 +74,20 @@
 											{% for booking  in bookings  %}
 											<tr>
 												<td>{{booking.service |title }}</td>
-												<td>{{booking.end}}</td>
-												<td>{{booking.end}}</td>
+												<td>
+													{% if booking.start %}
+													{{booking.start}}
+													{% else %}
+													N/A
+													{% endif %}
+												</td>
+												<td>
+													{% if booking.end %}
+													{{booking.end}}
+													{% else %}
+													N/A
+													{% endif %}
+													</td>
 												<td>{{booking.booked_on |timesince }}</td>
 												<td>
 													<a href="{% url 'booking' booking.id %}" class="btn btn-outline-primary btn-sm">view</a>

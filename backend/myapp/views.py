@@ -10,6 +10,7 @@ from django.contrib import messages
 from datetime import datetime, timedelta
 from django.contrib.auth import get_user_model
 User = get_user_model()
+from django.contrib.auth.decorators import user_passes_test
 
 
 # Create your views here.
@@ -34,7 +35,7 @@ def trip_detail(request, pk):
         instance.booked_on = datetime.now()
         instance.save()       
         messages.success(request, 'Trip booked successfully')
-        return redirect('trip_list')
+        return redirect('my_bookings')
     context = {
         'trip': trip,
         'booking_form': booking_form,
@@ -59,7 +60,7 @@ def flight_detail(request, pk):
         instance.booked_on = datetime.now()
         instance.save()       
         messages.success(request, 'Flight booked successfully')
-        return redirect('flight_list')
+        return redirect('my_bookings')
     context = {
         'flight': flight,
         'booking_form': booking_form,
@@ -84,7 +85,7 @@ def car_detail(request, pk):
         instance.booked_on = datetime.now()
         instance.save()       
         messages.success(request, 'Car hire registered successfully')
-        return redirect('car_list')
+        return redirect('my_bookings')
     context = {
         'car': car,
         'booking_form': booking_form,
@@ -100,6 +101,7 @@ def gallery(request):
     return render(request, "gallery.html", context)
 
 
+@user_passes_test(lambda u: u.is_staff, login_url='waiting') 
 def pictures(request):
     pictures = Gallery.objects.filter(category="gallery", hidden=False)
 
@@ -196,7 +198,11 @@ def main(request):
 
 
 def trips(request):
-    trips = Trip.objects.all()
+    if request.user.is_staff or request.user.is_driver:
+        trips = Trip.objects.all()
+    else:
+        return redirect('waiting')
+    
     # trip_count = trips.count()
     # if trip_count == 0:
     #     messages.info(request, 'No trip slots left')
@@ -228,10 +234,12 @@ def trip(request, pk):
     return render(request, "admin/trip.html", context)
 
 
-
 def flights(request):
-    flights = Flight.objects.all()
-
+    if request.user.is_staff:
+        flights = Flight.objects.all()
+    else:
+        return redirect('waiting')
+    
     flight_form = FlightForm(request.POST or None, request.FILES or None)
     if flight_form.is_valid():
         instance = flight_form.save(commit=False)
@@ -258,8 +266,12 @@ def flight(request, pk):
     }
     return render(request, "admin/flight.html", context)
 
+
 def cars(request):
-    cars = Car.objects.all()
+    if request.user.is_staff or request.user.is_driver:
+        cars = Car.objects.all()
+    else:
+        return redirect('waiting')
 
     car_form = CarForm(request.POST or None, request.FILES or None)
     if car_form.is_valid():
@@ -287,9 +299,12 @@ def car(request, pk):
     }
     return render(request, "admin/car.html", context)
 
-
+ 
 def bookings(request):
-    bookings = Booking.objects.all()
+    if request.user.is_staff or request.user.is_driver:
+        bookings = Booking.objects.all()
+    else:
+        return redirect('waiting')
 
     booking_form = BookingForm(request.POST or None, request.FILES or None)
     if booking_form.is_valid():
@@ -323,13 +338,7 @@ def booking(request, pk):
 
 
 
-def drivers(request):
-    drivers = User.objects.filter(is_driver=True)
-    print(drivers)
-    context = {
-        'drivers': drivers,
-    }
-    return render(request, "admin/drivers.html", context)
+
 
 
 def profile(request, pk):
@@ -341,10 +350,9 @@ def profile(request, pk):
         messages.success(request, 'booking updated successfully')
         return redirect('booking', booking.id)
     context = {
-        'drivers': drivers,
+        'drivers': profile,
     }
     return render(request, "admin/drivers.html", context)
-
 
 
 
@@ -424,6 +432,7 @@ def stepsave(request):
             return HttpResponseRedirect(reverse('step'))
             
 
+@user_passes_test(lambda u: u.is_staff, login_url='waiting') 
 def settings(request):
     accomodations = Accomadation.objects.all()
     categories =  Category.objects.all()

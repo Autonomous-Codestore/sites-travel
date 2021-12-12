@@ -45,7 +45,7 @@ def update_index(request):
         instance = update_index.save(commit=False)
         instance.save()                 
         messages.success(request, 'Index updated successfully')
-        return redirect('update_index')
+        return redirect('index')
 
     context = {
         "page": page,
@@ -99,7 +99,17 @@ def my_bookings(request):
     context = {
         "bookings": bookings,
     }
-    return render(request, "admin/my-bookings.html", context)
+    return render(request, "my-bookings.html", context)
+
+
+@user_passes_test(lambda u: u.is_staff, login_url='waiting') 
+def drivers(request):
+    drivers = User.objects.filter(is_driver=True)
+    print(drivers)
+    context = {
+        'drivers': drivers,
+    }
+    return render(request, "admin/drivers.html", context)
 
 
 @user_passes_test(lambda u: u.is_staff, login_url='waiting') 

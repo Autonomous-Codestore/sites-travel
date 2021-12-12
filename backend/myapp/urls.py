@@ -30,7 +30,6 @@ urlpatterns = [
     path('bookings', views.bookings, name='bookings'),
     path('booking/<str:pk>', views.booking, name='booking'),
 
-    path('drivers', views.drivers, name='drivers'),
 
     path('trip_availability/<str:pk>', views.trip_availability, name='trip_availability'),
     path('flight_availability//<str:pk>', views.flight_availability, name='flight_availability'),

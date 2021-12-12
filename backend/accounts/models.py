@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django_countries.fields import CountryField
-
+from ckeditor.fields import RichTextField
 
 PERMIT_CLASSES = (
     ('A', 'A - Motorcycles'),
@@ -33,7 +33,8 @@ class CustomUser(AbstractUser):
 
 
 class Index(models.Model):
-    about_us = models.TextField(null=True)
+    # about_us = models.TextField(null=True)
+    about_us = RichTextField()
     about_image = models.ImageField(upload_to="about")
     # breadcrumb_image = models.ImageField(upload_to="breadcrumb")
     address = models.CharField(max_length=50, null=True)

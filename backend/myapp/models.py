@@ -160,6 +160,10 @@ class Booking(models.Model):
     booked_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='booked_by')
     booked_on = models.DateTimeField(auto_now_add=True)
 
+    def flight_slots(self):
+        total = self.adults + self.children + self.infants
+        return total 
+
     class Meta :
        ordering = ['-booked_on']
 

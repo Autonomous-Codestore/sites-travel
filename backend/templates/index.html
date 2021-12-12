@@ -627,14 +627,14 @@
 						</div>
 					</div>
 					<div class="col-xl-5 col-lg-5">
-						{% if temp.about_image %}
+						{% if not temp.about_image %}
 						<img src="{{ temp.about_image.url }}" style="width: 400px; height: auto;" alt="about image">
 					{% else %}
-						<img src="{% static 'images/w1.png' %}" alt="about image">
+						<img src="{% static 'images/about_bird.png' %}" style="width: 400px; height: auto;" alt="about image">
 					{% endif %}
 					</div>
 					<div class="col-xl-7 col-lg-7">
-						<p>{{temp.about_us}}</p>
+						<p>{{temp.about_us |safe }}</p>
 					</div>
 				</div>
 
@@ -2420,6 +2420,15 @@
 	<!-- x footer Start -->
 	{% include 'includes/footer.html' %}
 
+		<!-- Alert timeout -->
+		<script type="text/javascript">
+			window.setTimeout(function() {
+			$(".alert").fadeTo(500, 0).slideUp(500, function(){
+				$(this).remove(); 
+			});
+			}, 2000);
+		</script>
+		
 	<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
 	<script src="{% static 'js/bootstrap.min.js' %}"></script>
 	<script src="{% static 'js/modernizr.js' %}"></script>
