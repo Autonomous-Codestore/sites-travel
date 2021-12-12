@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render, redirect, reverse
 from django.http.response import HttpResponseRedirect
 from .models import Flight, Gallery, Category, Trip, Car, Accomadation, Booking, Driver
 from .forms import (TripForm, FlightForm, CarForm, GalleryForm, BookingForm, TripBookingForm, FlightBookingForm, 
-CarHireBookingForm, CategoryForm, AccomodationForm) 
+CarBookingForm, CategoryForm, AccomodationForm) 
 from blog.models import Post
 from blog.forms import PostForm
 from . import *
@@ -77,7 +77,7 @@ def car_list(request):
 def car_detail(request, pk):
     car = get_object_or_404(Car, pk=pk)
 
-    booking_form = CarHireBookingForm(request.POST or None, request.FILES or None, 
+    booking_form = CarBookingForm(request.POST or None, request.FILES or None, 
         initial={"service": "car hire", "car": car })
     if booking_form.is_valid():
         instance = booking_form.save(commit=False)

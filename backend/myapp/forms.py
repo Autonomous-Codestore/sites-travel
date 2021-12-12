@@ -127,14 +127,15 @@ class FlightBookingForm(forms.ModelForm):
         } 
 
 
-class CarHireBookingForm(forms.ModelForm):
+class CarBookingForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
-        super(CarHireBookingForm, self).__init__(*args, **kwargs)
+        super(CarBookingForm, self).__init__(*args, **kwargs)
+        self.fields['service'].disabled = True 
+        self.fields['car'].disabled = True 
         self.fields['start'].label = "Pickup date"
         self.fields['end'].label = "Drop off date"
         self.fields['carhire_trip'].label = "Area of car trip"
-        # self.fields['service'].disabled = True 
         
     class Meta:
         model = Booking
