@@ -98,35 +98,53 @@
 													  	Trip: {{ booking.trip |title }} <br>
 														Pickup: {{ booking.pickup |title }} <br>
 														Dropoff: {{ booking.dropoff |title }} <br>
-														Start: {{ booking.start }} <br>
-														End: {{ booking.end }} <br>
-														Slots: {{ booking.slots |title }} <br>
-														Dropoff: {{ booking.dropoff |title }} <br>
-														Start: {{ booking.start |title }} <br>
+														Trip Start: {{ booking.start }} <br>
+														TRip End: {{ booking.end }} <br>
+														Slots booked: {{ booking.slots |title }} <br>
 
 													  {% elif booking.flight %}
 													  	Flight: {{ booking.flight |title }} <br>
 														Flight type: {{ booking.flight_type |title }} <br>
 														Flight date: {{ booking.departure_date |title }} <br>
 														Flight type: {{ booking.flight_type |title }} <br>
+														Adults: {{ booking.adults }} <br>
+														Children: {{ booking.children }} <br>
+														Infants: {{ booking.infants }} <br>
 														Slots: {{ booking.slots }}
 
 													  {% elif booking.car %}
-													  	Car hire: {{ booking.car |title  }} <br>
+													  	Car Make: {{ booking.car |title  }} <br>
 														Start: {{ booking.start }} <br>
 														End: {{ booking.end }} <br>
-														Adults: {{ booking.adults  }} <br>
-														Children: {{ booking.children }} <br>
-														Infants: {{ booking.infants }} <br>
 														Driven by: {{ booking.driven_by |title }} <br>
 														Car hire region: {{ booking.carhire_trip |title  }} <br>
 													  {% endif %}
 												  </p>
-												  <p >Full name: {{ booking.full_name |title }}</p>
-												  <p >Email: {{ booking.email }}</p>
-												  <p >Country: {{ booking.country |title }}</p>
-												  <p >Telephone: {{ booking.telephone }}</p>
-												  <p>Time Booked: {{ booking.time_booked |timesince }} </p>
+
+												  <h6 class="mt-3">Booked by</h4>
+												  <p >
+													  {% if booking.booked_by.full_name %}
+														  Full Name: {{ booking.booked_by.full_name |title }}
+														{% else %}
+															{{empty}}
+													  {% endif %} 
+													  </p>
+												  <p >Email: {{ booking.booked_by }}</p>
+												  <p > 
+													{% if booking.booked_by.country %}
+														Country: {{ booking.booked_by.country |title }} 
+													{% else %}
+														{{empty}}
+													{% endif %} 
+												  </p>
+												  <p > 
+													{% if booking.booked_by.telephone %}
+													Telephone: {{ booking.booked_by.telephone }}
+												  {% else %}
+													  {{empty}}
+												{% endif %} 
+												  </p>
+												  <p>Time Booked: {{ booking.booked_on |timesince }} </p>
 												</div>
 											  </div>
 										</div>

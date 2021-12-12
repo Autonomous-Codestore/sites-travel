@@ -138,7 +138,7 @@ DRIVER = (
 )
 TRIP = (
     ('up country', 'up country'),
-    ('town service', 'town service'),
+    ('town', 'town'),
 )
 class Booking(models.Model):
     service = models.CharField(max_length=50, choices=SERVICE, default="trip")

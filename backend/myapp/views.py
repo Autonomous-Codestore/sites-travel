@@ -324,9 +324,8 @@ def booking(request, pk):
 
 
 def drivers(request):
-    drivers = Driver.objects.all()
-    profiles = User.objects.all()
-    print(profiles)
+    drivers = User.objects.filter(is_driver=True)
+    print(drivers)
     context = {
         'drivers': drivers,
     }

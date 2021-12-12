@@ -90,7 +90,6 @@
 											<div class="card">
 												<h5 class="card-header">Trip Details</h5>
 												<div class="card-body">
-												  <p >Trip type: {{ trip.type }}</p>
 												  <p >Trip Category: {{ trip.category |title }}</p>
 												  <p >Destination: {{ trip.destination |title  }}</p>
 												  <p >Number of slots: {{ trip.slots }}</p>
@@ -99,7 +98,7 @@
 												  <p >Price: $ {{ trip.price |intcomma }}</p>
 												  <p >Arrival Accomodation: {{ trip.arrival_accomodation |title  }}</p>
 												  <p >Trip Accomodation: {{ trip.trip_accomodation |title  }}</p>
-												  <p >Availability: {{ trip.available|yesno:"Available,Not Available" }}</p>
+												  <p >Available: {{ trip.available|yesno:"Yes,No" }}</p>
 												</div>
 											  </div>
 										</div>

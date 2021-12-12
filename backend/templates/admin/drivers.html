@@ -3,7 +3,6 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<!-- hs Navigation End -->
 <!-- btc tittle Wrapper Start -->
 <div class="btc_tittle_main_wrapper">
 	<div class="btc_tittle_img_overlay"></div>
@@ -97,11 +96,16 @@
 											</tr>
 										</thead>
 										<tbody>
-											
 											{% for driver in drivers  %}
 											<tr>
-												<td>{{driver.full_name |title }}</td>
-												<td>{{driver.user}}</td>
+												<td>
+													{% if driver.full_name %}
+														{{driver.full_name |title }}
+													{% else %}
+														N/A
+													{% endif %}
+												</td>
+												<td>{{driver.email}}</td>
 												<td>{{driver.permit_class}}</td>
 												<!-- <td>{{ driver.verified|yesno:"Yes,No" }}</td> -->
 												<td>
@@ -117,7 +121,6 @@
 										</tbody>
 										</table>
 									</div>
-									
 								</div>
 							</div>
 						</div>
@@ -133,6 +136,5 @@
 		</div>
 	</div>
 </div>
-<!-- Packages End -->
 
 {% endblock %}
