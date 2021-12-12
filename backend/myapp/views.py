@@ -3,6 +3,8 @@ from django.http.response import HttpResponseRedirect
 from .models import Flight, Gallery, Category, Trip, Car, Accomadation, Booking, Driver
 from .forms import (TripForm, FlightForm, CarForm, GalleryForm, BookingForm, TripBookingForm, FlightBookingForm, 
 CarHireBookingForm, CategoryForm, AccomodationForm) 
+from blog.models import Post
+from blog.forms import PostForm
 from . import *
 from django.contrib import messages
 from datetime import datetime, timedelta
@@ -31,8 +33,8 @@ def trip_detail(request, pk):
         instance.booked_by = request.user
         instance.booked_on = datetime.now()
         instance.save()       
-        messages.success(request, 'Group trip booked successfully')
-        return redirect('trips')
+        messages.success(request, 'Trip booked successfully')
+        return redirect('trip_list')
     context = {
         'trip': trip,
         'booking_form': booking_form,
@@ -125,6 +127,8 @@ def main(request):
         if request.user.is_staff or request.user.is_driver:
             # if request.user.is_staff
             trips = Trip.objects.all() 
+            seen_trips = trips.filter(available=True).count()
+            unseen_trips = trips.filter(available=False).count()
 
             accomodation = Accomadation.objects.all()
             accom_budget = accomodation.filter(budget="budget").count()
@@ -144,6 +148,10 @@ def main(request):
             
             carhire_town = bookings.filter(carhire_trip="town service").count()
             carhire_upcountry = bookings.filter(carhire_trip="upcountry").count()
+
+            blogs = Post.objects.all()
+            draft = blogs.filter(status=0).count()
+            published = blogs.filter(status=1).count()
 
             try:
                 latest_booking = bookings.latest('time_booked')
@@ -167,6 +175,8 @@ def main(request):
         return redirect('waiting')
         
     context = {
+            "seen_trips": seen_trips,
+            "unseen_trips": unseen_trips,
             "accom_budget" : accom_budget,
             "accom_mid_range": accom_midrange,
             "accom_up_market": accom_upmarket,
@@ -176,6 +186,8 @@ def main(request):
             "carhire_upcountry": carhire_upcountry,
             "oneway_tickets": oneway_tickets,
             "return_tickets": return_tickets,
+            "draft": draft,
+            "published": published, 
             # "bk_today": bk_today,
             # "bk_tomoro": bk_tomoro
             "latest_booking": latest_booking,
@@ -333,6 +345,7 @@ def profile(request, pk):
         'drivers': drivers,
     }
     return render(request, "admin/drivers.html", context)
+
 
 
 

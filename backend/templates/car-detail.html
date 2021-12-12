@@ -42,7 +42,7 @@
 								<div class="card">
 									<h5 class="card-header">Car Hire</h5>
 									<div class="card-body">
-										<form action="POST" enctype='multipart/form-data'>
+										<form method="POST" enctype='multipart/form-data'>
 											{% csrf_token %}
 											{{ booking_form | crispy }}
 											<div class="float-right">

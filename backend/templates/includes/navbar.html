@@ -39,7 +39,11 @@
                     </li> -->
 
                     {% if request.user.is_authenticated %}
-                    <li class="login"><a href="{% url 'main' %}" class="mx-2"><i class="fa-solid fa-shield-virus"></i>&nbsp;Admin</a></li>
+						{% if request.user.is_staff %}
+						<li class="login"><a href="{% url 'main' %}" class="mx-2"><i class="fa-solid fa-shield-virus"></i>&nbsp;Admin</a></li>
+						{% else %}
+							{{empty}}
+						{% endif %}
                     <li class="login"><a href="{% url 'profile' %}" class="mx-2"><i class="fa-solid fa-user"></i>&nbsp;My Profile</a></li>			
                     <li class="login">	<a href="{% url 'account_logout' %}"><i class="fa fa-power-off"></i> &nbsp;&nbsp;logout</a></li>
                     {% else %}
@@ -170,7 +174,7 @@
 										<!-- .cd-dropdown -->
 									</div>
 									<nav class="cd-dropdown">
-										<h2><a href="index.html">Sites Travel</a></h2>
+										<h2><a href="{% url 'index' %}">Sites Travel</a></h2>
 										<a href="#0" class="cd-close">Close</a>
 										<ul class="cd-dropdown-content">
 											<li>

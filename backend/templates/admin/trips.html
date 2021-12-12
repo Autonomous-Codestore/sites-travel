@@ -92,7 +92,6 @@
 									<table id="myTable" class="table table-bordered table-hover table-striped table-responsive">
 										<thead>
 											<tr>
-												<th >Trip Type</th>
 												<th >Category</th>
 												<th >Destination</th>
 												<th >Price</th>
@@ -105,8 +104,7 @@
 										<tbody>
 											{% for trip in trips  %}
 											<tr>
-												<td>{{trip.type |title }}</td>
-												<td>{{trip.category}}</td>
+												<td>{{trip.category |title }}</td>
 												<td>{{trip.destination |title }}</td>
 												<td>$ {{trip.price}}</td>
 												<td>{{trip.slots}}</td>

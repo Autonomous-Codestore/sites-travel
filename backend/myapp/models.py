@@ -149,8 +149,8 @@ class Booking(models.Model):
     departure_date = models.DateField(max_length=100, null=True) # For flight
     pickup = models.CharField(max_length=100)
     dropoff = models.CharField(max_length=100)
-    start = models.DateField() # For trips, car hire
-    end = models.DateField() # For trips, car hire    
+    start = models.DateField(null=True) # For trips, car hire
+    end = models.DateField(null=True) # For trips, car hire    
     slots = models.PositiveIntegerField(default=0)
     adults = models.PositiveIntegerField(default=0) # For flight
     children = models.PositiveIntegerField(default=0) # For flight

@@ -55,7 +55,6 @@
 								<div class="card">
 									<h5 class="card-header">Trip Details</h5>
 									<div class="card-body">
-									  <h5 class="card-title">Special title treatment</h5>
 									  <p class="card-text">Number of slots: {{ trip.slots }}</p>
 									</div>
 								  </div>
@@ -66,7 +65,7 @@
 								<div class="card">
 									<h5 class="card-header">Trip Booking</h5>
 									<div class="card-body">
-										<form action="POST" enctype='multipart/form-data'>
+										<form method="POST" enctype='multipart/form-data'>
 											{% csrf_token %}
 											{{ booking_form | crispy }}
 											<div class="float-right">
@@ -75,7 +74,6 @@
 											</div>
 										</form>
 
-										
 									</div>
 								  </div>
 							</div>

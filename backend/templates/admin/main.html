@@ -78,10 +78,10 @@
 									<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 full_width">
 										<div class="x_slider_bottom_box_wrapper x_service_inner_main_box">	
 											<!-- <i class="flaticon-shopping-bag"></i> -->
-											<h3><a href="#">Tours</a></h3>
+											<h3><a href="#">Trips</a></h3>
 											<p>
-												group packages: <br>
-												custom packages: 
+												Availabe trips: {{seen_trips}} <br>
+												Non availabe trips: {{unseen_trips}}
 											</p>
 										</div>
 									</div>
@@ -120,13 +120,13 @@
 											<h3><a href="#">Driver</a></h3>
 											<p>
 												Driver: {{ carhire_driver }}  <br>
-												Own: {{ carhire_self }} <br>
+												Self: {{ carhire_self }} <br>
 											</p>
 										</div>
 									</div>
 									<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 full_width">
 										<div class="x_slider_bottom_box_wrapper x_service_inner_main_box">
-											<h3><a href="#">Trip</a></h3>
+											<h3><a href="#">Car hired within</a></h3>
 											<p>
 												town: {{ carhire_town }} <br>
 												upcountry: {{ carhire_upcountry }}
@@ -138,8 +138,8 @@
 									<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 full_width">
 										<div class="x_slider_bottom_box_wrapper x_service_inner_main_box">
 											<h3><a href="#">Blog</a></h3>
-											<p>Draft: null <br>
-												Published: null</p>
+											<p>Draft: {{draft}} <br>
+												Published: {{published}} </p>
 										</div>
 									</div>
 									{% else %}

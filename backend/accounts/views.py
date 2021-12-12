@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import CustomUser, Index
-from myapp.models import Accomadation, Trip, Gallery
+from myapp.models import Accomadation, Trip, Gallery, Booking
 from django.contrib import messages
 from .models import Index
 from .forms import CustomUserForm, IndexForm
@@ -92,6 +92,14 @@ def profile(request):
         "update_user": user_form,
     }
     return render(request, "admin/user.html", context)
+
+
+def my_bookings(request):
+    bookings = Booking.objects.filter(booked_by=request.user)
+    context = {
+        "bookings": bookings,
+    }
+    return render(request, "admin/my-bookings.html", context)
 
 
 @user_passes_test(lambda u: u.is_staff, login_url='waiting') 

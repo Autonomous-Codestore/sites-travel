@@ -14,5 +14,5 @@ urlpatterns = [
     path('users/', views.users, name='users'),
     path('user/<str:pk>', views.user, name='user'),
     path('profile', views.profile, name='profile'),
-
+    path('my-bookings', views.my_bookings, name='my_bookings'),
 ]

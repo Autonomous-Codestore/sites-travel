@@ -32,7 +32,6 @@
 								<div class="card">
 									<h5 class="card-header">Flight Details</h5>
 									<div class="card-body">
-									  <!-- <h5 class="card-title">Special title treatment</h5> -->
 									  <p class="card-text">Flight: {{ flight.start |title }} to {{ flight.destination |title }} </p>
 									</div>
 								  </div>
@@ -42,7 +41,7 @@
 								<div class="card">
 									<h5 class="card-header">Flight Booking</h5>
 									<div class="card-body">
-										<form action="POST" enctype='multipart/form-data'>
+										<form method="POST" enctype='multipart/form-data'>
 											{% csrf_token %}
 											{{ booking_form | crispy }}
 											<div class="float-right">

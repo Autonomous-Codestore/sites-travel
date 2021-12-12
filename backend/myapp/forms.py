@@ -106,7 +106,7 @@ class TripBookingForm(forms.ModelForm):
         model = Booking
         fields = '__all__'
         exclude = ('car', 'time_booked', 'car_hire', 'flight', 'flight_type', 'departure_date', 'adults', 'children', 
-        'infants', 'driven_by', 'carhire_trip')
+        'infants', 'driven_by', 'carhire_trip', 'booked_by',)
 
 
 class FlightBookingForm(forms.ModelForm):
@@ -120,7 +120,8 @@ class FlightBookingForm(forms.ModelForm):
     class Meta:
         model = Booking
         fields = '__all__'
-        exclude = ('time_booked', 'car', 'start', 'end', 'trip', 'car_hire', 'pickup', 'dropoff', 'driven_by', 'carhire_trip')
+        exclude = ('time_booked', 'car', 'start', 'end', 'trip', 'car_hire', 'pickup', 'dropoff', 'driven_by', 
+        'carhire_trip', 'booked_by',)
         widgets = {
             'departure_date': widgets.DateInput(attrs={'type': 'date'}),
             'country': CountrySelectWidget()
@@ -139,7 +140,8 @@ class CarHireBookingForm(forms.ModelForm):
     class Meta:
         model = Booking
         fields = '__all__'
-        exclude = ('time_booked', 'flight', 'trip', 'flight_type', 'departure_date', 'pickup', 'dropoff',  'slots', 'adults', 'children', 'infants')
+        exclude = ('time_booked', 'flight', 'trip', 'flight_type', 'departure_date', 'pickup', 'dropoff',  'slots', 
+        'adults', 'children', 'infants', 'booked_by',)
         widgets = {
             'start': widgets.DateInput(attrs={'type': 'date'}),
             'end': widgets.DateInput(attrs={'type': 'date'}),
