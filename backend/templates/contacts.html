@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
     	<!-- btc tittle Wrapper Start -->
@@ -69,12 +70,25 @@
 					</div>
 				</div>
 			</div>
+
+			<!-- modal form -->
+			<form method="post" enctype='multipart/form-data'>
+				{% csrf_token %}
+				{{ contact_form |crispy }}
+				<div class="float-right">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-success">Save</button>
+				</div>
+			</form>
+
 		</div>
 	</div>
+
+
 	<!-- map section start -->
 
 	<!-- xs offer car tabs Start -->
-	<div class="x_contact_title_main_wrapper float_left padding_tb_100">
+	<!-- <div class="x_contact_title_main_wrapper float_left padding_tb_100">
 		<div class="container">
 			<div class="row">
 				<div class="col-12 col-md-8 offset-md-3">
@@ -122,8 +136,37 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<!-- xs offer car tabs Start -->
+
+
+
+	
+	{% comment %}
+			<!-- form start -->
+			<form method="post">
+				{% csrf_token %}
+				<div class="form-row">
+				<div class="form-group col-md-6 mb-0">
+					{{ contact_form.full_name|as_crispy_field }}
+				</div>
+				<div class="form-group col-md-6 mb-0">
+					{{ contact_form.email|as_crispy_field }}
+				</div>
+				</div>
+				{{ contact_form.email|as_crispy_field }}
+				{{ contact_form.telephone|as_crispy_field }}
+				<div class="form-row">
+				<div class="form-group col-md-6 mb-0">
+					{{ contact_form.comment|as_crispy_field }}
+				</div>
+				
+				<button type="submit" class="btn btn-primary">Sign in</button>
+			</form>
+	{% endcomment %}
+		
+
+	
 
 {% endblock content %}
     

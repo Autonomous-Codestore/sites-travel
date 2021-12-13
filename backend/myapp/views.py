@@ -119,8 +119,16 @@ def pictures(request):
 
 
 def contacts(request):
-    return render(request, "contacts.html")
-
+    contact_form = GalleryForm(request.POST or None, request.FILES or None)
+    if contact_form.is_valid():
+        instance = contact_form.save(commit=False)
+        instance.save()                 
+        messages.success(request, 'Inquiry saved successfully')
+        return redirect('contacts')
+    context = {
+        "contact_form": contact_form,
+    }
+    return render(request, "contacts.html", context)
 
 
 # Admin Dashboard
