@@ -32,7 +32,7 @@ urlpatterns = [
 
 
     path('trip_availability/<str:pk>', views.trip_availability, name='trip_availability'),
-    path('flight_availability//<str:pk>', views.flight_availability, name='flight_availability'),
+    path('flight_availability/<str:pk>', views.flight_availability, name='flight_availability'),
     path('car_availability/<str:pk>', views.car_availability, name='car_availability'),            
 
 

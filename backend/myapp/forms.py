@@ -20,8 +20,8 @@ class TripForm(forms.ModelForm):
         self.fields['destination'].label = "Trip destination"
         self.fields['image'].label = "Upload image(formats .png, .jpeg, jpg)"
         self.fields['slots'].placeholder = "Number of slots"
-        self.fields['start'].label = "Start date of trip"
-        self.fields['end'].label = "Start date of trip"
+        self.fields['start'].label = "Trip starts on"
+        self.fields['end'].label = "Trip ends on"
         self.fields['price'].placeholder = "Price(in Dollars)"
         # self.fields['category'].widget = forms.CheckboxSelectMultiple()
 
@@ -102,12 +102,18 @@ class TripBookingForm(forms.ModelForm):
         super(TripBookingForm, self).__init__(*args, **kwargs)
         self.fields['trip'].disabled = True 
         self.fields['service'].disabled = True 
+        self.fields['start'].label = "Trip starts on"
+        self.fields['end'].label = "Trip ends on"
         
     class Meta:
         model = Booking
         fields = '__all__'
         exclude = ('car', 'time_booked', 'car_hire', 'flight', 'flight_type', 'departure_date', 'adults', 'children', 
         'infants', 'driven_by', 'carhire_trip', 'booked_by',)
+        widgets = {
+            'start': widgets.DateInput(attrs={'type': 'date'}),
+            'end': widgets.DateInput(attrs={'type': 'date'})
+        }
 
 
 class FlightBookingForm(forms.ModelForm):
