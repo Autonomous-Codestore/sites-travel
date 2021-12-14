@@ -40,5 +40,8 @@ urlpatterns = [
     path('stepsave', views.stepsave, name='stepsave'),
 
     path('settings', views.settings, name="settings"),
+    path('trip_categories', views.trip_categories, name="trip_categories"),
+    path('accomodations', views.accomodations, name="accomodations"),
+
 
 ]

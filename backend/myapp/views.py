@@ -440,6 +440,7 @@ def stepsave(request):
             return HttpResponseRedirect(reverse('step'))
             
 
+
 @user_passes_test(lambda u: u.is_staff, login_url='waiting') 
 def settings(request):
     accomodations = Accomadation.objects.all()
@@ -447,13 +448,13 @@ def settings(request):
 
     # create views
     category_form = CategoryForm(request.POST or None, request.FILES or None)
+    accomodation_form = AccomodationForm(request.POST or None, request.FILES or None)
+
     if category_form.is_valid():
         instance = category_form.save(commit=False)
         instance.save()                 
         messages.success(request, 'Trip category saved successfully')
-
-    accomodation_form = AccomodationForm(request.POST or None, request.FILES or None)
-    if accomodation_form.is_valid():
+    elif accomodation_form.is_valid():
         instance = accomodation_form.save(commit=False)
         instance.save()                 
         messages.success(request, 'Accomodation saved successfully')
@@ -466,3 +467,37 @@ def settings(request):
         'accomodation_form': accomodation_form,
     }
     return render(request, "admin/settings.html", context)
+
+
+
+
+@user_passes_test(lambda u: u.is_staff, login_url='waiting') 
+def trip_categories(request):
+    categories =  Category.objects.all()
+    category_form = CategoryForm(request.POST or None, request.FILES or None)
+    if category_form.is_valid():
+        instance = category_form.save(commit=False)
+        instance.save()                 
+        messages.success(request, 'Trip category saved successfully')
+        return redirect('trip_categories')
+    context = {
+        'categories': categories,
+        'category_form': category_form,
+    }
+    return render(request, "admin/categories.html", context)
+
+
+@user_passes_test(lambda u: u.is_staff, login_url='waiting') 
+def accomodations(request):
+    accomodations = Accomadation.objects.all()
+    accomodation_form = AccomodationForm(request.POST or None, request.FILES or None)
+    if accomodation_form.is_valid():
+        instance = accomodation_form.save(commit=False)
+        instance.save()                 
+        messages.success(request, 'Accomodation saved successfully')
+        return redirect('accomodations')
+    context = {
+        'accomodations': accomodations,
+        'accomodation_form': accomodation_form,
+    }
+    return render(request, "admin/accomodations.html", context)

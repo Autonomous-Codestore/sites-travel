@@ -8,11 +8,13 @@ from django.forms import Form, ModelForm, DateField, widgets
 from django_countries.widgets import CountrySelectWidget
 
 
+region_choices = ('ab', 'bc')
 class TripForm(forms.ModelForm):
-    category = forms.ModelChoiceField(queryset=Category.objects.all(), empty_label='Select package category')
     destination = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Trip destination'}))
     arrival_accomodation = forms.ModelChoiceField(queryset=Accomadation.objects.all(), empty_label='Select  accomodation on arrival')
     # trip_accomodation = forms.ModelChoiceField(queryset=Accomadation.objects.all(), empty_label='Select  accomodation at trip destination')
+    # ch = forms.MultipleChoiceField(choices=Category.objects.all(), widget=forms.CheckboxSelectMultiple())
+    category = forms.ModelMultipleChoiceField(queryset=Category.objects.all(), required=False, widget=forms.CheckboxSelectMultiple)
 
     def __init__(self, *args, **kwargs):
         super(TripForm, self).__init__(*args, **kwargs)
@@ -22,7 +24,7 @@ class TripForm(forms.ModelForm):
         self.fields['start'].label = "Start date of trip"
         self.fields['end'].label = "Start date of trip"
         self.fields['price'].placeholder = "Price(in Dollars)"
-
+        # self.fields['category'].widget = forms.CheckboxSelectMultiple()
 
     def clean_date(self):
         date = self.cleaned_data['date']
@@ -176,5 +178,6 @@ class AccomodationForm(forms.ModelForm):
     class Meta:
         model = Accomadation
         fields = '__all__'
+        exclude = ('available',)
 
 

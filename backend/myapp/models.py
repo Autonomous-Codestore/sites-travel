@@ -89,7 +89,7 @@ PACKAGE_TYPES = (
 )
 class Trip(models.Model):
     """Slots for group are read only, for custom is number of editable """
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ManyToManyField(Category)
     destination = models.CharField(max_length=100)
     image = models.ImageField(upload_to="package")
     slots = models.PositiveIntegerField(default=0)

@@ -7,7 +7,6 @@ from ckeditor.fields import RichTextField
 # Create your models here.
 class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    photo = models.ImageField(upload_to="")
 
     def __str__(self):
         return str(self.user)

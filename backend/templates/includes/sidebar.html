@@ -49,10 +49,19 @@
                                 <i class="fas fa-blog"></i>
                                 <a href="{% url 'post_list' %}"> &nbsp;&nbsp;Blog</a>
                             </li>
+                            <hr>
                             <li>
                                 <i class="fas fa-sliders-h"></i>
-                                <a href="{% url 'settings' %}"> &nbsp;&nbsp;Settings</a>
+                                <a href="{% url 'trip_categories' %}"> &nbsp;&nbsp;Trip categories</a>
                             </li>
+                            <li>
+                                <i class="fas fa-sliders-h"></i>
+                                <a href="{% url 'accomodations' %}"> &nbsp;&nbsp;Accomodations</a>
+                            </li>
+                            <!-- <li>
+                                <i class="fas fa-sliders-h"></i>
+                                <a href="{% url 'settings' %}"> &nbsp;&nbsp;Settings</a>
+                            </li> -->
                             {% elif request.user.is_driver %}
                             <li>
                                 <i class="fas fa-hourglass-half"></i>

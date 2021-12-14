@@ -41,19 +41,4 @@ class PostForm(forms.ModelForm):
         exclude = ['author', 'slug', 'status'] 
 
 
-# class BookingForm(forms.ModelForm):
-#     arrival_accomodation = forms.ModelChoiceField(queryset=Accomadation.objects.all(), empty_label='Select')
-#     # title = forms.CharField(initial = "Method 2 ")
-
-#     # caption = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Caption uploaded image'}))
-
-#     def __init__(self, *args, **kwargs):
-#         super(BookingForm, self).__init__(*args, **kwargs)
-#         # self.fields['picture'].label = "Upload image (formats .png, .jpeg, jpg)"
-#     class Meta:
-#         model = Booking
-#         fields = '__all__'
-#         exclude = ('time_booked',)
-
-
     
