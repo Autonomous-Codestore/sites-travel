@@ -1,5 +1,13 @@
 [
 {
+  "model": "sessions.session",
+  "pk": "1pgibnpts6l53ku35nl2kvqls4hc1rgs",
+  "fields": {
+    "session_data": ".eJxljEEOgyAQRe_C2hgFKuCuvQgZhiGSUkwUuml696oxTZou570_78UAca652CctMUTylh4QExtzTan52rrSwkbGWcMs1DIdwEb_zxzgnfIuIKUdt2ejPTanXtvrdlEuEaHEOd_Or5_UBOu0dRAuXovQd5KkAdmFQateiQ7cIGAgFXSQTvbSc44ouDFk1GC4k2iMNoTs_QH08E2U:1mx9rE:4TfKc6NusMR25wxuJS6cy_n9h8KvubE4FBwfwN0j4Lc",
+    "expire_date": "2021-12-28T15:36:48.583Z"
+  }
+},
+{
   "model": "sites.site",
   "fields": {
     "domain": "example.com",
@@ -9,18 +17,42 @@
 {
   "model": "accounts.customuser",
   "fields": {
-    "password": "pbkdf2_sha256$260000$ZUaTm59b2bQdokk4tLRtE4$bZPPOTDJcE8CUGFC5lKVnY30Q1ZkFvDIk4ju1hG6g6o=",
-    "last_login": null,
+    "password": "pbkdf2_sha256$260000$s4taczxdsImhql8oUtvUK1$nQrG5e8EEisjXhCPQAIK35WBeDvdqGtEbO/ZQEn5cD0=",
+    "last_login": "2021-12-14T12:56:42.312Z",
     "is_superuser": true,
     "username": "george",
     "first_name": "",
     "last_name": "",
     "is_staff": true,
     "is_active": true,
-    "date_joined": "2021-12-14T04:54:46.665Z",
+    "date_joined": "2021-12-14T12:56:00.537Z",
     "photo": "",
     "full_name": "",
     "email": "geonhib@gmail.com",
+    "telephone": null,
+    "permit_class": null,
+    "country": "",
+    "permit": "",
+    "is_driver": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$260000$rzIEOCL4mXHu7CZZE6EE7e$+Pgl/8qQhYSzvwvACEPr96wu+KO+izr4ywbVWGtKk8M=",
+    "last_login": "2021-12-14T15:36:48.494Z",
+    "is_superuser": false,
+    "username": "aunen7",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-12-14T15:36:47.672Z",
+    "photo": "",
+    "full_name": "",
+    "email": "aunen7@gmail.com",
     "telephone": null,
     "permit_class": null,
     "country": "",
@@ -45,7 +77,323 @@
     "youtube": "youtube link",
     "whatsapp": null,
     "instagram": "instagram link",
-    "last_updated": "2021-12-14T04:55:02.656Z"
+    "last_updated": "2021-12-14T12:56:25.274Z"
+  }
+},
+{
+  "model": "myapp.accomadation",
+  "pk": 1,
+  "fields": {
+    "name": "nanjing",
+    "budget": "mid range",
+    "available": true
+  }
+},
+{
+  "model": "myapp.accomadation",
+  "pk": 2,
+  "fields": {
+    "name": "serena hotel",
+    "budget": "up market",
+    "available": true
+  }
+},
+{
+  "model": "myapp.accomadation",
+  "pk": 3,
+  "fields": {
+    "name": "chobe lodge",
+    "budget": "up market",
+    "available": true
+  }
+},
+{
+  "model": "myapp.accomadation",
+  "pk": 4,
+  "fields": {
+    "name": "masai mara",
+    "budget": "mid range",
+    "available": true
+  }
+},
+{
+  "model": "myapp.accomadation",
+  "pk": 5,
+  "fields": {
+    "name": "katima hotel",
+    "budget": "budget",
+    "available": true
+  }
+},
+{
+  "model": "myapp.car",
+  "pk": 1,
+  "fields": {
+    "make": "landcruiser",
+    "image": "cars/hardtop_JBP0zEm.jpg",
+    "category": "4x4",
+    "capacity": 5,
+    "available": true,
+    "description": "All terrain 4x4 vehicle"
+  }
+},
+{
+  "model": "myapp.car",
+  "pk": 2,
+  "fields": {
+    "make": "safari van",
+    "image": "cars/safari_van.jpeg",
+    "category": "safari",
+    "capacity": 7,
+    "available": true,
+    "description": "Spacious van with open roof"
+  }
+},
+{
+  "model": "myapp.car",
+  "pk": 3,
+  "fields": {
+    "make": "landcruiser tx",
+    "image": "cars/tx.jpg",
+    "category": "executive",
+    "capacity": 5,
+    "available": true,
+    "description": "Ideal for safaris and town service"
+  }
+},
+{
+  "model": "myapp.car",
+  "pk": 4,
+  "fields": {
+    "make": "fortuner",
+    "image": "cars/fortuner.jpeg",
+    "category": "executive",
+    "capacity": 5,
+    "available": true,
+    "description": "Very comfortable and cozy SUV"
+  }
+},
+{
+  "model": "myapp.trip",
+  "pk": 1,
+  "fields": {
+    "category": null,
+    "destination": "zziwa rhino sanctuary",
+    "image": "package/2_mg9gruN.jpeg",
+    "slots": 40,
+    "start": "2021-12-16",
+    "end": "2021-12-18",
+    "price": 50,
+    "arrival_accomodation": null,
+    "trip_accomodation": null,
+    "details": "",
+    "available": true
+  }
+},
+{
+  "model": "myapp.trip",
+  "pk": 2,
+  "fields": {
+    "category": null,
+    "destination": "queen elizabeth",
+    "image": "package/2daysqe_gNMVR5g.jpeg",
+    "slots": 38,
+    "start": "2021-12-16",
+    "end": "2021-12-18",
+    "price": 60,
+    "arrival_accomodation": null,
+    "trip_accomodation": 3,
+    "details": "",
+    "available": true
+  }
+},
+{
+  "model": "myapp.trip",
+  "pk": 3,
+  "fields": {
+    "category": null,
+    "destination": "murchison",
+    "image": "package/murchison.jpg",
+    "slots": 80,
+    "start": "2021-12-17",
+    "end": "2021-12-18",
+    "price": 80,
+    "arrival_accomodation": null,
+    "trip_accomodation": 5,
+    "details": "",
+    "available": true
+  }
+},
+{
+  "model": "myapp.trip",
+  "pk": 4,
+  "fields": {
+    "category": null,
+    "destination": "lake mburo",
+    "image": "package/lake_mburo.jpeg",
+    "slots": 45,
+    "start": "2021-12-15",
+    "end": "2021-12-16",
+    "price": 80,
+    "arrival_accomodation": 1,
+    "trip_accomodation": 2,
+    "details": "",
+    "available": true
+  }
+},
+{
+  "model": "myapp.trip",
+  "pk": 5,
+  "fields": {
+    "category": null,
+    "destination": "jinja",
+    "image": "package/jinja.jpeg",
+    "slots": 40,
+    "start": "2021-12-15",
+    "end": "2021-12-15",
+    "price": 59,
+    "arrival_accomodation": null,
+    "trip_accomodation": null,
+    "details": "",
+    "available": true
+  }
+},
+{
+  "model": "myapp.flight",
+  "pk": 1,
+  "fields": {
+    "start": "US",
+    "destination": "UG",
+    "price": 2800,
+    "image": "flights/new_york.jpeg",
+    "available": true
+  }
+},
+{
+  "model": "myapp.flight",
+  "pk": 2,
+  "fields": {
+    "start": "UG",
+    "destination": "AE",
+    "price": 600,
+    "image": "flights/dubai.jpeg",
+    "available": true
+  }
+},
+{
+  "model": "myapp.booking",
+  "pk": 1,
+  "fields": {
+    "service": "trip",
+    "trip": 4,
+    "car": null,
+    "flight": null,
+    "flight_type": "one way",
+    "departure_date": null,
+    "pickup": "agip motel",
+    "dropoff": "boma",
+    "start": "2021-11-11",
+    "end": "2021-11-11",
+    "slots": 5,
+    "adults": 0,
+    "children": 0,
+    "infants": 0,
+    "driven_by": "driver",
+    "carhire_trip": "up country",
+    "booked_by": [
+      "george"
+    ],
+    "booked_on": "2021-12-14T15:31:31.429Z"
+  }
+},
+{
+  "model": "myapp.booking",
+  "pk": 2,
+  "fields": {
+    "service": "flight",
+    "trip": null,
+    "car": null,
+    "flight": 1,
+    "flight_type": "one way",
+    "departure_date": "2021-12-23",
+    "pickup": "",
+    "dropoff": "",
+    "start": null,
+    "end": null,
+    "slots": 0,
+    "adults": 1,
+    "children": 0,
+    "infants": 0,
+    "driven_by": "driver",
+    "carhire_trip": "up country",
+    "booked_by": [
+      "george"
+    ],
+    "booked_on": "2021-12-14T15:32:01.850Z"
+  }
+},
+{
+  "model": "myapp.booking",
+  "pk": 3,
+  "fields": {
+    "service": "car hire",
+    "trip": null,
+    "car": 3,
+    "flight": null,
+    "flight_type": "one way",
+    "departure_date": null,
+    "pickup": "",
+    "dropoff": "",
+    "start": "2021-12-15",
+    "end": "2021-12-16",
+    "slots": 0,
+    "adults": 0,
+    "children": 0,
+    "infants": 0,
+    "driven_by": "driver",
+    "carhire_trip": "town",
+    "booked_by": [
+      "george"
+    ],
+    "booked_on": "2021-12-14T15:32:34.247Z"
+  }
+},
+{
+  "model": "myapp.booking",
+  "pk": 4,
+  "fields": {
+    "service": "trip",
+    "trip": 2,
+    "car": null,
+    "flight": null,
+    "flight_type": "one way",
+    "departure_date": null,
+    "pickup": "garden city",
+    "dropoff": "village mall",
+    "start": "2021-09-09",
+    "end": "2021-10-10",
+    "slots": 2,
+    "adults": 0,
+    "children": 0,
+    "infants": 0,
+    "driven_by": "driver",
+    "carhire_trip": "up country",
+    "booked_by": [
+      "aunen7"
+    ],
+    "booked_on": "2021-12-14T15:38:02.648Z"
+  }
+},
+{
+  "model": "account.emailaddress",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "aunen7"
+    ],
+    "email": "aunen7@gmail.com",
+    "verified": false,
+    "primary": true
   }
 }
 ]
