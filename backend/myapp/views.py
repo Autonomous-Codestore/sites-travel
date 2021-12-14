@@ -451,7 +451,6 @@ def settings(request):
         instance = category_form.save(commit=False)
         instance.save()                 
         messages.success(request, 'Trip category saved successfully')
-        return redirect('settings')
 
     accomodation_form = AccomodationForm(request.POST or None, request.FILES or None)
     if accomodation_form.is_valid():
