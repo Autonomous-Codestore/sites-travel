@@ -488,17 +488,17 @@ def stepsave(request):
 @user_passes_test(lambda u: u.is_staff, login_url='waiting') 
 def settings(request):
     accomodations = Accomadation.objects.all()
-    categories =  Category.objects.all()
+    # categories =  Category.objects.all()
 
     # create views
-    category_form = CategoryForm(request.POST or None, request.FILES or None)
-    accomodation_form = AccomodationForm(request.POST or None, request.FILES or None)
+    # category_form = CategoryForm(request.POST or None, request.FILES or None)
 
-    if category_form.is_valid():
-        instance = category_form.save(commit=False)
-        instance.save()                 
-        messages.success(request, 'Trip category saved successfully')
-    elif accomodation_form.is_valid():
+    # if category_form.is_valid():
+    #     instance = category_form.save(commit=False)
+    #     instance.save()                 
+    #     messages.success(request, 'Trip category saved successfully')
+    accomodation_form = AccomodationForm(request.POST or None, request.FILES or None)
+    if accomodation_form.is_valid():
         instance = accomodation_form.save(commit=False)
         instance.save()                 
         messages.success(request, 'Accomodation saved successfully')
@@ -506,9 +506,9 @@ def settings(request):
 
     context = {
         'accomodations': accomodations,
-        'categories': categories,
-        'category_form': category_form,
         'accomodation_form': accomodation_form,
+    #     'categories': categories,
+    #     'category_form': category_form,
     }
     return render(request, "admin/settings.html", context)
 
