@@ -14,7 +14,7 @@ class TripForm(forms.ModelForm):
     arrival_accomodation = forms.ModelChoiceField(queryset=Accomadation.objects.all(), empty_label='Select  accomodation on arrival')
     # trip_accomodation = forms.ModelChoiceField(queryset=Accomadation.objects.all(), empty_label='Select  accomodation at trip destination')
     # ch = forms.MultipleChoiceField(choices=Category.objects.all(), widget=forms.CheckboxSelectMultiple())
-    category = forms.ModelMultipleChoiceField(queryset=Category.objects.all(), required=False, widget=forms.CheckboxSelectMultiple)
+    # category = forms.ModelMultipleChoiceField(queryset=Category.objects.all(), required=False, widget=forms.CheckboxSelectMultiple)
 
     def __init__(self, *args, **kwargs):
         super(TripForm, self).__init__(*args, **kwargs)
@@ -35,7 +35,7 @@ class TripForm(forms.ModelForm):
     class Meta:
         model = Trip
         fields = '__all__'
-        exclude = ('available', )   
+        exclude = ('category', 'available', )   
         widgets = {
             'start': widgets.DateInput(attrs={'type': 'date'}),
             'end': widgets.DateInput(attrs={'type': 'date'})
@@ -150,17 +150,37 @@ class CarBookingForm(forms.ModelForm):
         } 
 
 
-class ContactForm(forms.ModelForm):
-    full_name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Enter your full name'}))
-    email = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your email address'}))
-    telephone = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your telephone number eg +25677125478511'}))
-    class Meta:
+class ContactForm(forms.Form):    
+    # full_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Full Name'}))
+    # email = forms.CharField()
+    # telephone = forms.CharField()
+    # message = forms.Textarea()
+
+    class Meta(object):
         model = Contact
         fields = '__all__'
         widgets = {
-            'message':  forms.Textarea(attrs={'placeholder':'Enter your message'})
- 
-        }
+            'title': forms.TextInput(
+				attrs={
+					'full_name': 'form-control'
+					}
+				),
+            'content': forms.Textarea(
+				attrs={
+					'email': 'form-control'
+					}
+				),
+            'telephone': forms.TextInput(
+				attrs={
+					'telephone': 'form-control'
+					}
+				),
+            'message': forms.Textarea(
+				attrs={
+					'message': 'form-control'
+					}
+				),
+			}
 
 
 class CategoryForm(forms.ModelForm):

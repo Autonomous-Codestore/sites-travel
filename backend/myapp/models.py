@@ -89,7 +89,7 @@ PACKAGE_TYPES = (
 )
 class Trip(models.Model):
     """Slots for group are read only, for custom is number of editable """
-    category = models.ManyToManyField(Category)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     destination = models.CharField(max_length=100)
     image = models.ImageField(upload_to="package")
     slots = models.PositiveIntegerField(default=0)
@@ -99,6 +99,7 @@ class Trip(models.Model):
     # activities = models.CharField(max_length=200, choices=PACKAGE_TYPES)
     arrival_accomodation = models.ForeignKey(Accomadation, on_delete=models.CASCADE, related_name="arrival_accom")
     trip_accomodation = models.ForeignKey(Accomadation, on_delete=models.CASCADE, related_name="trip_accom")
+    details = models.TextField() 
     available = models.BooleanField(default=True)
     # def depleted_slots:
 

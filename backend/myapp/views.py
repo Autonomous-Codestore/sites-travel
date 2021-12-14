@@ -131,6 +131,50 @@ def contacts(request):
     return render(request, "contacts.html", context)
 
 
+
+
+
+def step(request):
+    context = {}
+    return render(request, 'packages-group-detail.html', context)
+
+
+def stepsave(request):
+    if request.method != "POST":
+        return HttpResponseRedirect(reverse("step"))
+    else:
+        full_name = request.POST.get('full_name')
+        email = request.POST.get('email')
+        country = request.POST.get('country')
+        telephone = request.POST.get('telephone')
+        pickup = request.POST.get('pickup')
+        dropoff = request.POST.get('dropoff')
+        start = request.POST.get('start')
+        end = request.POST.get('end')
+        slots = request.POST.get('slots')
+        driven_by = request.POST.get('driven_by')
+        carhire_trip = request.POST.get('carhire_trip')
+        # if cpass != password:
+        #     messages.error(request, "Error, passwords dont match") 
+        #     return HttpResponseRedirect (reverse('multiformstepexample'))    
+
+        try:
+            multistepform = Booking(
+                full_name=full_name, email=email, country=country, telephone=telephone, pickup=pickup, start=start, end=end,
+                slots=slots, driven_by=driven_by, carhire_trip=carhire_trip)
+            multistepform.save()
+            messages.success(request, "Booking saved")
+            return HttpResponseRedirect(reverse('step'))
+        except:
+            messages.error(request, "Error in saving booking data") 
+            return HttpResponseRedirect(reverse('step'))
+
+
+
+
+
+
+
 # Admin Dashboard
 def main(request):
     if request.user.is_active:
