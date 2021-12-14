@@ -627,7 +627,7 @@
 						</div>
 					</div>
 					<div class="col-xl-5 col-lg-5">
-						{% if not temp.about_image %}
+						{% if temp.about_image %}
 						<img src="{{ temp.about_image.url }}" style="width: 400px; height: auto;" alt="about image">
 					{% else %}
 						<img src="{% static 'images/about_bird.png' %}" style="width: 400px; height: auto;" alt="about image">

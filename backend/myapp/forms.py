@@ -149,13 +149,16 @@ class CarBookingForm(forms.ModelForm):
 
 
 class ContactForm(forms.ModelForm):
-    full_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your full name'}))
+    full_name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Enter your full name'}))
     email = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your email address'}))
     telephone = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your telephone number eg +25677125478511'}))
-    # comment = forms.Textarea
     class Meta:
         model = Contact
         fields = '__all__'
+        widgets = {
+            'message':  forms.Textarea(attrs={'placeholder':'Enter your message'})
+ 
+        }
 
 
 class CategoryForm(forms.ModelForm):

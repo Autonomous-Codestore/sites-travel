@@ -189,6 +189,6 @@ class Contact(models.Model):
     full_name = models.CharField(max_length=100, null=True)
     email = models.EmailField(null=True)
     telephone = models.CharField(max_length=20, null=True)
-    comment = models.TextField()
+    message = models.TextField()
 
 
