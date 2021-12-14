@@ -13,7 +13,6 @@ class TripForm(forms.ModelForm):
     destination = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Trip destination'}))
     arrival_accomodation = forms.ModelChoiceField(queryset=Accomadation.objects.all(), empty_label='Select  accomodation on arrival')
     # trip_accomodation = forms.ModelChoiceField(queryset=Accomadation.objects.all(), empty_label='Select  accomodation at trip destination')
-    # ch = forms.MultipleChoiceField(choices=Category.objects.all(), widget=forms.CheckboxSelectMultiple())
     # category = forms.ModelMultipleChoiceField(queryset=Category.objects.all(), required=False, widget=forms.CheckboxSelectMultiple)
 
     def __init__(self, *args, **kwargs):
