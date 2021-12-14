@@ -71,7 +71,9 @@
 				</div>
 			</div>
 
-			<!-- modal form -->
+			
+			{% comment %}
+				<!-- modal form -->
 			<form method="post" enctype='multipart/form-data'>
 				{% csrf_token %}
 				{{ contact_form |crispy }}
@@ -80,6 +82,9 @@
 					<button type="submit" class="btn btn-success">Save</button>
 				</div>
 			</form>
+			{% endcomment %}
+				
+			
 
 		</div>
 	</div>
