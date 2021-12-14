@@ -29,7 +29,7 @@ class TripForm(forms.ModelForm):
     def clean_date(self):
         date = self.cleaned_data['date']
         if self.start < datetime.date.today():
-            raise forms.ValidationError("Book only dates in the future!")
+            raise forms.ValidationError("You should only book dates in the future!")
         return date
 
     class Meta:
