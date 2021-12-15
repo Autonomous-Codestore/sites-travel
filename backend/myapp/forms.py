@@ -8,12 +8,9 @@ from django.forms import Form, ModelForm, DateField, widgets
 from django_countries.widgets import CountrySelectWidget
 
 
-region_choices = ('ab', 'bc')
 class TripForm(forms.ModelForm):
     destination = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Trip destination'}))
     arrival_accomodation = forms.ModelChoiceField(queryset=Accomadation.objects.all(), empty_label='Select  accomodation on arrival')
-    # trip_accomodation = forms.ModelChoiceField(queryset=Accomadation.objects.all(), empty_label='Select  accomodation at trip destination')
-    # category = forms.ModelMultipleChoiceField(queryset=Category.objects.all(), required=False, widget=forms.CheckboxSelectMultiple)
 
     def __init__(self, *args, **kwargs):
         super(TripForm, self).__init__(*args, **kwargs)
@@ -23,7 +20,8 @@ class TripForm(forms.ModelForm):
         self.fields['start'].label = "Trip starts on"
         self.fields['end'].label = "Trip ends on"
         self.fields['price'].placeholder = "Price(in Dollars)"
-        # self.fields['category'].widget = forms.CheckboxSelectMultiple()
+        self.fields['details'].placeholder = "Additional trip details"
+        self.fields['details'].label = "Trip details"
 
     def clean_date(self):
         date = self.cleaned_data['date']
@@ -37,7 +35,8 @@ class TripForm(forms.ModelForm):
         exclude = ('category', 'available', )   
         widgets = {
             'start': widgets.DateInput(attrs={'type': 'date'}),
-            'end': widgets.DateInput(attrs={'type': 'date'})
+            'end': widgets.DateInput(attrs={'type': 'date'}),
+            'details': 	widgets.Textarea(attrs={'rows':4})
         } 
 
 
@@ -57,7 +56,7 @@ class FlightForm(forms.ModelForm):
 
 
 class CarForm(forms.ModelForm):
-    make = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Make of car eg toyota'}))
+    car = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter car '}))
 
     def __init__(self, *args, **kwargs):
         super(CarForm, self).__init__(*args, **kwargs)
@@ -94,26 +93,23 @@ class BookingForm(forms.ModelForm):
         
 
 class TripBookingForm(forms.ModelForm):
-    pickup = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter location we can pick you for the trip'}))
-    dropoff = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter a location we can drop you after trip'}))
+    pickup = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter location to pick you up from'}))
+    dropoff = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter a location to drop you at.'}))
     slots = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter number of trip participants'}))
 
     def __init__(self, *args, **kwargs):
         super(TripBookingForm, self).__init__(*args, **kwargs)
         self.fields['trip'].disabled = True 
         self.fields['service'].disabled = True 
-        self.fields['start'].label = "Trip starts on"
-        self.fields['end'].label = "Trip ends on"
+        self.fields['slots'].label = "slots"
+        self.fields['pickup'].label = "Pickup place"
+        self.fields['dropoff'].label = "Drop-off place"
         
     class Meta:
         model = Booking
         fields = '__all__'
         exclude = ('car', 'time_booked', 'car_hire', 'flight', 'flight_type', 'departure_date', 'adults', 'children', 
-        'infants', 'driven_by', 'carhire_trip', 'booked_by',)
-        widgets = {
-            'start': widgets.DateInput(attrs={'type': 'date'}),
-            'end': widgets.DateInput(attrs={'type': 'date'})
-        }
+        'infants', 'driven_by', 'carhire_trip', 'booked_by', 'start', 'end')
 
 
 class FlightBookingForm(forms.ModelForm):
@@ -122,27 +118,45 @@ class FlightBookingForm(forms.ModelForm):
         super(FlightBookingForm, self).__init__(*args, **kwargs)
         self.fields['service'].disabled = True 
         self.fields['flight'].disabled = True 
-        
+        self.fields['start'].label = "Date of flight" 
+
+    def clean(self):
+        start = self.cleaned_data.get('start')
+        adults = self.cleaned_data.get('adults')
+        children = self.cleaned_data.get('children')
+        if start < datetime.date.today():
+            raise forms.ValidationError("You should only book dates in the future!")
+        elif int(adults) + int(children) == 0:
+            raise forms.ValidationError("Please fill in the number of people that will take the flight!")
+        return start, adults, children 
     class Meta:
         model = Booking
         fields = '__all__'
-        exclude = ('time_booked', 'car', 'start', 'end', 'trip', 'car_hire', 'pickup', 'dropoff', 'driven_by', 
+        exclude = ('time_booked', 'car', 'end', 'trip', 'car_hire', 'pickup', 'dropoff', 'driven_by', 
         'carhire_trip', 'booked_by', 'slots', )
         widgets = {
-            'departure_date': widgets.DateInput(attrs={'type': 'date'}),
+            'start': widgets.DateInput(attrs={'type': 'date'}),
             'country': CountrySelectWidget()
         } 
 
 
 class CarBookingForm(forms.ModelForm):
-
     def __init__(self, *args, **kwargs):
         super(CarBookingForm, self).__init__(*args, **kwargs)
         self.fields['service'].disabled = True 
         self.fields['car'].disabled = True 
-        self.fields['start'].label = "Pickup date"
-        self.fields['end'].label = "Drop off date"
-        self.fields['carhire_trip'].label = "Area of car trip"
+        self.fields['start'].label = "Date car hire starts"
+        self.fields['end'].label = "Date car hire ends"
+        self.fields['carhire_trip'].label = "Car hire within"
+
+    def clean(self):
+        start = self.cleaned_data.get('start')
+        end = self.cleaned_data.get('end')
+        if start < datetime.date.today():
+            raise forms.ValidationError("You should only book dates in the future!")
+        elif end < start:
+            raise forms.ValidationError("The end date has to be after the start date!")
+        return start
         
     class Meta:
         model = Booking

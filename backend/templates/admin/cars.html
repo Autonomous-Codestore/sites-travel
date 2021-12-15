@@ -88,7 +88,7 @@
 										<thead>
 											<tr>
 												<th>Category</th>
-												<th >Car Make</th>
+												<th >Car</th>
 												<th>Capacity</th>
 												<th>Availability</th>
 												<th>Options</th>
@@ -98,7 +98,7 @@
 											{% for car  in cars  %}
 											<tr>
 												<td>{{car.category}}</td>
-												<td>{{car.make |title }}</td>
+												<td>{{car.car |title }}</td>
 												<th>{{car.capacity}}</th>
 												<td>
 													{% if car.available == True %}

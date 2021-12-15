@@ -32,8 +32,27 @@
 								<div class="card">
 									<h5 class="card-header">Car Details</h5>
 									<div class="card-body">
+										<div class="row">
+											<div class="col-md-6">
+												<p class="card-text">Car : {{ car.car |title }} </p>
+												<p class="card-text">Category : {{ car.category |title }} </p>
+												<p class="card-text">Capacity : {{ car.capacity }} </p>
+											</div>
+											<div class="col-md-6">
+												<p class="card-text">Description : <br>
+													 {{ car.description }} </p>
+											</div>
+										</div>
 									  <!-- <h5 class="card-title">Special title treatment</h5> -->
-									  <p class="card-text">Car Make: {{ car.make |title }} </p>
+									  
+
+									  <!-- car = models.CharField(max_length=100)
+										image = models.ImageField(upload_to="cars")
+										category = models.CharField(max_length=50, choices=CAR_CATEGORY)
+										capacity = models.PositiveIntegerField(default=3)
+										available = models.BooleanField(default=True)
+										description = models.TextField() -->
+										
 									</div>
 								  </div>
 							</div>

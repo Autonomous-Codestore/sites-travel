@@ -31,6 +31,8 @@ def trip_detail(request, pk):
         instance = booking_form.save(commit=False)
         instance.trip.slots = instance.trip.slots - instance.slots
         instance.trip.save()
+        instance.start = instance.trip.start
+        instance.end = instance.trip.end
         instance.booked_by = request.user
         instance.booked_on = datetime.now()
         instance.save()       
@@ -194,8 +196,8 @@ def main(request):
             # carhire_upcountry = car_hires.filter(trip="upcountry").count()
 
             bookings = Booking.objects.all()
-            oneway_tickets = bookings.filter(flight_type="one way").count()
-            return_tickets = bookings.filter(flight_type="return").count()
+            # oneway_tickets = bookings.filter(flight_type="one way").count()
+            # return_tickets = bookings.filter(flight_type="return").count()
 
             carhire_driver = bookings.filter(driven_by="driver").count()
             carhire_self = bookings.filter(driven_by="self").count()
@@ -224,7 +226,7 @@ def main(request):
             #         print("A booking starts tomorrow")
             #         bk_tomoro = "tomoro"
         else:
-            return redirect('waiting')
+            return redirect('my_bookings')
     else:
         return redirect('waiting')
         
@@ -238,8 +240,8 @@ def main(request):
             "carhire_self": carhire_self,
             "carhire_town": carhire_town,
             "carhire_upcountry": carhire_upcountry,
-            "oneway_tickets": oneway_tickets,
-            "return_tickets": return_tickets,
+            # "oneway_tickets": oneway_tickets,
+            # "return_tickets": return_tickets,
             "draft": draft,
             "published": published, 
             # "bk_today": bk_today,
@@ -254,16 +256,15 @@ def trips(request):
         trips = Trip.objects.all()
     else:
         return redirect('waiting')
-    
-    # trip_count = trips.count()
-    # if trip_count == 0:
-    #     messages.info(request, 'No trip slots left')
 
     trip_form = TripForm(request.POST or None, request.FILES or None)
     if trip_form.is_valid():
         instance = trip_form.save(commit=False)
         instance.save()                 
         messages.success(request, 'Package saved successfully')
+    # else:
+    #     print(trip_form)
+    #     print(trip_form.errors)
         return redirect('trips')
     context = {
         'trips': trips,

@@ -46,7 +46,7 @@ CAR_CATEGORY = (
     ('trucks', 'trucks'),
 )
 class Car(models.Model):
-    make = models.CharField(max_length=100)
+    car = models.CharField(max_length=100)
     image = models.ImageField(upload_to="cars")
     category = models.CharField(max_length=50, choices=CAR_CATEGORY)
     capacity = models.PositiveIntegerField(default=3)
@@ -54,7 +54,7 @@ class Car(models.Model):
     description = models.TextField()    
 
     def __str__(self):
-        return f"{self.make}"
+        return f"{self.car}"
 
 
 PERMIT_CLASSES = (
@@ -91,15 +91,15 @@ class Trip(models.Model):
     """Slots for group are read only, for custom is number of editable """
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     destination = models.CharField(max_length=100)
-    image = models.ImageField(upload_to="package")
+    image = models.ImageField(upload_to="trips")
     slots = models.PositiveIntegerField(default=0)
     start = models.DateField()
     end = models.DateField()
     price = models.PositiveIntegerField(default=0)
     # activities = models.CharField(max_length=200, choices=PACKAGE_TYPES)
-    arrival_accomodation = models.ForeignKey(Accomadation, on_delete=models.CASCADE, related_name="arrival_accom", null=True)
-    trip_accomodation = models.ForeignKey(Accomadation, on_delete=models.CASCADE, related_name="trip_accom", null=True)
-    details = models.TextField(null=True) 
+    arrival_accomodation = models.ForeignKey(Accomadation, on_delete=models.CASCADE, related_name="arrival_accom", null=True, blank=True)
+    trip_accomodation = models.ForeignKey(Accomadation, on_delete=models.CASCADE, related_name="trip_accom", null=True, blank=True)
+    details = models.TextField(null=True, blank=True) 
     available = models.BooleanField(default=True)
     # def depleted_slots:
 
@@ -124,10 +124,6 @@ class Flight(models.Model):
         return f"{self.start} - {self.destination}"
 
 
-TICKET_TYPE = (
-    ('one way', 'one way'),
-    ('return', 'return'),
-)
 SERVICE = (
     ('trip', 'trip'),
     ('flight', 'flight'),
@@ -146,16 +142,13 @@ class Booking(models.Model):
     trip = models.ForeignKey(Trip, on_delete=models.CASCADE, null=True)
     car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name="car_booking", null=True) # For car hire
     flight = models.ForeignKey(Flight, on_delete=models.CASCADE, null=True)
-    flight_type = models.CharField(max_length=30, choices=TICKET_TYPE, default='one way') # For flight
-    departure_date = models.DateField(max_length=100, null=True) # For flight
     pickup = models.CharField(max_length=100)
     dropoff = models.CharField(max_length=100)
-    start = models.DateField(null=True) # For trips, car hire
-    end = models.DateField(null=True) # For trips, car hire    
+    start = models.DateField(null=True) # For trips, car hire, flight
+    end = models.DateField(null=True) # For trips, car hire   
     slots = models.PositiveIntegerField(default=0)
     adults = models.PositiveIntegerField(default=0) # For flight
     children = models.PositiveIntegerField(default=0) # For flight
-    infants = models.PositiveIntegerField(default=0) # For flight    
     driven_by = models.CharField(max_length=40, choices=DRIVER, default='driver', null=True) # For car hire
     carhire_trip = models.CharField(max_length=100, choices=TRIP, default="up country") # For car hire
     booked_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='booked_by')

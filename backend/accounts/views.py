@@ -22,6 +22,7 @@ def error_500(request):
 def waiting(request):
     return render(request,'waiting.html')
 
+
 def index(request):
     pictures = Gallery.objects.all()
     partners = pictures.filter(category="partner")
