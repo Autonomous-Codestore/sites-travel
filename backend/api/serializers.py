@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 from accounts.models import Index
 from myapp.models import Booking, Trip, Flight, Car, Gallery, Driver, Contact
-from blog.models import Category, Author, Post, Comment
+from blog.models import Category, Post, Comment
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -71,11 +71,6 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = '__all__'
 
-
-class AuthorSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Author
-        fields = '__all__'
 
 
 class PostSerializer(serializers.ModelSerializer):

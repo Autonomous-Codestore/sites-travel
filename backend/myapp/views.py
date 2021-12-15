@@ -262,9 +262,6 @@ def trips(request):
         instance = trip_form.save(commit=False)
         instance.save()                 
         messages.success(request, 'Package saved successfully')
-    # else:
-    #     print(trip_form)
-    #     print(trip_form.errors)
         return redirect('trips')
     context = {
         'trips': trips,
@@ -489,6 +486,9 @@ def stepsave(request):
 @user_passes_test(lambda u: u.is_staff, login_url='waiting') 
 def settings(request):
     accomodations = Accomadation.objects.all()
+    if accomodations.count() == 0:
+        Accomadation.objects.create(name="nanjing hotel", budget="mid range", available=True )
+    
     # categories =  Category.objects.all()
 
     # create views

@@ -7,7 +7,7 @@ User = get_user_model()
 from accounts.models import Index
 from myapp.models import Trip, Flight, Car, Gallery, Booking, Driver, Contact
 # from .serializers import (TripSerializer, FlightSerializer, CarSerializer, GallerySerializer, BookingSerializer)
-from blog.models import Author, Category, Post, Comment
+from blog.models import Category, Post, Comment
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from api.permissions import IsOwnerOrReadOnly, IsAdminUser
 
@@ -131,17 +131,6 @@ class CategoryList(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = serializers.CategorySerializer
     permission_classes = [IsAuthenticatedOrReadOnly, IsAdminUser]
-
-
-class AuthorList(generics.ListCreateAPIView):
-    queryset = Author.objects.all()
-    serializer_class = serializers.AuthorSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly, IsAdminUser]
-
-class AuthorDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Author.objects.all()
-    serializer_class = serializers.AuthorSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly, IsAdminUser] 
 
 
 class PostList(generics.ListCreateAPIView):

@@ -57,7 +57,7 @@
 							</div> -->
 						</div>
 						<div class="btc_team_img_bot_cont_wrapper">
-							<h4><a href="#">{{flight.start}} - {{flight.destination}}</a></h4>
+							<h4><a href="#">{{flight.start.name |title }} - {{flight.destination.name |title }}</a></h4>
 							<p>$ {{flight.price |intcomma }}</p>
 							
 							{% if request.user.is_authenticated %}

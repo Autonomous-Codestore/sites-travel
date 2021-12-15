@@ -59,9 +59,12 @@
 									</div>
 									<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 full_width">
 									<!-- modal start-->
+									
+									{% if request.user.is_staff %}
 									<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
 										Add car
 									</button>
+									{% endif %}
 									<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 										<div class="modal-dialog modal-dialog-centered modal-lg">
 										<div class="modal-content">
@@ -101,10 +104,18 @@
 												<td>{{car.car |title }}</td>
 												<th>{{car.capacity}}</th>
 												<td>
-													{% if car.available == True %}
-													<a href="{% url 'car_availability' car.id %}" class="btn btn-outline-danger btn-sm">Remove availability</a>
+													{% if request.user.is_staff %}
+														{% if car.available == True %}
+														<a href="{% url 'car_availability' car.id %}" class="btn btn-outline-danger btn-sm">Remove availability</a>
+														{% else %}
+														<a href="{% url 'car_availability' car.id %}" class="btn btn-outline-success btn-sm">Make available</a>
+														{% endif %}
 													{% else %}
-													<a href="{% url 'car_availability' car.id %}" class="btn btn-outline-success btn-sm">Make available</a>
+														{% if car.available == True %}
+														Available
+														{% else %}
+														Not available
+														{% endif %}
 													{% endif %}
 												</td>
 												<td>

@@ -90,10 +90,10 @@
 											<div class="card">
 												<h5 class="card-header">Flight Details</h5>
 												<div class="card-body">
-												  <p >Start: {{ flight.start |title  }}</p>
-												  <p >Destination: {{ flight.destination |title }}</p>
-												  <p >Price: {{ flight.price |intcomma }}</p>
-												  <p >Availability: {{ flight.available|yesno:"Yes,Not No" }}</p>
+												  <p >Start: {{ flight.start.name |title  }}</p>
+												  <p >Destination: {{ flight.destination.name |title }}</p>
+												  <p >Price: $ {{ flight.price |intcomma }}</p>
+												  <p >Available: {{ flight.available|yesno:"Yes,Not No" }}</p>
 												</div>
 											  </div>
 										</div>

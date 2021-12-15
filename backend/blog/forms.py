@@ -1,11 +1,6 @@
 from django import forms
-from blog.models import Author, Category, Comment, Post
+from blog.models import Category, Comment, Post
 from ckeditor.widgets import CKEditorWidget
-
-class AuthorForm(forms.ModelForm):
-    class Meta:
-        model = Author
-        fields = '__all__'
 
 
 class CommentForm(forms.ModelForm):
@@ -17,7 +12,7 @@ class CommentForm(forms.ModelForm):
 
     class Meta:
         model = Comment
-        fields = ('content', 'email', )
+        fields = ('content', )
 
 
 class CategoryForm(forms.ModelForm):
@@ -33,7 +28,6 @@ class PostForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(PostForm, self).__init__(*args, **kwargs)
         self.fields['thumbnail'].label = "Upload image (formats .png, .jpeg, jpg)"
-        self.fields['categories'].label = "Select blog post categories"
 
     class Meta:
         model = Post

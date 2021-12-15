@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.views.generic.detail import DetailView
-from blog.models import Author, Post, Comment, Category
-from blog.forms import AuthorForm, PostForm, CommentForm, CategoryForm
+from blog.models import  Post, Comment, Category
+from blog.forms import PostForm, CommentForm, CategoryForm
 
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Q
@@ -33,7 +33,7 @@ def create_post(request):
     form = PostForm(request.POST or None, request.FILES or None) 
     if form.is_valid(): 
         instance = form.save(commit=False)
-        instance.author = request.user.author
+        instance.author = request.user
         instance.slug=slugify(instance.title)
         instance.status = 0
         instance.save() 
@@ -84,6 +84,7 @@ def post_detail(request, pk):
         instance.post = blog_post
         instance.time = datetime.now()
         instance.status = 1
+        instance.author = request.user
         instance.save() 
         messages.success(request, "Comment registered.")
         return redirect('post_detail', pk=blog_post.id )

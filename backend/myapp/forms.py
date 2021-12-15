@@ -99,8 +99,8 @@ class TripBookingForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(TripBookingForm, self).__init__(*args, **kwargs)
-        self.fields['trip'].disabled = True 
-        self.fields['service'].disabled = True 
+        # self.fields['trip'].disabled = True 
+        # self.fields['service'].disabled = True 
         self.fields['slots'].label = "slots"
         self.fields['pickup'].label = "Pickup place"
         self.fields['dropoff'].label = "Drop-off place"
@@ -109,7 +109,7 @@ class TripBookingForm(forms.ModelForm):
         model = Booking
         fields = '__all__'
         exclude = ('car', 'time_booked', 'car_hire', 'flight', 'flight_type', 'departure_date', 'adults', 'children', 
-        'infants', 'driven_by', 'carhire_trip', 'booked_by', 'start', 'end')
+        'infants', 'driven_by', 'carhire_trip', 'booked_by', 'start', 'end',  )
 
 
 class FlightBookingForm(forms.ModelForm):

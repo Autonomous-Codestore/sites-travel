@@ -62,16 +62,19 @@
 										<div class="col-md-12">
 											<div class="lr_bc_first_box_main_wrapper">
 												<div class="lr_bc_first_box_img_wrapper">
+													<a href="{% url 'post_detail' post.id %}">
 													{% if post.thumbnail %}
-													<a href=""></a>
 													<img src="{{post.thumbnail.url}}" style="width:840px; height: 445px;" alt="blog img">
 													{% else %}
 													<img src="{% static 'images/bc1.jpg' %}" alt="blog img">
 													{% endif %}
+													</a>
+
+													
 														
 												</div>
 												<div class="lr_bc_first_box_img_cont_wrapper">
-													<h2>{{post.title |title }}</h2>
+													<h2><a href="{% url 'post_detail' post.id %}">{{post.title |title }}</a> </h2>
 													<ul>
 														<li><i class="fa fa-calendar"></i>&nbsp; <a href="#">{{post.time |timesince }}</a>
 														</li>

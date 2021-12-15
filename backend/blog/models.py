@@ -5,13 +5,6 @@ from ckeditor.fields import RichTextField
 
 
 # Create your models here.
-class Author(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return str(self.user)
-
-
 class Category(models.Model):
     name = models.CharField(max_length=20)
 
@@ -35,10 +28,9 @@ class Post(models.Model):
     time = models.DateTimeField(auto_now_add=True)
     content = RichTextField()
     # content = models.TextField()
-    author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name='post_authors')
-    categories = models.ManyToManyField(Category)
+    # categories = models.ManyToManyField(Category)
     status = models.IntegerField(choices=STATUS, default=0)
-
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='post_author')
     class Meta :
        ordering = ['-time']
 
@@ -48,7 +40,8 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    email = models.EmailField(max_length=100, null=True, blank=True)
+    # email = models.EmailField(max_length=100, null=True, blank=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comment_author')
     post = models.ForeignKey('Post', on_delete=models.CASCADE, null=True, blank=True)
     content = models.TextField()
     status = models.IntegerField(choices=STATUS, default=1)

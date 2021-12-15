@@ -99,8 +99,8 @@
 											
 											{% for flight  in flights  %}
 											<tr>
-												<td>{{flight.start |title }}</td>
-												<td>{{flight.destination |title}}</td>
+												<td>{{flight.start.name |title }}</td>
+												<td>{{flight.destination.name |title}}</td>
 												<td>$ {{flight.price |intcomma }}</td>
 												<td>
 													{% if flight.available == True %}
