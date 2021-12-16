@@ -88,7 +88,7 @@ PACKAGE_TYPES = (
     ('custom', 'custom'),
 )
 class Trip(models.Model):
-    """Slots for group are read only, for custom is number of editable """
+    """Category of trip such as holiday, tour """
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     destination = models.CharField(max_length=100)
     image = models.ImageField(upload_to="trips")
