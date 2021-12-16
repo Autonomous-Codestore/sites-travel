@@ -101,7 +101,6 @@ class Trip(models.Model):
     trip_accomodation = models.ForeignKey(Accomadation, on_delete=models.CASCADE, related_name="trip_accom", null=True, blank=True)
     details = models.TextField(null=True, blank=True) 
     available = models.BooleanField(default=True)
-    # def depleted_slots:
 
     class Meta :
        ordering = ['-id']

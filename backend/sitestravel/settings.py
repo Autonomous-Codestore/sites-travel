@@ -192,8 +192,8 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'Basic',
     },
     'default' : {
-        'toolbar': 'full',
-        'height': 400,
+        'toolbar': 'Full',
+        'height': 300,
         'width': '100%',
     }
 }
