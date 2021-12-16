@@ -83,10 +83,6 @@ class Driver(models.Model):
         return f"{self.full_name}"
 
 
-PACKAGE_TYPES = (
-    ('group', 'group'),
-    ('custom', 'custom'),
-)
 class Trip(models.Model):
     """Category of trip such as holiday, tour """
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
