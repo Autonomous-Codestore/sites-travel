@@ -7,7 +7,8 @@ from blog.models import Post
 from blog.forms import PostForm
 from . import *
 from django.contrib import messages
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
+# import datetime
 from django.contrib.auth import get_user_model
 User = get_user_model()
 from django.contrib.auth.decorators import user_passes_test
@@ -60,9 +61,16 @@ def flight_detail(request, pk):
         instance = booking_form.save(commit=False)
         instance.booked_by = request.user
         instance.booked_on = datetime.now()
-        instance.save()       
-        messages.success(request, 'Flight booked successfully')
-        return redirect('my_bookings')
+        if instance.start < date.today():
+            messages.info(request, 'Please only book future dates')
+            return redirect('flight_detail', flight.id)
+        elif instance.adults + instance.children == 0:
+            messages.info(request, 'Please enter number of people that will travel')
+            return redirect('flight_detail', flight.id)
+        else:
+            instance.save()       
+            messages.success(request, 'Flight booked successfully')
+            return redirect('my_bookings')
     context = {
         'flight': flight,
         'booking_form': booking_form,
@@ -85,9 +93,16 @@ def car_detail(request, pk):
         instance = booking_form.save(commit=False)
         instance.booked_by = request.user
         instance.booked_on = datetime.now()
-        instance.save()       
-        messages.success(request, 'Car hire registered successfully')
-        return redirect('my_bookings')
+        if instance.start < date.today():
+            messages.info(request, 'Please only book future dates')
+            return redirect('car_detail', car.id)
+        elif instance.start > instance.end:
+            messages.info(request, 'Start date cannot be later than end date ')
+            return redirect('car_detail', car.id)
+        else:
+            instance.save()       
+            messages.success(request, 'Car hired successfully')
+            return redirect('my_bookings')
     context = {
         'car': car,
         'booking_form': booking_form,

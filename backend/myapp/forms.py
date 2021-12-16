@@ -12,6 +12,7 @@ from django_countries.widgets import CountrySelectWidget
 class TripForm(forms.ModelForm):
     destination = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Trip destination'}))
     arrival_accomodation = forms.ModelChoiceField(queryset=Accomadation.objects.all(), empty_label='Select  accomodation on arrival')
+    trip_accomodation = forms.ModelChoiceField(queryset=Accomadation.objects.all(), empty_label='Select  accomodation on arrival')
 
     def __init__(self, *args, **kwargs):
         super(TripForm, self).__init__(*args, **kwargs)
@@ -24,12 +25,11 @@ class TripForm(forms.ModelForm):
         self.fields['details'].placeholder = "Additional trip details"
         self.fields['details'].label = "Trip details"
 
-
-    def clean_date(self):
-        date = self.cleaned_data['date']
-        if self.start < datetime.date.today():
-            raise forms.ValidationError("You should only book dates in the future!")
-        return date
+    # def clean_date(self):
+    #     date = self.cleaned_data['date']
+    #     if self.start < datetime.date.today():
+    #         raise forms.ValidationError("You should only book dates in the future!")
+    #     return date
 
     class Meta:
         model = Trip
@@ -122,15 +122,15 @@ class FlightBookingForm(forms.ModelForm):
         self.fields['flight'].disabled = True 
         self.fields['start'].label = "Date of flight" 
 
-    def clean(self):
-        start = self.cleaned_data.get('start')
-        adults = self.cleaned_data.get('adults')
-        children = self.cleaned_data.get('children')
-        if start < datetime.date.today():
-            raise forms.ValidationError("You should only book dates in the future!")
-        if int(adults) + int(children) == 0:
-            raise forms.ValidationError("Please fill in the number of people that will take the flight!")
-        return start, adults, children 
+    # def clean(self):
+    #     start = self.cleaned_data.get('start')
+    #     adults = self.cleaned_data.get('adults')
+    #     children = self.cleaned_data.get('children')
+    #     if start < datetime.date.today():
+    #         raise forms.ValidationError("You should only book dates in the future!")
+    #     if int(adults) + int(children) == 0:
+    #         raise forms.ValidationError("Please fill in the number of people that will take the flight!")
+    #     return start, adults, children 
 
     class Meta:
         model = Booking
@@ -152,14 +152,14 @@ class CarBookingForm(forms.ModelForm):
         self.fields['end'].label = "Date car hire ends"
         self.fields['carhire_trip'].label = "Car hire within"
 
-    def clean(self):
-        start = self.cleaned_data.get('start')
-        end = self.cleaned_data.get('end')
-        if start < datetime.date.today():
-            raise forms.ValidationError("You should only book dates in the future!")
-        elif end < start:
-            raise forms.ValidationError("The end date has to be after the start date!")
-        return start
+    # def clean(self):
+    #     start = self.cleaned_data.get('start')
+    #     end = self.cleaned_data.get('end')
+    #     if start < datetime.date.today():
+    #         raise forms.ValidationError("You should only book dates in the future!")
+    #     elif end < start:
+    #         raise forms.ValidationError("The end date has to be after the start date!")
+    #     return start
         
     class Meta:
         model = Booking

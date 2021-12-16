@@ -1,10 +1,18 @@
 [
 {
   "model": "sessions.session",
-  "pk": "1pgibnpts6l53ku35nl2kvqls4hc1rgs",
+  "pk": "0jea1b7bu3xhc9keoe2s1ohje7w96jxa",
   "fields": {
-    "session_data": ".eJxljEEOgyAQRe_C2hgFKuCuvQgZhiGSUkwUuml696oxTZou570_78UAca652CctMUTylh4QExtzTan52rrSwkbGWcMs1DIdwEb_zxzgnfIuIKUdt2ejPTanXtvrdlEuEaHEOd_Or5_UBOu0dRAuXovQd5KkAdmFQateiQ7cIGAgFXSQTvbSc44ouDFk1GC4k2iMNoTs_QH08E2U:1mx9rE:4TfKc6NusMR25wxuJS6cy_n9h8KvubE4FBwfwN0j4Lc",
-    "expire_date": "2021-12-28T15:36:48.583Z"
+    "session_data": ".eJxVjcsKgzAQRf8l6yIZ83ZXfySMk4ihEouJ0FL679Xiol3e17kv5nGrk99KXH0KrGPALr_egHSL-Qhwng-7QaJly7X5ds64NNddxVwTYU1L7s_VH2rCMu0cKaQ1QAOABsWlBKuUdjpAEIFbY8iApBFx0IJaIVsi7lQ0VskxuCjEAS2xlP3Gx8c9rU_WQcud5vz9AfY-Q5Y:1mxs4L:io8yNxn4BuUScACtNgwiBMCNMuoTOBo6RGtSTJ4KfV0",
+    "expire_date": "2021-12-30T14:49:17.264Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "bgc1feq1dpt0hmjzw2pkjuowhqn34s1g",
+  "fields": {
+    "session_data": ".eJxVjU0OgyAQhe_CujEjOCju6kXIgEMkNdgIJm2a3r3auGiX7-97L2FpK5PdMq82jqIXUlx-PUf-xukIaJ4PuyLvly2V6ts541xdd8WpRE8lLmk4V3-oifK0czQG51SQRoUadAOu0cEjgWmRUQftUQGjoU7yCG09KmMoKKkCgjOdcwc0c877jeXHPa5P0dcSjAZ4fwBEzkSO:1mxsIi:ZULzOXwHsD6q9riFSoZ4CF7KI3r5o08bUDMg459IyAQ",
+    "expire_date": "2021-12-30T15:04:08.724Z"
   }
 },
 {
@@ -17,15 +25,15 @@
 {
   "model": "accounts.customuser",
   "fields": {
-    "password": "pbkdf2_sha256$260000$s4taczxdsImhql8oUtvUK1$nQrG5e8EEisjXhCPQAIK35WBeDvdqGtEbO/ZQEn5cD0=",
-    "last_login": "2021-12-14T12:56:42.312Z",
+    "password": "pbkdf2_sha256$260000$75uHWpLmRTLlTDc2GdwkX1$RY9Ws/vtSBtr6kskgeSoUPTkFSZEmb7OdAKOBP7qAUM=",
+    "last_login": "2021-12-16T14:49:17.170Z",
     "is_superuser": true,
     "username": "george",
     "first_name": "",
     "last_name": "",
     "is_staff": true,
     "is_active": true,
-    "date_joined": "2021-12-14T12:56:00.537Z",
+    "date_joined": "2021-12-16T13:08:54.423Z",
     "photo": "",
     "full_name": "",
     "email": "geonhib@gmail.com",
@@ -41,15 +49,15 @@
 {
   "model": "accounts.customuser",
   "fields": {
-    "password": "pbkdf2_sha256$260000$rzIEOCL4mXHu7CZZE6EE7e$+Pgl/8qQhYSzvwvACEPr96wu+KO+izr4ywbVWGtKk8M=",
-    "last_login": "2021-12-14T15:36:48.494Z",
+    "password": "pbkdf2_sha256$260000$43jll6kybNtWUUQvExpYjO$0mG9EgDV7Mxue/8qz6hj5DPENGdBaLJlaZf5nRKXe5A=",
+    "last_login": "2021-12-16T15:04:08.603Z",
     "is_superuser": false,
     "username": "aunen7",
     "first_name": "",
     "last_name": "",
     "is_staff": false,
     "is_active": true,
-    "date_joined": "2021-12-14T15:36:47.672Z",
+    "date_joined": "2021-12-16T14:47:21.849Z",
     "photo": "",
     "full_name": "",
     "email": "aunen7@gmail.com",
@@ -77,14 +85,14 @@
     "youtube": "youtube link",
     "whatsapp": null,
     "instagram": "instagram link",
-    "last_updated": "2021-12-14T12:56:25.274Z"
+    "last_updated": "2021-12-16T13:10:42.873Z"
   }
 },
 {
   "model": "myapp.accomadation",
   "pk": 1,
   "fields": {
-    "name": "nanjing",
+    "name": "nanjing hotel",
     "budget": "mid range",
     "available": true
   }
@@ -93,84 +101,75 @@
   "model": "myapp.accomadation",
   "pk": 2,
   "fields": {
-    "name": "serena hotel",
-    "budget": "up market",
-    "available": true
-  }
-},
-{
-  "model": "myapp.accomadation",
-  "pk": 3,
-  "fields": {
-    "name": "chobe lodge",
-    "budget": "up market",
-    "available": true
-  }
-},
-{
-  "model": "myapp.accomadation",
-  "pk": 4,
-  "fields": {
-    "name": "masai mara",
-    "budget": "mid range",
-    "available": true
-  }
-},
-{
-  "model": "myapp.accomadation",
-  "pk": 5,
-  "fields": {
-    "name": "katima hotel",
+    "name": "agip motel",
     "budget": "budget",
     "available": true
   }
 },
 {
+  "model": "myapp.accomadation",
+  "pk": 3,
+  "fields": {
+    "name": "masai mara",
+    "budget": "up market",
+    "available": true
+  }
+},
+{
+  "model": "myapp.accomadation",
+  "pk": 4,
+  "fields": {
+    "name": "serena",
+    "budget": "up market",
+    "available": true
+  }
+},
+{
   "model": "myapp.car",
   "pk": 1,
   "fields": {
-    "make": "landcruiser",
-    "image": "cars/hardtop_JBP0zEm.jpg",
+    "car": "landruiser hardtop",
+    "image": "cars/hardtop_3PGRNHu.jpg",
     "category": "4x4",
     "capacity": 5,
     "available": true,
-    "description": "All terrain 4x4 vehicle"
+    "description": "Reliable offroad vehicle"
   }
 },
 {
   "model": "myapp.car",
   "pk": 2,
   "fields": {
-    "make": "safari van",
-    "image": "cars/safari_van.jpeg",
-    "category": "safari",
-    "capacity": 7,
+    "car": "toyota fortuner",
+    "image": "cars/fortuner.jpeg",
+    "category": "executive",
+    "capacity": 5,
     "available": true,
-    "description": "Spacious van with open roof"
+    "description": "Very comfortable vehicle"
   }
 },
 {
   "model": "myapp.car",
   "pk": 3,
   "fields": {
-    "make": "landcruiser tx",
-    "image": "cars/tx.jpg",
-    "category": "executive",
-    "capacity": 5,
+    "car": "open roof van",
+    "image": "cars/safari_van.jpeg",
+    "category": "vans",
+    "capacity": 7,
     "available": true,
-    "description": "Ideal for safaris and town service"
+    "description": "Spacious van"
   }
 },
 {
   "model": "myapp.car",
   "pk": 4,
   "fields": {
-    "make": "fortuner",
-    "image": "cars/fortuner.jpeg",
-    "category": "executive",
+    "car": "landcruiser tx",
+    "image": "cars/tx.jpg",
+    "category": "safari",
     "capacity": 5,
     "available": true,
-    "description": "Very comfortable and cozy SUV"
+    "description": "Reliable vehicle"
   }
 },
 {
@@ -178,14 +177,14 @@
   "pk": 1,
   "fields": {
     "category": null,
-    "destination": "zziwa rhino sanctuary",
-    "image": "package/2_mg9gruN.jpeg",
+    "destination": "jinja",
+    "image": "trips/jinja.jpeg",
     "slots": 40,
-    "start": "2021-12-16",
+    "start": "2021-12-17",
     "end": "2021-12-18",
-    "price": 50,
-    "arrival_accomodation": null,
-    "trip_accomodation": null,
+    "price": 70,
+    "arrival_accomodation": 1,
+    "trip_accomodation": 1,
     "details": "",
     "available": true
   }
@@ -195,14 +194,14 @@
   "pk": 2,
   "fields": {
     "category": null,
-    "destination": "queen elizabeth",
-    "image": "package/2daysqe_gNMVR5g.jpeg",
-    "slots": 38,
-    "start": "2021-12-16",
+    "destination": "zziwa rhino sanctuary",
+    "image": "trips/2.jpeg",
+    "slots": 50,
+    "start": "2021-12-17",
     "end": "2021-12-18",
-    "price": 60,
-    "arrival_accomodation": null,
-    "trip_accomodation": 3,
+    "price": 50,
+    "arrival_accomodation": 1,
+    "trip_accomodation": 1,
     "details": "",
     "available": true
   }
@@ -212,14 +211,14 @@
   "pk": 3,
   "fields": {
     "category": null,
-    "destination": "murchison",
-    "image": "package/murchison.jpg",
-    "slots": 80,
-    "start": "2021-12-17",
-    "end": "2021-12-18",
-    "price": 80,
-    "arrival_accomodation": null,
-    "trip_accomodation": 5,
+    "destination": "queen elizabeth",
+    "image": "trips/2daysqe.jpeg",
+    "slots": 60,
+    "start": "2021-12-19",
+    "end": "2021-12-21",
+    "price": 100,
+    "arrival_accomodation": 1,
+    "trip_accomodation": 1,
     "details": "",
     "available": true
   }
@@ -230,13 +229,13 @@
   "fields": {
     "category": null,
     "destination": "lake mburo",
-    "image": "package/lake_mburo.jpeg",
-    "slots": 45,
-    "start": "2021-12-15",
-    "end": "2021-12-16",
-    "price": 80,
+    "image": "trips/lake_mburo_9MLHejv.jpeg",
+    "slots": 90,
+    "start": "2021-12-18",
+    "end": "2021-12-25",
+    "price": 120,
     "arrival_accomodation": 1,
-    "trip_accomodation": 2,
+    "trip_accomodation": 1,
     "details": "",
     "available": true
   }
@@ -246,14 +245,14 @@
   "pk": 5,
   "fields": {
     "category": null,
-    "destination": "jinja",
-    "image": "package/jinja.jpeg",
-    "slots": 40,
-    "start": "2021-12-15",
-    "end": "2021-12-15",
-    "price": 59,
-    "arrival_accomodation": null,
-    "trip_accomodation": null,
+    "destination": "murchison falls",
+    "image": "trips/murchison.jpg",
+    "slots": 31,
+    "start": "2021-12-23",
+    "end": "2021-12-24",
+    "price": 160,
+    "arrival_accomodation": 2,
+    "trip_accomodation": 3,
     "details": "",
     "available": true
   }
@@ -262,10 +261,10 @@
   "model": "myapp.flight",
   "pk": 1,
   "fields": {
-    "start": "US",
-    "destination": "UG",
-    "price": 2800,
-    "image": "flights/new_york.jpeg",
+    "start": "UG",
+    "destination": "AE",
+    "price": 300,
+    "image": "flights/dubai.jpeg",
     "available": true
   }
 },
@@ -274,9 +273,31 @@
   "pk": 2,
   "fields": {
     "start": "UG",
-    "destination": "AE",
-    "price": 600,
-    "image": "flights/dubai.jpeg",
+    "destination": "KE",
+    "price": 150,
+    "image": "flights/nairobi.jpeg",
+    "available": true
+  }
+},
+{
+  "model": "myapp.flight",
+  "pk": 3,
+  "fields": {
+    "start": "US",
+    "destination": "UG",
+    "price": 1400,
+    "image": "flights/new_york.jpeg",
+    "available": true
+  }
+},
+{
+  "model": "myapp.flight",
+  "pk": 4,
+  "fields": {
+    "start": "UG",
+    "destination": "FR",
+    "price": 900,
+    "image": "flights/paris.jpeg",
     "available": true
   }
 },
@@ -284,52 +305,46 @@
   "model": "myapp.booking",
   "pk": 1,
   "fields": {
-    "service": "trip",
-    "trip": 4,
-    "car": null,
+    "service": "car hire",
+    "trip": null,
+    "car": 3,
     "flight": null,
-    "flight_type": "one way",
-    "departure_date": null,
-    "pickup": "agip motel",
-    "dropoff": "boma",
-    "start": "2021-11-11",
-    "end": "2021-11-11",
-    "slots": 5,
+    "pickup": "",
+    "dropoff": "",
+    "start": "2021-12-17",
+    "end": "2021-12-18",
+    "slots": 0,
     "adults": 0,
     "children": 0,
-    "infants": 0,
     "driven_by": "driver",
     "carhire_trip": "up country",
     "booked_by": [
       "george"
     ],
-    "booked_on": "2021-12-14T15:31:31.429Z"
+    "booked_on": "2021-12-16T14:28:18.427Z"
   }
 },
 {
   "model": "myapp.booking",
   "pk": 2,
   "fields": {
-    "service": "flight",
+    "service": "car hire",
     "trip": null,
-    "car": null,
-    "flight": 1,
-    "flight_type": "one way",
-    "departure_date": "2021-12-23",
+    "car": 3,
+    "flight": null,
     "pickup": "",
     "dropoff": "",
-    "start": null,
-    "end": null,
+    "start": "2021-12-19",
+    "end": "2021-12-21",
     "slots": 0,
-    "adults": 1,
+    "adults": 0,
     "children": 0,
-    "infants": 0,
     "driven_by": "driver",
     "carhire_trip": "up country",
     "booked_by": [
       "george"
     ],
-    "booked_on": "2021-12-14T15:32:01.850Z"
+    "booked_on": "2021-12-16T14:30:52.699Z"
   }
 },
 {
@@ -340,22 +355,19 @@
     "trip": null,
     "car": 3,
     "flight": null,
-    "flight_type": "one way",
-    "departure_date": null,
     "pickup": "",
     "dropoff": "",
-    "start": "2021-12-15",
-    "end": "2021-12-16",
+    "start": "2021-12-18",
+    "end": "2021-12-19",
     "slots": 0,
     "adults": 0,
     "children": 0,
-    "infants": 0,
     "driven_by": "driver",
-    "carhire_trip": "town",
+    "carhire_trip": "up country",
     "booked_by": [
       "george"
     ],
-    "booked_on": "2021-12-14T15:32:34.247Z"
+    "booked_on": "2021-12-16T14:32:56.599Z"
   }
 },
 {
@@ -363,25 +375,157 @@
   "pk": 4,
   "fields": {
     "service": "trip",
-    "trip": 2,
+    "trip": 5,
     "car": null,
     "flight": null,
-    "flight_type": "one way",
-    "departure_date": null,
-    "pickup": "garden city",
-    "dropoff": "village mall",
-    "start": "2021-09-09",
-    "end": "2021-10-10",
+    "pickup": "agip motel",
+    "dropoff": "boma",
+    "start": "2021-12-23",
+    "end": "2021-12-24",
     "slots": 2,
     "adults": 0,
     "children": 0,
-    "infants": 0,
+    "driven_by": "driver",
+    "carhire_trip": "up country",
+    "booked_by": [
+      "george"
+    ],
+    "booked_on": "2021-12-16T14:38:40.942Z"
+  }
+},
+{
+  "model": "myapp.booking",
+  "pk": 5,
+  "fields": {
+    "service": "flight",
+    "trip": null,
+    "car": null,
+    "flight": 3,
+    "pickup": "",
+    "dropoff": "",
+    "start": "2021-12-15",
+    "end": null,
+    "slots": 0,
+    "adults": 0,
+    "children": 0,
+    "driven_by": "driver",
+    "carhire_trip": "up country",
+    "booked_by": [
+      "george"
+    ],
+    "booked_on": "2021-12-16T14:39:38.769Z"
+  }
+},
+{
+  "model": "myapp.booking",
+  "pk": 6,
+  "fields": {
+    "service": "flight",
+    "trip": null,
+    "car": null,
+    "flight": 3,
+    "pickup": "",
+    "dropoff": "",
+    "start": "2021-12-25",
+    "end": null,
+    "slots": 0,
+    "adults": 2,
+    "children": 0,
+    "driven_by": "driver",
+    "carhire_trip": "up country",
+    "booked_by": [
+      "george"
+    ],
+    "booked_on": "2021-12-16T14:46:42.530Z"
+  }
+},
+{
+  "model": "myapp.booking",
+  "pk": 7,
+  "fields": {
+    "service": "trip",
+    "trip": 5,
+    "car": null,
+    "flight": null,
+    "pickup": "agip motel",
+    "dropoff": "boma",
+    "start": "2021-12-23",
+    "end": "2021-12-24",
+    "slots": 3,
+    "adults": 0,
+    "children": 0,
     "driven_by": "driver",
     "carhire_trip": "up country",
     "booked_by": [
       "aunen7"
     ],
-    "booked_on": "2021-12-14T15:38:02.648Z"
+    "booked_on": "2021-12-16T14:48:10.144Z"
+  }
+},
+{
+  "model": "myapp.booking",
+  "pk": 8,
+  "fields": {
+    "service": "flight",
+    "trip": null,
+    "car": null,
+    "flight": 2,
+    "pickup": "",
+    "dropoff": "",
+    "start": "2021-12-18",
+    "end": null,
+    "slots": 0,
+    "adults": 1,
+    "children": 0,
+    "driven_by": "driver",
+    "carhire_trip": "up country",
+    "booked_by": [
+      "aunen7"
+    ],
+    "booked_on": "2021-12-16T14:48:38.298Z"
+  }
+},
+{
+  "model": "blog.post",
+  "pk": 1,
+  "fields": {
+    "title": "the golden finch",
+    "slug": "the-golden-finch",
+    "thumbnail": "blogs/golden_finch.jpeg",
+    "time": "2021-12-16T14:56:08.795Z",
+    "content": "<p>The true finches are small to medium-sized passerine birds in the family Fringillidae. Finches have stout conical bills adapted for eating seeds and nuts and often have colourful plumage. They occupy a great range of habitats where they are usually resident and do not migrate</p>",
+    "status": 1,
+    "author": [
+      "george"
+    ]
+  }
+},
+{
+  "model": "blog.post",
+  "pk": 2,
+  "fields": {
+    "title": "the red sparrow",
+    "slug": "the-red-sparrow",
+    "thumbnail": "blogs/red_sparrow.jpeg",
+    "time": "2021-12-16T14:58:31.023Z",
+    "content": "<p>Groups of little brown birds that hop around underfoot in cities, parks, and farms &mdash; how can you tell what is a finch and what is a sparrow? Even harder, how can you differentiate between the many possible species that you could be looking at? Well luckily, if you&rsquo;re in an area of human settlement like the three types of places listed above, it&rsquo;s likely that you&rsquo;re faced with&nbsp;<a href=\"http://celebrateurbanbirds.org/learn/birds/focal-species/house-sparrow/\">House Sparrows</a>&nbsp;or&nbsp;<a href=\"http://celebrateurbanbirds.org/learn/birds/focal-species/house-finch/\">House Finches</a>; these species thrive on our leftovers or birdseed and are extremely common.</p>\r\n\r\n<p>If you catch any glimpses of red, then you can be fairly sure you&rsquo;ve just seen a House Finch. The males of this species have red faces, breasts, and rumps. By contrast, House Sparrow males have gray heads, whitish cheeks, and a black bib under the chin.</p>",
+    "status": 1,
+    "author": [
+      "george"
+    ]
+  }
+},
+{
+  "model": "blog.comment",
+  "pk": 1,
+  "fields": {
+    "author": [
+      "aunen7"
+    ],
+    "post": 1,
+    "content": "well done",
+    "status": 1,
+    "time": "2021-12-16T15:04:28.834Z"
   }
 },
 {
@@ -394,6 +538,78 @@
     "email": "aunen7@gmail.com",
     "verified": false,
     "primary": true
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2021-12-16T13:34:12.141Z",
+    "user": [
+      "george"
+    ],
+    "content_type": [
+      "myapp",
+      "accomadation"
+    ],
+    "object_id": "1",
+    "object_repr": "nanjing hotel",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2021-12-16T13:37:31.115Z",
+    "user": [
+      "george"
+    ],
+    "content_type": [
+      "myapp",
+      "accomadation"
+    ],
+    "object_id": "2",
+    "object_repr": "agip motel",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2021-12-16T13:37:46.418Z",
+    "user": [
+      "george"
+    ],
+    "content_type": [
+      "myapp",
+      "accomadation"
+    ],
+    "object_id": "3",
+    "object_repr": "masai mara",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2021-12-16T13:38:07.209Z",
+    "user": [
+      "george"
+    ],
+    "content_type": [
+      "myapp",
+      "accomadation"
+    ],
+    "object_id": "4",
+    "object_repr": "serena",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
   }
 }
 ]
