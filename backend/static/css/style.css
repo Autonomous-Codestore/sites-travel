@@ -5661,7 +5661,7 @@ input[type=number] {
 }
 
 .lr_bc_first_box_img_cont_wrapper span {
-    padding-top: 15px;
+    /* padding-top: 15px; */
     float: left;
     width: 100%;
 }
