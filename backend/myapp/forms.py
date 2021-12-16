@@ -26,9 +26,18 @@ class TripForm(forms.ModelForm):
 =======
         self.fields['start'].label = "Start date of trip"
         self.fields['end'].label = "Start date of trip"
+<<<<<<< HEAD
         self.fields['price'].label = "Price(in Dollars)"
 
 >>>>>>> Modify forms.
+=======
+        self.fields['price'].placeholder = "Price(in Dollars)"
+        self.fields['details'].label = "Additional trip details"
+        self.fields['arrival_accomodation'].required = False
+        self.fields['trip_accomodation'].required = False
+        self.fields['trip_accomodation'].required = False
+        self.fields['details'].required = False
+>>>>>>> Add dummy data.
 
     def clean_date(self):
         date = self.cleaned_data['date']
@@ -43,7 +52,11 @@ class TripForm(forms.ModelForm):
         widgets = {
             'start': widgets.DateInput(attrs={'type': 'date'}),
             'end': widgets.DateInput(attrs={'type': 'date'}),
+<<<<<<< HEAD
             'details': 	widgets.Textarea(attrs={'rows':4})
+=======
+            'details': forms.Textarea(attrs={'rows':4, 'cols':15})
+>>>>>>> Add dummy data.
         } 
 
 
