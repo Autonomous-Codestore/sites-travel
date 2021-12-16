@@ -102,7 +102,7 @@ class Trip(models.Model):
     available = models.BooleanField(default=True)
 
     class Meta :
-       ordering = ['-id']
+       ordering = ['-destination']
 
     def __str__(self):
         return f"{self.destination}"
