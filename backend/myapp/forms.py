@@ -24,6 +24,7 @@ class TripForm(forms.ModelForm):
         self.fields['details'].placeholder = "Additional trip details"
         self.fields['details'].label = "Trip details"
 
+
     def clean_date(self):
         date = self.cleaned_data['date']
         if self.start < datetime.date.today():
@@ -100,8 +101,8 @@ class TripBookingForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(TripBookingForm, self).__init__(*args, **kwargs)
-        # self.fields['trip'].disabled = True 
-        # self.fields['service'].disabled = True 
+        self.fields['trip'].disabled = True 
+        self.fields['service'].disabled = True 
         self.fields['slots'].label = "slots"
         self.fields['pickup'].label = "Pickup place"
         self.fields['dropoff'].label = "Drop-off place"
@@ -127,9 +128,10 @@ class FlightBookingForm(forms.ModelForm):
         children = self.cleaned_data.get('children')
         if start < datetime.date.today():
             raise forms.ValidationError("You should only book dates in the future!")
-        elif int(adults) + int(children) == 0:
+        if int(adults) + int(children) == 0:
             raise forms.ValidationError("Please fill in the number of people that will take the flight!")
         return start, adults, children 
+
     class Meta:
         model = Booking
         fields = '__all__'
