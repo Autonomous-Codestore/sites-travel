@@ -96,7 +96,6 @@ class Trip(models.Model):
     start = models.DateField()
     end = models.DateField()
     price = models.PositiveIntegerField(default=0)
-    # activities = models.CharField(max_length=200, choices=PACKAGE_TYPES)
     arrival_accomodation = models.ForeignKey(Accomadation, on_delete=models.CASCADE, related_name="arrival_accom", null=True, blank=True)
     trip_accomodation = models.ForeignKey(Accomadation, on_delete=models.CASCADE, related_name="trip_accom", null=True, blank=True)
     details = models.TextField(null=True, blank=True) 
