@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import ModelForm, TextInput
 from django.contrib.auth import get_user_model
 User = get_user_model()
 from django.forms import ModelForm, DateInput
@@ -169,37 +170,17 @@ class CarBookingForm(forms.ModelForm):
         } 
 
 
-class ContactForm(forms.Form):    
-    # full_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Full Name'}))
-    # email = forms.CharField()
-    # telephone = forms.CharField()
-    # message = forms.Textarea()
+class ContactForm(forms.ModelForm):  
+    full_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter your full name '}))
+    telephone = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter Phone number'}))
+    message = forms.CharField(widget=forms.Textarea(attrs={'placeholder':'Enter your message'}))
 
-    class Meta(object):
+    class Meta:
         model = Contact
         fields = '__all__'
         widgets = {
-            'title': forms.TextInput(
-				attrs={
-					'full_name': 'form-control'
-					}
-				),
-            'content': forms.Textarea(
-				attrs={
-					'email': 'form-control'
-					}
-				),
-            'telephone': forms.TextInput(
-				attrs={
-					'telephone': 'form-control'
-					}
-				),
-            'message': forms.Textarea(
-				attrs={
-					'message': 'form-control'
-					}
-				),
-			}
+            'message': 	widgets.Textarea(attrs={'rows':3})
+        } 
 
 
 class CategoryForm(forms.ModelForm):

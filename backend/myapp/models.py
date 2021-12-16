@@ -149,7 +149,7 @@ class Booking(models.Model):
     booked_on = models.DateTimeField(auto_now_add=True)
 
     def flight_slots(self):
-        total = self.adults + self.children + self.infants
+        total = self.adults + self.children
         return total 
 
     class Meta :
@@ -175,7 +175,6 @@ class Gallery(models.Model):
 
 class Contact(models.Model):
     full_name = models.CharField(max_length=100, null=True)
-    email = models.EmailField(null=True)
     telephone = models.CharField(max_length=20, null=True)
     message = models.TextField()
 

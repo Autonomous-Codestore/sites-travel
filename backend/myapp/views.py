@@ -121,6 +121,13 @@ def pictures(request):
 
 
 def contacts(request):
+    form = CarBookingForm(request.POST or None)
+    if form.is_valid():
+        instance = form.save(commit=False)
+        instance.save()                 
+        messages.success(request, 'Car Booked saved successfully')
+        return redirect('contacts')
+
     contact_form = ContactForm(request.POST or None, request.FILES or None)
     if contact_form.is_valid():
         instance = contact_form.save(commit=False)
@@ -129,6 +136,7 @@ def contacts(request):
         return redirect('contacts')
     context = {
         "contact_form": contact_form,
+        "form": form,
     }
     return render(request, "contacts.html", context)
 
