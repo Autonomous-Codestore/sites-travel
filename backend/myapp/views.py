@@ -524,6 +524,7 @@ def trip_categories(request):
         instance = category_form.save(commit=False)
         instance.save()                 
         messages.success(request, 'Trip category saved successfully')
+<<<<<<< HEAD
         return redirect('trip_categories')
     context = {
         'categories': categories,
@@ -531,6 +532,8 @@ def trip_categories(request):
     }
     return render(request, "admin/categories.html", context)
 
+=======
+>>>>>>> Modify forms.
 
 @user_passes_test(lambda u: u.is_staff, login_url='waiting') 
 def accomodations(request):

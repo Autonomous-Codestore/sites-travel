@@ -17,11 +17,18 @@ class TripForm(forms.ModelForm):
         self.fields['destination'].label = "Trip destination"
         self.fields['image'].label = "Upload image(formats .png, .jpeg, jpg)"
         self.fields['slots'].placeholder = "Number of slots"
+<<<<<<< HEAD
         self.fields['start'].label = "Trip starts on"
         self.fields['end'].label = "Trip ends on"
         self.fields['price'].placeholder = "Price(in Dollars)"
         self.fields['details'].placeholder = "Additional trip details"
         self.fields['details'].label = "Trip details"
+=======
+        self.fields['start'].label = "Start date of trip"
+        self.fields['end'].label = "Start date of trip"
+        self.fields['price'].label = "Price(in Dollars)"
+
+>>>>>>> Modify forms.
 
     def clean_date(self):
         date = self.cleaned_data['date']
@@ -48,6 +55,7 @@ class FlightForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(FlightForm, self).__init__(*args, **kwargs)
         self.fields['image'].label = "Upload image (formats .png, .jpeg, jpg)"
+        self.fields['price'].label = "Price  (in Dollars)"
 
     class Meta:
         model = Flight
@@ -56,11 +64,17 @@ class FlightForm(forms.ModelForm):
 
 
 class CarForm(forms.ModelForm):
+<<<<<<< HEAD
     car = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter car '}))
+=======
+    make = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Vehcile'}))
+>>>>>>> Modify forms.
 
     def __init__(self, *args, **kwargs):
         super(CarForm, self).__init__(*args, **kwargs)
         self.fields['image'].label = "Upload image (formats .png, .jpeg, jpg)"
+        self.fields['category'].label = "Category of car"
+
 
     class Meta:
         model = Car
@@ -89,7 +103,7 @@ class BookingForm(forms.ModelForm):
     class Meta:
         model = Booking
         fields = '__all__'
-        exclude = ('time_booked',)
+        exclude = ('time_booked', 'available')
         
 
 class TripBookingForm(forms.ModelForm):
