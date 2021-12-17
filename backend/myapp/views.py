@@ -219,6 +219,10 @@ def main(request):
             # carhire_upcountry = car_hires.filter(trip="upcountry").count()
 
             bookings = Booking.objects.all()
+            trips = bookings.filter(service="trip").count()
+            flights = bookings.filter(service="flight").count()
+            carhire = bookings.filter(service="car hire").count()
+
             # oneway_tickets = bookings.filter(flight_type="one way").count()
             # return_tickets = bookings.filter(flight_type="return").count()
 
@@ -263,8 +267,9 @@ def main(request):
             "carhire_self": carhire_self,
             "carhire_town": carhire_town,
             "carhire_upcountry": carhire_upcountry,
-            # "oneway_tickets": oneway_tickets,
-            # "return_tickets": return_tickets,
+            "trips": trips,
+            "flights": flights,
+            "carhire": carhire,
             "draft": draft,
             "published": published, 
             # "bk_today": bk_today,

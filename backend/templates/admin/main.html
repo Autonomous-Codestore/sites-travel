@@ -75,6 +75,22 @@
 											</p> -->
 										</div>
 									</div>
+
+									{% if request.user.is_staff %}
+									<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 full_width">
+										<div class="x_slider_bottom_box_wrapper x_service_inner_main_box">
+											<h3><a href="#">Bookings</a></h3>
+											<p>
+												Trips: {{ trips }}  <br>
+												Flights: {{ flights }} <br>
+												Car-hires {{carhire}}
+											</p>
+										</div>
+									</div>
+									{% else %}
+									{{empty}}
+									{% endif %}
+
 									<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 full_width">
 										<div class="x_slider_bottom_box_wrapper x_service_inner_main_box">	
 											<!-- <i class="flaticon-shopping-bag"></i> -->
@@ -100,21 +116,6 @@
 									{{empty}}
 									{% endif %}
 									
-
-									{% if request.user.is_staff %}
-									<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 full_width">
-										<div class="x_slider_bottom_box_wrapper x_service_inner_main_box">
-											<h3><a href="#">Flights</a></h3>
-											<p>
-												one-way tickets: {{ oneway_tickets }}  <br>
-												return tickets: {{ return_tickets }}
-											</p>
-										</div>
-									</div>
-									{% else %}
-									{{empty}}
-									{% endif %}
-									
 									<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 full_width">
 										<div class="x_slider_bottom_box_wrapper x_service_inner_main_box">
 											<h3><a href="#">Driver</a></h3>
@@ -128,8 +129,8 @@
 										<div class="x_slider_bottom_box_wrapper x_service_inner_main_box">
 											<h3><a href="#">Car hired within</a></h3>
 											<p>
-												town: {{ carhire_town }} <br>
-												upcountry: {{ carhire_upcountry }}
+												Town: {{ carhire_town }} <br>
+												Upcountry: {{ carhire_upcountry }}
 											</p>
 										</div>
 									</div>

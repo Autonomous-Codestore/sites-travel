@@ -60,6 +60,7 @@
 									  <p class="card-text">Trip starts on: {{ trip.start }}</p>
 									  <p class="card-text">Trip ends on: {{ trip.end }}</p>
 									  <p class="card-text">Price of trip: $ {{ trip.price |intcomma }}</p>
+									  <p class="card-text">Trip Duration: {{trip.trip_duration}} days
 									  <p class="card-text">Accomodation on arrival:
 										  {% if trip.arrival_accomodation %}
 										  {{ trip.arrival_accomodation |title }}

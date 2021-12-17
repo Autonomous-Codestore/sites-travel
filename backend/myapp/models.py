@@ -82,6 +82,7 @@ class Driver(models.Model):
     def __str__(self):
         return f"{self.full_name}"
 
+from django.db.models import F
 
 class Trip(models.Model):
     """Category of trip such as holiday, tour """
@@ -96,6 +97,10 @@ class Trip(models.Model):
     trip_accomodation = models.ForeignKey(Accomadation, on_delete=models.CASCADE, related_name="trip_accom", null=True, blank=True)
     details = models.TextField(null=True, blank=True) 
     available = models.BooleanField(default=True)
+
+    def trip_duration(self):
+        days = (self.end - self.start).days
+        return days
 
     class Meta :
        ordering = ['-destination']
@@ -151,6 +156,10 @@ class Booking(models.Model):
     def flight_slots(self):
         total = self.adults + self.children
         return total 
+
+    def booking_duration(self):
+        days = (self.end - self.start).days
+        return days
 
     class Meta :
        ordering = ['-booked_on']

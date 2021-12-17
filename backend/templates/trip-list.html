@@ -59,7 +59,7 @@
 							</div>
 						</div>
 						<div class="btc_team_img_bot_cont_wrapper">
-							<h4><a href="#">2 days at {{trip.destination}}</a></h4>
+							<h4><a href="#">{{trip.trip_duration}} days at {{trip.destination}}</a></h4>
 							<p>$ {{trip.price |intcomma }}</p> 
 
 							{% if trip.slots == 0 %}

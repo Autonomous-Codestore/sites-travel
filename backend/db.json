@@ -486,6 +486,186 @@
   }
 },
 {
+  "model": "myapp.gallery",
+  "pk": 1,
+  "fields": {
+    "picture": "gallery/assoc_rbdROVx.png",
+    "category": "partner",
+    "caption": "assoc",
+    "hidden": false
+  }
+},
+{
+  "model": "myapp.gallery",
+  "pk": 2,
+  "fields": {
+    "picture": "gallery/eatp_fnzyKKR.png",
+    "category": "partner",
+    "caption": "eatp",
+    "hidden": false
+  }
+},
+{
+  "model": "myapp.gallery",
+  "pk": 3,
+  "fields": {
+    "picture": "gallery/iata_ueqyZEQ.png",
+    "category": "partner",
+    "caption": "iata",
+    "hidden": false
+  }
+},
+{
+  "model": "myapp.gallery",
+  "pk": 4,
+  "fields": {
+    "picture": "gallery/safari_VhASmOJ.jpg",
+    "category": "partner",
+    "caption": "safari",
+    "hidden": false
+  }
+},
+{
+  "model": "myapp.gallery",
+  "pk": 5,
+  "fields": {
+    "picture": "gallery/ugata_IKUHCgO.png",
+    "category": "partner",
+    "caption": "ugata",
+    "hidden": false
+  }
+},
+{
+  "model": "myapp.gallery",
+  "pk": 6,
+  "fields": {
+    "picture": "gallery/uta_ZBtLAEo.png",
+    "category": "partner",
+    "caption": "uta",
+    "hidden": false
+  }
+},
+{
+  "model": "myapp.gallery",
+  "pk": 7,
+  "fields": {
+    "picture": "gallery/utb_BA6dUDO.png",
+    "category": "partner",
+    "caption": "utb",
+    "hidden": false
+  }
+},
+{
+  "model": "myapp.gallery",
+  "pk": 8,
+  "fields": {
+    "picture": "gallery/uwa_EwegDJQ.jpeg",
+    "category": "partner",
+    "caption": "uwa",
+    "hidden": false
+  }
+},
+{
+  "model": "myapp.gallery",
+  "pk": 9,
+  "fields": {
+    "picture": "gallery/photos-10.jpg",
+    "category": "gallery",
+    "caption": "antelopes",
+    "hidden": false
+  }
+},
+{
+  "model": "myapp.gallery",
+  "pk": 10,
+  "fields": {
+    "picture": "gallery/photos-12.jpg",
+    "category": "gallery",
+    "caption": "giraffe",
+    "hidden": false
+  }
+},
+{
+  "model": "myapp.gallery",
+  "pk": 11,
+  "fields": {
+    "picture": "gallery/photos-13.jpg",
+    "category": "gallery",
+    "caption": "tours and travel",
+    "hidden": false
+  }
+},
+{
+  "model": "myapp.gallery",
+  "pk": 12,
+  "fields": {
+    "picture": "gallery/photos-14.jpg",
+    "category": "gallery",
+    "caption": "elephants",
+    "hidden": false
+  }
+},
+{
+  "model": "myapp.gallery",
+  "pk": 13,
+  "fields": {
+    "picture": "gallery/photos-16.jpg",
+    "category": "gallery",
+    "caption": "buffalos",
+    "hidden": false
+  }
+},
+{
+  "model": "myapp.gallery",
+  "pk": 14,
+  "fields": {
+    "picture": "gallery/photos-17.jpg",
+    "category": "gallery",
+    "caption": "forest",
+    "hidden": false
+  }
+},
+{
+  "model": "myapp.gallery",
+  "pk": 15,
+  "fields": {
+    "picture": "gallery/photos-18.jpg",
+    "category": "gallery",
+    "caption": "wilderness",
+    "hidden": false
+  }
+},
+{
+  "model": "myapp.gallery",
+  "pk": 16,
+  "fields": {
+    "picture": "gallery/photos-20.jpg",
+    "category": "gallery",
+    "caption": "sunset",
+    "hidden": false
+  }
+},
+{
+  "model": "myapp.gallery",
+  "pk": 17,
+  "fields": {
+    "picture": "gallery/photos-23.jpg",
+    "category": "gallery",
+    "caption": "antelope",
+    "hidden": false
+  }
+},
+{
+  "model": "myapp.gallery",
+  "pk": 18,
+  "fields": {
+    "picture": "gallery/photos-24.jpg",
+    "category": "gallery",
+    "caption": "buffalo",
+    "hidden": false
+  }
+},
+{
   "model": "blog.post",
   "pk": 1,
   "fields": {
@@ -608,6 +788,330 @@
     ],
     "object_id": "4",
     "object_repr": "serena",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2021-12-17T06:48:20.241Z",
+    "user": [
+      "george"
+    ],
+    "content_type": [
+      "myapp",
+      "gallery"
+    ],
+    "object_id": "1",
+    "object_repr": "assoc - partner",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2021-12-17T06:49:32.986Z",
+    "user": [
+      "george"
+    ],
+    "content_type": [
+      "myapp",
+      "gallery"
+    ],
+    "object_id": "2",
+    "object_repr": "eatp - partner",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2021-12-17T06:49:44.819Z",
+    "user": [
+      "george"
+    ],
+    "content_type": [
+      "myapp",
+      "gallery"
+    ],
+    "object_id": "3",
+    "object_repr": "iata - partner",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2021-12-17T06:50:03.755Z",
+    "user": [
+      "george"
+    ],
+    "content_type": [
+      "myapp",
+      "gallery"
+    ],
+    "object_id": "4",
+    "object_repr": "safari - partner",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2021-12-17T06:50:17.166Z",
+    "user": [
+      "george"
+    ],
+    "content_type": [
+      "myapp",
+      "gallery"
+    ],
+    "object_id": "5",
+    "object_repr": "ugata - partner",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2021-12-17T06:50:30.030Z",
+    "user": [
+      "george"
+    ],
+    "content_type": [
+      "myapp",
+      "gallery"
+    ],
+    "object_id": "6",
+    "object_repr": "uta - partner",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2021-12-17T06:50:41.915Z",
+    "user": [
+      "george"
+    ],
+    "content_type": [
+      "myapp",
+      "gallery"
+    ],
+    "object_id": "7",
+    "object_repr": "utb - partner",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2021-12-17T06:50:54.842Z",
+    "user": [
+      "george"
+    ],
+    "content_type": [
+      "myapp",
+      "gallery"
+    ],
+    "object_id": "8",
+    "object_repr": "uwa - partner",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2021-12-17T06:51:38.940Z",
+    "user": [
+      "george"
+    ],
+    "content_type": [
+      "myapp",
+      "gallery"
+    ],
+    "object_id": "9",
+    "object_repr": "antelopes - gallery",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2021-12-17T06:51:58.580Z",
+    "user": [
+      "george"
+    ],
+    "content_type": [
+      "myapp",
+      "gallery"
+    ],
+    "object_id": "10",
+    "object_repr": "giraffe - gallery",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2021-12-17T06:52:11.161Z",
+    "user": [
+      "george"
+    ],
+    "content_type": [
+      "myapp",
+      "gallery"
+    ],
+    "object_id": "11",
+    "object_repr": "tours and travel - gallery",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2021-12-17T06:52:19.832Z",
+    "user": [
+      "george"
+    ],
+    "content_type": [
+      "myapp",
+      "gallery"
+    ],
+    "object_id": "12",
+    "object_repr": "elephants - gallery",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2021-12-17T06:52:51.526Z",
+    "user": [
+      "george"
+    ],
+    "content_type": [
+      "myapp",
+      "gallery"
+    ],
+    "object_id": "13",
+    "object_repr": "buffalos - gallery",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2021-12-17T06:53:04.203Z",
+    "user": [
+      "george"
+    ],
+    "content_type": [
+      "myapp",
+      "gallery"
+    ],
+    "object_id": "14",
+    "object_repr": "forest - gallery",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2021-12-17T06:53:15.301Z",
+    "user": [
+      "george"
+    ],
+    "content_type": [
+      "myapp",
+      "gallery"
+    ],
+    "object_id": "15",
+    "object_repr": "wilderness - gallery",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 20,
+  "fields": {
+    "action_time": "2021-12-17T06:53:30.480Z",
+    "user": [
+      "george"
+    ],
+    "content_type": [
+      "myapp",
+      "gallery"
+    ],
+    "object_id": "16",
+    "object_repr": "sunset - gallery",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 21,
+  "fields": {
+    "action_time": "2021-12-17T06:53:47.419Z",
+    "user": [
+      "george"
+    ],
+    "content_type": [
+      "myapp",
+      "gallery"
+    ],
+    "object_id": "17",
+    "object_repr": "antelope - gallery",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 22,
+  "fields": {
+    "action_time": "2021-12-17T06:53:57.957Z",
+    "user": [
+      "george"
+    ],
+    "content_type": [
+      "myapp",
+      "gallery"
+    ],
+    "object_id": "18",
+    "object_repr": "buffalo - gallery",
     "action_flag": 1,
     "change_message": "[{\"added\": {}}]"
   }

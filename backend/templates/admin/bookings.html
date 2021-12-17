@@ -105,7 +105,7 @@
 												<td>{{booking.service |title }}</td>
 												<td>{{booking.end}}</td>
 												<td>{{booking.end}}</td>
-												<td>{{booking.booked_by.full_name |title }}</td>
+												<td>{{booking.booked_by }}</td>
 												<td>{{booking.booked_on |timesince }}</td>
 												<td>
 													<a href="{% url 'booking' booking.id %}" class="btn btn-outline-primary btn-sm">view</a>

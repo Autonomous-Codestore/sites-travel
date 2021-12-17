@@ -98,26 +98,27 @@
 													  	Trip: {{ booking.trip |title }} <br>
 														Pickup: {{ booking.pickup |title }} <br>
 														Dropoff: {{ booking.dropoff |title }} <br>
-														Trip Start: {{ booking.start }} <br>
-														TRip End: {{ booking.end }} <br>
+														Trip starts on: {{ booking.start }} <br>
+														Trip Ends on: {{ booking.end }} <br>
 														Slots booked: {{ booking.slots |title }} <br>
 
 													  {% elif booking.flight %}
 													  	Flight: {{ booking.flight |title }} <br>
-														Flight type: {{ booking.flight_type |title }} <br>
 														Flight date: {{ booking.departure_date |title }} <br>
-														Flight type: {{ booking.flight_type |title }} <br>
 														Adults: {{ booking.adults }} <br>
 														Children: {{ booking.children }} <br>
 														Infants: {{ booking.infants }} <br>
-														Slots: {{ booking.flight_slots }}
+														Slots: {{ booking.flight_slots }} <br>
 
 													  {% elif booking.car %}
-													  	Car Make: {{ booking.car |title  }} <br>
-														Start: {{ booking.start }} <br>
-														End: {{ booking.end }} <br>
+													  	Car : {{ booking.car |title  }} <br>
+														Car hire Starts on: {{ booking.start }} <br>
+														Car hire ends on: {{ booking.end }} <br>
+														Duration: {{booking.booking_duration}} days <br>
 														Driven by: {{ booking.driven_by |title }} <br>
-														Car hire region: {{ booking.carhire_trip |title  }} <br>
+														Car hire within: {{ booking.carhire_trip |title  }} <br> <br>
+														Car Description: <br>
+														{{booking.car.description}}
 													  {% endif %}
 												  </p>
 

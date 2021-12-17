@@ -95,7 +95,7 @@
 									<table id="myTable" class="table table-bordered table-hover table-striped table-responsive">
 										<thead>
 											<tr>
-												<th >Category</th>
+												<!-- <th >Category</th> -->
 												<th >Destination</th>
 												<th >Price</th>
 												<th >Slots left</th>
@@ -107,7 +107,7 @@
 										<tbody>
 											{% for trip in trips  %}
 											<tr>
-												<td>{{trip.category |title }}</td>
+												<!-- <td>{{trip.category |title }}</td> -->
 												<td>{{trip.destination |title }}</td>
 												<td>$ {{trip.price}}</td>
 												<td>{{trip.slots}}</td>
@@ -154,3 +154,4 @@
 <!-- Packages End -->
 
 {% endblock %}
+
