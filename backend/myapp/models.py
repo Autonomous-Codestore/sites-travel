@@ -51,7 +51,10 @@ class Car(models.Model):
     category = models.CharField(max_length=50, choices=CAR_CATEGORY)
     capacity = models.PositiveIntegerField(default=3)
     available = models.BooleanField(default=True)
-    description = models.TextField()    
+    description = models.TextField()   
+
+    class Meta:
+        ordering = ['category']
 
     def __str__(self):
         return f"{self.car}"
@@ -82,7 +85,6 @@ class Driver(models.Model):
     def __str__(self):
         return f"{self.full_name}"
 
-from django.db.models import F
 
 class Trip(models.Model):
     """Category of trip such as holiday, tour """

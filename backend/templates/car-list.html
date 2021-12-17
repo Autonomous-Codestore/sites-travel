@@ -51,17 +51,18 @@
 						<div class="btc_team_img_bot_wrapper">
 							
 							{% if car.image %}
-							<img src="{{car.image.url}}" style="width: 255px; height: 230px;" alt="car image">
+							<img src="{{car.image.url}}" style="width: 255px; height: 220px;" alt="car image">
 							{% else %}
-							<img src="{% static 'images/tb1.jpg' %}" style="width: 255px; height: 230px;" alt="car image">
+							<img src="{% static 'images/tb1.jpg' %}" style="width: 255px; height: 220px;" alt="car image">
 							{% endif %}
 								
 							<div class="btc_team_social_tb_wrapper">
-								<h3>Capacity: {{car.capacity}} seats </h3>
+								<h3> {{car.category}} </h3>
 							</div>
 						</div>
 						<div class="btc_team_img_bot_cont_wrapper">
 							<h4><a href="#"> {{car.car}}</a></h4>
+							<p class="my-1">Capacity: {{car.capacity}} seats</p>
 							
 							{% comment %}
 							<div class="x_car_offer_starts float_left">	

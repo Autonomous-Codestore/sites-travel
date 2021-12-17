@@ -3,7 +3,6 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<!-- hs Navigation End -->
 <!-- btc tittle Wrapper Start -->
 <div class="btc_tittle_main_wrapper">
 	<div class="btc_tittle_img_overlay"></div>
@@ -153,15 +152,41 @@
 											</div>
 											<div class="blog_category_side_menu">
 												<ul>
-													{% if accomodations %}
-													{% for accom in accomodations  %}
+													<p><u> High End Listings</u></p>
+													{% if high_end %}
+													{% for accom in high_end  %}
 														<li><a href="#">{{accom.name |title }}</a></li>
 													{% endfor %}
 													{% else %}
-														<p class="text-center">No accomodation listed yet</p>
+														<p >No high-end accomodation listings yet</p>
 													{% endif %}	
 												</ul>
 											</div>
+											<div class="blog_category_side_menu">
+												<ul>
+													<p><u>Mid Range Listings</u></p>
+													{% if mid_range %}
+													{% for accom in mid_range  %}
+														<li><a href="#">{{accom.name |title }}</a></li>
+													{% endfor %}
+													{% else %}
+														<p >No mid range accomodation listings yet</p>
+													{% endif %}	
+												</ul>
+											</div>
+											<div class="blog_category_side_menu">
+												<ul>
+													<p><u>Budget Listings</u></p>
+													{% if budget %}
+													{% for accom in budget  %}
+														<li><a href="#">{{accom.name |title }}</a></li>
+													{% endfor %}
+													{% else %}
+														<p >No budget accomodation listings yet</p>
+													{% endif %}	
+												</ul>
+											</div>
+
 										</div>
 									</div>
 

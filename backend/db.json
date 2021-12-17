@@ -173,6 +173,18 @@
   }
 },
 {
+  "model": "myapp.car",
+  "pk": 5,
+  "fields": {
+    "car": "van high roof",
+    "image": "cars/van_high_roof.jpeg",
+    "category": "vans",
+    "capacity": 7,
+    "available": true,
+    "description": "Spacious head room"
+  }
+},
+{
   "model": "myapp.trip",
   "pk": 1,
   "fields": {

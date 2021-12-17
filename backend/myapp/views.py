@@ -514,6 +514,10 @@ def stepsave(request):
 @user_passes_test(lambda u: u.is_staff, login_url='waiting') 
 def settings(request):
     accomodations = Accomadation.objects.all()
+    high_end = accomodations.filter(budget="high end")
+    mid_range = accomodations.filter(budget="mid range")
+    budget = accomodations.filter(budget="budget")
+
     if accomodations.count() == 0:
         Accomadation.objects.create(name="nanjing hotel", budget="mid range", available=True )
     
@@ -538,9 +542,11 @@ def settings(request):
         'accomodation_form': accomodation_form,
     #     'categories': categories,
     #     'category_form': category_form,
+        "high_end": high_end,
+        "mid_range": mid_range,
+        "budget": budget,
     }
     return render(request, "admin/settings.html", context)
-
 
 
 
