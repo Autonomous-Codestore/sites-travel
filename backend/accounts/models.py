@@ -25,8 +25,10 @@ class CustomUser(AbstractUser):
     permit_class = models.CharField(max_length=100, null=True)
     country = CountryField(blank_label='Select country citizenship')
     permit = models.FileField(upload_to="permits", null=True)
-
     is_driver = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['-date_joined']
 
     def __str__(self):
         return self.email

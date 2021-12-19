@@ -3,12 +3,28 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import CustomUser, Index
 # from django.contrib.auth import get_user_model
 # User = get_user_model()
+from django.shortcuts import render, redirect
 
-class CustomUserCreationForm(UserCreationForm):
 
-    class Meta:
-        model = CustomUser
-        fields = ('username', 'email')
+# class CustomUserCreationForm(UserCreationForm):
+
+#     class Meta:
+#         model = CustomUser
+#         fields = ('username', 'email', 'telephone',)
+
+
+class SignupForm(forms.Form):
+    # full_name = forms.CharField(max_length=30, label='Full name')
+    full_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Name'}))
+    email = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Email'}))
+    telephone = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Telephone'}))
+
+    def signup(self, request, user):
+        user.full_name = self.cleaned_data['full_name']
+        user.email = self.cleaned_data['email']
+        user.telephone = self.cleaned_data['telephone']
+        user.save()
+        return redirect('profile')
 
 class CustomUserChangeForm(UserChangeForm):
 
