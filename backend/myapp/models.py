@@ -88,7 +88,7 @@ class Driver(models.Model):
 
 class Trip(models.Model):
     """Category of trip such as holiday, tour """
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
+    # category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     destination = models.CharField(max_length=100)
     image = models.ImageField(upload_to="trips")
     slots = models.PositiveIntegerField(default=0)
@@ -105,7 +105,7 @@ class Trip(models.Model):
         return days
 
     class Meta :
-       ordering = ['-destination']
+       ordering = ['destination']
 
     def __str__(self):
         return f"{self.destination}"

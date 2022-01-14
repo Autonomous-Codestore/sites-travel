@@ -1,4 +1,6 @@
 {% load static %}
+{% load crispy_forms_tags %}
+
 <!DOCTYPE html>
 <!-- Template Name: Xpedia Version: 1.0.0 -->
 <html lang="eng">
@@ -95,36 +97,6 @@
 					</div>
 				</div>
 				<div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
-					<!-- <div class="hs_navi_cart_wrapper  d-none d-sm-none d-xs-none d-md-block d-lg-block d-xl-block">
-						<div class="dropdown-wrapper menu-button menu_button_end"> <a class="menu-button" href="#"><i class="fa fa-envelope"></i><span>3</span></a>
-							<div class="drop-menu">
-								<div class="cc_cart_wrapper1">
-									<div class="cc_cart_img_wrapper">
-										<img src="{% static 'images/cart_img.jpg' %}" alt="cart_img" />
-									</div>
-									<div class="cc_cart_cont_wrapper">
-										<h4><a href="#">Car</a></h4>
-										<p>Quantity : 2 × $45</p>
-										<h5>$90</h5>
-										<button type="button" class="close" data-dismiss="modal">&times;</button>
-									</div>
-								</div>
-								<div class="cc_cart_wrapper1">
-									<div class="cc_cart_img_wrapper">
-										<img src="{% static 'images/cart_img.jpg' %}" alt="cart_img" />
-									</div>
-									<div class="cc_cart_cont_wrapper">
-										<h4><a href="#">Car</a></h4>
-										<p>Quantity : 2 × $45</p>
-										<h5>$90</h5>
-										<button type="button" class="close" data-dismiss="modal">&times;</button>
-									</div>
-									<div class="checkout_btn_resto">	<a href="car_checkout.html">Checkout</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div> -->
 					<nav class="hs_main_menu d-none d-sm-none d-xs-none d-md-block">
 						<ul>
 							<li> <a class="menu-button single_menu" href="{% url 'index' %}">Home </a></li>
@@ -186,7 +158,7 @@
 											<li> <a href="{% url 'car_list' %}">Car Hire</a></li>
 											<li> <a href="{% url 'gallery' %}">Gallery</a></li>
 											<li> <a href="{% url 'post_list' %}">Blog</a></li>
-											<li> <a href="{% url 'contacts' %}">Contact</a>
+											<li> <a href="{% url 'contacts' %}">Contact us</a>
 											</li>
 										</ul>
 										<!-- .cd-dropdown-content -->
@@ -207,7 +179,6 @@
 		<div id="carousel-example-generic" class="carousel slide" data-interval="false" data-ride="carousel">
 			<div class="carousel-inner" role="listbox">
 
-				
 				{% comment %}
 				{% for banner in banners %}
 				{% if forloop.first %}
@@ -245,9 +216,9 @@
 										</p>
 										<div class="hs_effect_btn">
 											<ul>
-												<li data-animation="animated flipInX"><a href="#">Explore<i class="fa fa-arrow-right"></i></a>
+												<li data-animation="animated flipInX"><a href="#about-us">Explore<i class="fa fa-arrow-right"></i></a>
 												</li>
-												<li data-animation="animated flipInX"><a href="#">contact<i class="fa fa-arrow-right"></i></a>
+												<li data-animation="animated flipInX"><a href="{% url 'contacts' %}">contact us<i class="fa fa-arrow-right"></i></a>
 												</li>
 											</ul>
 										</div>
@@ -260,59 +231,31 @@
 											<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 												<div class="x_slider_form_main_wrapper float_left" data-animation="animated fadeIn">
 													<div class="x_slider_form_heading_wrapper float_left">
-														<h3>The World is Yours</h3>
+														<h3>Tour the Wild</h3>
 													</div>
 													<div class="row">
-														<div class="col-md-12">
-															<div class="x_slider_form_input_wrapper float_left">
-																<h3>Pick-up Location</h3>
-																<input type="text" placeholder="City, Airport, etc.">
-															</div>
-														</div>
-														<div class="col-md-12">
-															<div class="x_slider_form_input_wrapper float_left">
-																<h3>Drop-off Location</h3>
-																<input type="text" placeholder="City, Airport, etc.">
-															</div>
-														</div>
-														<div class="col-md-6">
-															<div class="form-sec-header">
-																<h3>Pick-up Date</h3>
-																<label class="cal-icon">Pick-up Date
-																	<input type="text" placeholder="Tue 16 Jan 2018" class="form-control datepicker">
-																</label>
-															</div>
-														</div>
-														<div class="col-md-6">
-															<div class="form-sec-header">
-																<h3>Drop-Off Date</h3>
-																<label class="cal-icon">Pick-up Date
-																	<input type="text" placeholder="Tue 16 Jan 2018" class="form-control datepicker">
-																</label>
-															</div>
-														</div>
-														<div class="col-md-12">
-															<div class="x_slider_checkbox float_left">
-																<input type="checkbox" id="c1" name="cb">
-																<label for="c1">Driver age is between 30-65 &nbsp;<i class="fa fa-question-circle"></i>
-																</label>
-															</div>
-														</div>
-														<div class="col-md-12">
-															<div class="x_slider_checkbox_bottom float_left">
-																<div class="x_slider_checout_left">
-																	<ul>
-																		<li><i class="fa fa-check-circle"></i>&nbsp;&nbsp;24/7 Phone Support</li>
-																		<li><i class="fa fa-check-circle"></i>&nbsp;&nbsp;No Credit Card Fees</li>
-																	</ul>
+														<div class="col-md-12 mt-2">
+															<form method="POST" action="{% url 'my_bookings' %}">
+																{% csrf_token %}
+																{{ trip_booking |crispy }}
+																<div class="col-md-12">
+																	<div class="x_slider_checkbox_bottom float_left">
+																		<div class="x_slider_checout_left">
+																			<ul>
+																				<li><i class="fa fa-check-circle"></i>&nbsp;&nbsp;24/7 Phone Support</li>
+																			</ul>
+																		</div>
+																		<!-- <div class="x_slider_checout_right">
+																			<button type="submit" class="bttn">Save <i class="fa fa-arrow-right"></i></button>
+																		</div> -->
+																		{% if request.user.is_aunthenticated %}
+																		<button type="submit" class="btn btn-outline-success mt-3">Submit <i class="fa fa-arrow-right"></i></button>
+																		{% else %}
+																		<a href="{% url 'account_login' %}"><p class="mt-3 font-weight-bold">Login to book trip.</p></a>
+																		{% endif %}
+																	</div>
 																</div>
-																<div class="x_slider_checout_right">
-																	<ul>
-																		<li><a href="#">search <i class="fa fa-arrow-right"></i></a>
-																		</li>
-																	</ul>
-																</div>
-															</div>
+															</form>
 														</div>
 													</div>
 												</div>
@@ -334,13 +277,13 @@
 										<h2 data-animation="animated fadeInLeft">Cheap car rental to<br>
 											your desired destination</h2>
 										<p data-animation="animated bounceInUp">One of our top priorities is to adjust each package we offer to our
-											<br>customer’s exact needs.</span>
+											<br>customer’s needs.</span>
 										</p>
 										<div class="hs_effect_btn">
 											<ul>
-												<li data-animation="animated flipInX"><a href="#">about us<i class="fa fa-arrow-right"></i></a>
+												<li data-animation="animated flipInX"><a href="#about-us">Explore<i class="fa fa-arrow-right"></i></a>
 												</li>
-												<li data-animation="animated flipInX"><a href="#">contact<i class="fa fa-arrow-right"></i></a>
+												<li data-animation="animated flipInX"><a href="{% url 'contacts' %}">contact us<i class="fa fa-arrow-right"></i></a>
 												</li>
 											</ul>
 										</div>
@@ -356,56 +299,25 @@
 														<h3>Let’s find your perfect car</h3>
 													</div>
 													<div class="row">
-														<div class="col-md-12">
-															<div class="x_slider_form_input_wrapper float_left">
-																<h3>Pick-up Location</h3>
-																<input type="text" placeholder="City, Airport, Station, etc.">
-															</div>
-														</div>
-														<div class="col-md-12">
-															<div class="x_slider_form_input_wrapper float_left">
-																<h3>Drop-off Location</h3>
-																<input type="text" placeholder="City, Airport, Station, etc.">
-															</div>
-														</div>
-														<div class="col-md-6">
-															<div class="form-sec-header">
-																<h3>Pick-up Date</h3>
-																<label class="cal-icon">Pick-up Date
-																	<input type="text" placeholder="Tue 16 Jan 2018" class="form-control datepicker">
-																</label>
-															</div>
-														</div>
-														<div class="col-md-6">
-															<div class="form-sec-header">
-																<h3>Drop-Off Date</h3>
-																<label class="cal-icon">Pick-up Date
-																	<input type="text" placeholder="Tue 16 Jan 2018" class="form-control datepicker">
-																</label>
-															</div>
-														</div>
-														<div class="col-md-12">
-															<div class="x_slider_checkbox float_left">
-																<input type="checkbox" id="c2" name="cb">
-																<label for="c2">Driver age is between 30-65 &nbsp;<i class="fa fa-question-circle"></i>
-																</label>
-															</div>
-														</div>
-														<div class="col-md-12">
-															<div class="x_slider_checkbox_bottom float_left">
-																<div class="x_slider_checout_left">
-																	<ul>
-																		<li><i class="fa fa-check-circle"></i>&nbsp;&nbsp;24/7 Phone Support</li>
-																		<li><i class="fa fa-check-circle"></i>&nbsp;&nbsp;No Credit Card Fees</li>
-																	</ul>
+														<div class="col-md-12 mt-2">
+															<form method="POST" action="{% url 'my_bookings' %}">
+																{% csrf_token %}
+																{{ flight_booking |crispy }}
+																<div class="col-md-12">
+																	<div class="x_slider_checkbox_bottom float_left">
+																		<div class="x_slider_checout_left">
+																			<ul>
+																				<li><i class="fa fa-check-circle"></i>&nbsp;&nbsp;24/7 Phone Support</li>
+																			</ul>
+																		</div>
+																		{% if request.user.is_aunthenticated %}
+																		<button type="submit" class="btn btn-outline-success mt-3">Submit <i class="fa fa-arrow-right"></i></button>
+																		{% else %}
+																		<a href="{% url 'account_login' %}"><p class="mt-3 font-weight-bold">Login to book flight.</p></a>
+																		{% endif %}
+																	</div>
 																</div>
-																<div class="x_slider_checout_right">
-																	<ul>
-																		<li><a href="#">search <i class="fa fa-arrow-right"></i></a>
-																		</li>
-																	</ul>
-																</div>
-															</div>
+															</form>
 														</div>
 													</div>
 												</div>
@@ -425,13 +337,13 @@
 								<div class="col-xl-7 col-lg-6 col-md-12 col-sm-12 col-12">
 									<div class="content">
 										<h2 data-animation="animated fadeInLeft">Convenient Flight Booking </h2>
-										<p data-animation="animated bounceInUp">We enable clients book for flights at their convenience. </span>
+										<p data-animation="animated bounceInUp">We book flights for clients at their convenience.</span>
 										</p>
 										<div class="hs_effect_btn">
 											<ul>
-												<li data-animation="animated flipInX"><a href="#">about us<i class="fa fa-arrow-right"></i></a>
+												<li data-animation="animated flipInX"><a href="#about-us">about us<i class="fa fa-arrow-right"></i></a>
 												</li>
-												<li data-animation="animated flipInX"><a href="#">contact<i class="fa fa-arrow-right"></i></a>
+												<li data-animation="animated flipInX"><a href="{% url 'contacts' %}">contact us<i class="fa fa-arrow-right"></i></a>
 												</li>
 											</ul>
 										</div>
@@ -444,59 +356,28 @@
 											<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 												<div class="x_slider_form_main_wrapper float_left" data-animation="animated fadeIn">
 													<div class="x_slider_form_heading_wrapper float_left">
-														<h3>Let’s find your perfect car</h3>
+														<h3>Let’s book a flight for you.</h3>
 													</div>
 													<div class="row">
-														<div class="col-md-12">
-															<div class="x_slider_form_input_wrapper float_left">
-																<h3>Pick-up Location</h3>
-																<input type="text" placeholder="City, Airport, Station, etc.">
-															</div>
-														</div>
-														<div class="col-md-12">
-															<div class="x_slider_form_input_wrapper float_left">
-																<h3>Drop-off Location</h3>
-																<input type="text" placeholder="City, Airport, Station, etc.">
-															</div>
-														</div>
-														<div class="col-md-6">
-															<div class="form-sec-header">
-																<h3>Pick-up Date</h3>
-																<label class="cal-icon">Pick-up Date
-																	<input type="text" placeholder="Tue 16 Jan 2018" class="form-control datepicker">
-																</label>
-															</div>
-														</div>
-														<div class="col-md-6">
-															<div class="form-sec-header">
-																<h3>Drop-Off Date</h3>
-																<label class="cal-icon">Pick-up Date
-																	<input type="text" placeholder="Tue 16 Jan 2018" class="form-control datepicker">
-																</label>
-															</div>
-														</div>
-														<div class="col-md-12">
-															<div class="x_slider_checkbox float_left">
-																<input type="checkbox" id="c3" name="cb">
-																<label for="c3">Driver age is between 30-65 &nbsp;<i class="fa fa-question-circle"></i>
-																</label>
-															</div>
-														</div>
-														<div class="col-md-12">
-															<div class="x_slider_checkbox_bottom float_left">
-																<div class="x_slider_checout_left">
-																	<ul>
-																		<li><i class="fa fa-check-circle"></i>&nbsp;&nbsp;24/7 Phone Support</li>
-																		<li><i class="fa fa-check-circle"></i>&nbsp;&nbsp;No Credit Card Fees</li>
-																	</ul>
+														<div class="col-md-12 mt-2">
+															<form method="POST" action="{% url 'my_bookings' %}">
+																{% csrf_token %}
+																{{ car_booking |crispy }}
+																<div class="col-md-12">
+																	<div class="x_slider_checkbox_bottom float_left">
+																		<div class="x_slider_checout_left">
+																			<ul>
+																				<li><i class="fa fa-check-circle"></i>&nbsp;&nbsp;24/7 Phone Support</li>
+																			</ul>
+																		</div>
+																		{% if request.user.is_aunthenticated %}
+																		<button type="submit" class="btn btn-outline-success mt-3">Submit <i class="fa fa-arrow-right"></i></button>
+																		{% else %}
+																		<a href="{% url 'account_login' %}"><p class="mt-3 font-weight-bold">Login to book flight.</p></a>
+																		{% endif %}
+																	</div>
 																</div>
-																<div class="x_slider_checout_right">
-																	<ul>
-																		<li><a href="#">search <i class="fa fa-arrow-right"></i></a>
-																		</li>
-																	</ul>
-																</div>
-															</div>
+															</form>
 														</div>
 													</div>
 												</div>
@@ -526,6 +407,8 @@
 		</div>
 	</div>
 	<!-- hs Slider End -->
+
+
 	<div class="x_responsive_form_wrapper x_responsive_form_wrapper2 float_left d-block d-sm-block d-md-block  d-lg-none d-xl-none">
 		<div class="container">
 			<div class="x_slider_form_main_wrapper float_left">
@@ -578,7 +461,7 @@
 							</div>
 							<div class="x_slider_checout_right">
 								<ul>
-									<li><a href="#">search <i class="fa fa-arrow-right"></i></a>
+									<li><a href="#">submit <i class="fa fa-arrow-right"></i></a>
 									</li>
 								</ul>
 							</div>
@@ -588,6 +471,7 @@
 			</div>
 		</div>
 	</div>
+
 	<!-- xs Slider bottom title Start -->
 	<div class="x_slider_bottom_title_main_wrapper">
 		<div class="x_slider_bottom_box_wrapper">	<i class="fa-solid fa-suitcase-rolling"></i>
@@ -609,11 +493,11 @@
 	</div>
 
 		<!-- About us Start -->
-		<div class="x_why_main_wrapper">
+		<div class="x_why_main_wrapper" id="about-us">
 			<div class="x_why_img_overlay"></div>
 			<div class="container">
 				
-				<div class="row">
+				<div class="row" >
 					<!-- messages -->
 					<div class="col-12 col-md-8 offset-md-3">
 						<p class="text-center">

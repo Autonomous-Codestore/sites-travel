@@ -1,3 +1,4 @@
+from os import name
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from rest_framework.urlpatterns import format_suffix_patterns
@@ -31,7 +32,7 @@ urlpatterns = [
     path('categories', views.CategoryList.as_view()),
 
     path('posts', views.PostList.as_view()),
-    path('posts/<int:pk>', views.PostDetail.as_view()),
+    path('posts/<int:pk>', views.PostDetail.as_view(), name='post_detail'),
 
     path('comments', views.CommentList.as_view()),
     path('comments/<int:pk>', views.CommentDetail.as_view()),

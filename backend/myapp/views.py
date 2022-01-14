@@ -237,9 +237,10 @@ def main(request):
             published = blogs.filter(status=1).count()
 
             try:
-                latest_booking = bookings.latest('time_booked')
+                latest_booking = bookings.latest('booked_on')
             except:
                 latest_booking = ""
+            print(latest_booking)
 
             # tomorrow = datetime.date.today() + timedelta(days=1)
             # today = datetime.date.today()

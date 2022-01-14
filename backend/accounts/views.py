@@ -4,11 +4,12 @@ from myapp.models import Accomadation, Trip, Gallery, Booking
 from django.contrib import messages
 from .models import Index
 from .forms import CustomUserForm, IndexForm
+from myapp.forms import IndexCarForm, IndexFlightForm, IndexTripForm, TripBookingForm, FlightBookingForm, CarBookingForm
 from django.contrib.auth import get_user_model
 User = get_user_model()
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import user_passes_test
-
+from datetime import datetime, date
 
 # Create your views here.
 def error_404(request, exception):
@@ -27,9 +28,60 @@ def index(request):
     pictures = Gallery.objects.all()
     partners = pictures.filter(category="partner")
     banners = pictures.filter(category="gallery")
+
+    # trip
+    trip_booking = IndexTripForm(request.POST or None, initial={"service": "trip"})
+    if trip_booking.is_valid():
+        instance = trip_booking.save(commit=False)
+        instance.trip.slots = instance.trip.slots - instance.slots
+        instance.trip.save()
+        instance.start = instance.trip.start
+        instance.end = instance.trip.end
+        instance.booked_by = request.user
+        instance.booked_on = datetime.now()
+        instance.save()       
+        messages.success(request, 'Trip booked successfully')
+        return redirect('my_bookings')
+
+    # Flight Booking form
+    flight_booking = IndexFlightForm(request.POST or None, initial={"service": "flight"})
+    if flight_booking.is_valid():
+        instance = flight_booking.save(commit=False)
+        instance.booked_by = request.user
+        instance.booked_on = datetime.now()
+        if instance.start < date.today():
+            messages.info(request, 'Please only book future dates')
+            return redirect('index')
+        elif instance.adults + instance.children == 0:
+            messages.info(request, 'Please enter number of people that will travel')
+            return redirect('index')
+        else:
+            instance.save()       
+            messages.success(request, 'Flight booked successfully')
+            return redirect('my_bookings')
+
+    # carbooking
+    car_booking = IndexCarForm(request.POST or None, initial={"service": "car hire", })
+    if car_booking.is_valid():
+        instance = car_booking.save(commit=False)
+        instance.booked_by = request.user
+        instance.booked_on = datetime.now()
+        if instance.start < date.today():
+            messages.info(request, 'Please only book future dates')
+            return redirect('index')
+        elif instance.start > instance.end:
+            messages.info(request, 'Start date cannot be later than end date ')
+            return redirect('index')
+        else:
+            instance.save()       
+            messages.success(request, 'Car hired successfully')
+            return redirect('my_bookings')
     context = {
-            "partners": partners,
-            "banners": banners,
+        "partners": partners,
+        "banners": banners,
+        'trip_booking': trip_booking,
+        'flight_booking': flight_booking,
+        'car_booking': car_booking,
     }
     return render(request, "index.html", context)
 

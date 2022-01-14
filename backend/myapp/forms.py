@@ -103,6 +103,8 @@ class TripBookingForm(forms.ModelForm):
         super(TripBookingForm, self).__init__(*args, **kwargs)
         self.fields['trip'].disabled = True 
         self.fields['service'].disabled = True 
+        self.fields['service'].label = "Type of service"
+        self.fields['trip'].label = "Trip destination"
         self.fields['slots'].label = "slots"
         self.fields['pickup'].label = "Pickup place"
         self.fields['dropoff'].label = "Drop-off place"
@@ -120,6 +122,8 @@ class FlightBookingForm(forms.ModelForm):
         super(FlightBookingForm, self).__init__(*args, **kwargs)
         self.fields['service'].disabled = True 
         self.fields['flight'].disabled = True 
+        self.fields['service'].label = "Type of service"
+        self.fields['flight'].label = "Flight route"        
         self.fields['start'].label = "Date of flight" 
 
     # def clean(self):
@@ -148,6 +152,8 @@ class CarBookingForm(forms.ModelForm):
         super(CarBookingForm, self).__init__(*args, **kwargs)
         self.fields['service'].disabled = True 
         self.fields['car'].disabled = True 
+        self.fields['service'].label = "Type of service"
+        self.fields['car'].label = "Car selected"
         self.fields['start'].label = "Date car hire starts"
         self.fields['end'].label = "Date car hire ends"
         self.fields['carhire_trip'].label = "Car hire within"
@@ -166,6 +172,78 @@ class CarBookingForm(forms.ModelForm):
         fields = '__all__'
         exclude = ('time_booked', 'flight', 'trip', 'flight_type', 'departure_date', 'pickup', 'dropoff',  'slots', 
         'adults', 'children', 'infants', 'booked_by',)
+        widgets = {
+            'start': widgets.DateInput(attrs={'type': 'date'}),
+            'end': widgets.DateInput(attrs={'type': 'date'}),
+        } 
+
+
+
+
+# Bookings from the index page
+class IndexTripForm(forms.ModelForm):
+    pickup = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter location to pick you up from'}))
+    dropoff = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter a location to drop you at.'}))
+    slots = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter number of trip participants'}))
+    trip = forms.ModelChoiceField(queryset=Trip.objects.all(), empty_label='Please select your trip destination')
+
+    def __init__(self, *args, **kwargs):
+        super(IndexTripForm, self).__init__(*args, **kwargs)
+        self.fields['trip'].disabled = False
+        self.fields['service'].disabled = True 
+        self.fields['service'].label = "Type of service"
+        self.fields['trip'].label = "Trip Destination"
+        self.fields['slots'].label = "slots"
+        self.fields['pickup'].label = "Pickup place"
+        self.fields['dropoff'].label = "Drop-off place"
+        
+    class Meta:
+        model = Booking
+        fields = '__all__'
+        exclude = ('car', 'time_booked', 'car_hire', 'flight', 'flight_type', 'departure_date', 'adults', 'children', 
+        'infants', 'driven_by', 'carhire_trip', 'booked_by', 'start', 'end',  )
+
+
+class IndexFlightForm(forms.ModelForm):
+    flight = forms.ModelChoiceField(queryset=Flight.objects.all(), empty_label='Please select flight route')
+
+    def __init__(self, *args, **kwargs):
+        super(IndexFlightForm, self).__init__(*args, **kwargs)
+        self.fields['service'].disabled = True 
+        self.fields['flight'].disabled = False 
+        self.fields['service'].label = "Type of Service" 
+        self.fields['flight'].label = "Select flight route" 
+        self.fields['start'].label = "Date of flight" 
+
+    class Meta:
+        model = Booking
+        fields = '__all__'
+        exclude = ('time_booked', 'car', 'end', 'trip', 'car_hire', 'pickup', 'dropoff', 'driven_by', 
+        'carhire_trip', 'booked_by', 'slots', )
+        widgets = {
+            'start': widgets.DateInput(attrs={'type': 'date'}),
+            'country': CountrySelectWidget()
+        } 
+
+
+class IndexCarForm(forms.ModelForm):
+    car = forms.ModelChoiceField(queryset=Car.objects.all(), empty_label='Please select a car for hire.')
+
+    def __init__(self, *args, **kwargs):
+        super(IndexCarForm, self).__init__(*args, **kwargs)
+        self.fields['service'].disabled = True 
+        self.fields['car'].disabled = False 
+        self.fields['service'].label = "Type of service"
+        self.fields['car'].label = "Hire a car"
+        self.fields['start'].label = "Date car hire starts"
+        self.fields['end'].label = "Date car hire ends"
+        # self.fields['carhire_trip'].label = "Car driven within"
+        
+    class Meta:
+        model = Booking
+        fields = '__all__'
+        exclude = ('time_booked', 'flight', 'trip', 'flight_type', 'departure_date', 'pickup', 'dropoff',  'slots', 
+        'adults', 'children', 'infants', 'booked_by', 'carhire_trip',)
         widgets = {
             'start': widgets.DateInput(attrs={'type': 'date'}),
             'end': widgets.DateInput(attrs={'type': 'date'}),
