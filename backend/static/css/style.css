@@ -8081,3 +8081,9 @@ html {
 
 
 
+/* Custom styles */
+.bold-font{
+    font-weight: bolder;
+    text-decoration: underline;
+}
+
