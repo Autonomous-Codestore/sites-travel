@@ -29,8 +29,9 @@ def index(request):
     partners = pictures.filter(category="partner")
     banners = pictures.filter(category="gallery")
 
-    # trip
+    # Index trip booking
     trip_booking = IndexTripForm(request.POST or None, initial={"service": "trip"})
+    print("freezeeeeeee")
     if trip_booking.is_valid():
         instance = trip_booking.save(commit=False)
         instance.trip.slots = instance.trip.slots - instance.slots
@@ -39,11 +40,18 @@ def index(request):
         instance.end = instance.trip.end
         instance.booked_by = request.user
         instance.booked_on = datetime.now()
-        instance.save()       
+    
+        # print(trip_booking.has_errors)
+        # print(trip_booking.errors)
+        # print(instance)
+        
+        instance.save()   
+    # elif not trip_booking.is_valid():
+    #     print("not validddiii")    
         messages.success(request, 'Trip booked successfully')
         return redirect('my_bookings')
 
-    # Flight Booking form
+    # Index flight Booking 
     flight_booking = IndexFlightForm(request.POST or None, initial={"service": "flight"})
     if flight_booking.is_valid():
         instance = flight_booking.save(commit=False)
@@ -60,7 +68,7 @@ def index(request):
             messages.success(request, 'Flight booked successfully')
             return redirect('my_bookings')
 
-    # carbooking
+    # Index car booking
     car_booking = IndexCarForm(request.POST or None, initial={"service": "car hire", })
     if car_booking.is_valid():
         instance = car_booking.save(commit=False)

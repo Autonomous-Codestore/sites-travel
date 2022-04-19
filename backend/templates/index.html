@@ -235,7 +235,7 @@
 													</div>
 													<div class="row">
 														<div class="col-md-12 mt-2">
-															<form method="POST" action="{% url 'my_bookings' %}">
+															<form method="POST">
 																{% csrf_token %}
 																{{ trip_booking |crispy }}
 																
@@ -297,11 +297,11 @@
 											<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 												<div class="x_slider_form_main_wrapper float_left" data-animation="animated fadeIn">
 													<div class="x_slider_form_heading_wrapper float_left">
-														<h3>Let’s find your perfect car</h3>
+														<h3>Let's find your perfect car</h3>
 													</div>
 													<div class="row">
 														<div class="col-md-12 mt-2">
-															<form method="POST" action="{% url 'my_bookings' %}">
+															<form method="POST">
 																{% csrf_token %}
 																{{ flight_booking |crispy }}
 																<div class="col-md-12">
@@ -361,7 +361,7 @@
 													</div>
 													<div class="row">
 														<div class="col-md-12 mt-2">
-															<form method="POST" action="{% url 'my_bookings' %}">
+															<form method="POST">
 																{% csrf_token %}
 																{{ car_booking |crispy }}
 																<div class="col-md-12">
