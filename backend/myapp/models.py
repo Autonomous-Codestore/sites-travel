@@ -122,7 +122,7 @@ class Flight(models.Model):
        ordering = ['-id']
 
     def __str__(self):
-        return f"{self.start} - {self.destination}"
+        return f"{self.start.name} - {self.destination.name}"
 
 
 SERVICE = (

@@ -39,15 +39,8 @@ def index(request):
         instance.start = instance.trip.start
         instance.end = instance.trip.end
         instance.booked_by = request.user
-        instance.booked_on = datetime.now()
-    
-        # print(trip_booking.has_errors)
-        # print(trip_booking.errors)
-        # print(instance)
-        
-        instance.save()   
-    # elif not trip_booking.is_valid():
-    #     print("not validddiii")    
+        instance.booked_on = datetime.now()    
+        instance.save()      
         messages.success(request, 'Trip booked successfully')
         return redirect('my_bookings')
 
